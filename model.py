@@ -44,18 +44,18 @@ class Route(db.Model):
     #starting location
     #name that user inputs to look for location - laymen term's like "Powell Bart"
     start_name = db.Column(db.String(100), nullable=False)
-    #starting point's longitude - will have to grab from Google Maps API
-    start_lng = db.Column(db.Float, nullable=False)
     #starting point's latitude - will have to grab from Google Maps API
     start_lat = db.Column(db.Float, nullable=False)
+    #starting point's longitude - will have to grab from Google Maps API
+    start_lng = db.Column(db.Float, nullable=False)
 
     #end location
     #laymen's name to look up for a specific location 
     end_name = db.Column(db.String(100), nullable=False)
-    #end point's longitude - pull from Google Maps API
-    end_lng = db.Column(db.Float, nullable=False)
     #end point's latitude - pull from Google Maps API
     end_lat = db.Column(db.Float, nullable = False)
+    #end point's longitude - pull from Google Maps API
+    end_lng = db.Column(db.Float, nullable=False)
 
     # user_id of person who made this route
     user_id = db.Column(db.Integer,
@@ -79,23 +79,25 @@ class Segment(db.Model):
 
     seg_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 
-    order_num = db.Column(db.Integer, nullable=False, default=0)
+    # insures that segments are in the right order in the route
+    order_num = db.Column(db.Integer, nullable=False, default=1)
 
     #starting location
     #name that user inputs to look for location - laymen term's like "Powell Bart"
-    start_seg_name = db.Column(db.String(100), nullable=False)
-    #starting seg's longitude - will have to grab from Google Maps API
-    start_seg_lng = db.Column(db.Integer, nullable=False)
+    start_name = db.Column(db.String(100), nullable=False)
     #starting seg's latitude - will have to grab from Google Maps API
-    start_seg_lat = db.Column(db.Integer, nullable=False)
+    start_lat = db.Column(db.Integer, nullable=False)
+    #starting seg's longitude - will have to grab from Google Maps API
+    start_lng = db.Column(db.Integer, nullable=False)
 
     #end location
     #laymen's name to look up for a specific location 
-    end_seg_name = db.Column(db.String(100), nullable=False)
-    #end's longitude - pull from Google Maps API
-    end_seg_lng = db.Column(db.Integer, nullable=False)
+    end_name = db.Column(db.String(100), nullable=False)
     #end's latitude - pull from Google Maps API
-    end_seg_lat = db.Column(db.Integer, nullable = False)
+    end_lat = db.Column(db.Integer, nullable = False)
+    #end's longitude - pull from Google Maps API
+    end_lng = db.Column(db.Integer, nullable=False)
+    
 
     # route id that contains this segment
     route_id = db.Column(db.Integer,
@@ -114,7 +116,7 @@ class Segment(db.Model):
     def __repr__(self):
         """Readable view of segment objects"""
 
-        return f"<Segment seg id={self.seg_id} route id={self.route_id} mode id={self.mode_id} start seg's name={self.start_seg_name} starting longitude={self.start_seg_lng} starting latitude={self.start_seg_lat} end seg's name={self.end_seg_name} end longitude={self.end_seg_lng} end latitude={self.end_seg_lat}>"
+        return f"<Segment seg id={self.seg_id} route id={self.route_id} mode id={self.mode_code} start seg's name={self.start_seg_name} starting longitude={self.start_seg_lng} starting latitude={self.start_seg_lat} end seg's name={self.end_seg_name} end longitude={self.end_seg_lng} end latitude={self.end_seg_lat}>"
         
 
 #Modes of transportation table!
@@ -124,9 +126,9 @@ class Mode(db.Model):
     __tablename__ = "modes"
 
     mode_code = db.Column(db.String(5), primary_key=True)
-    #name of mode of transportation - should match Google Maps API mode of transportation names!!!
+    # TODO: name of mode of transportation - should match Google Maps API mode of transportation names!!!
     mode = db.Column(db.String(25), nullable=False)
-
+ 
     def __repr__(self):
         """Readable information about the mode of transportation"""
 
