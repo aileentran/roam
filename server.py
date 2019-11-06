@@ -18,9 +18,15 @@ app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
 def index():
-    """Homepage: map, search bar, and register/login buttons"""
+    """Homepage: map, search bar, and register/login buttons."""
 
     return render_template('homepage.html')
+
+@app.route('/registration_page')
+def registration_page():
+	"""Presents registration page to get new user information."""
+
+	return render_template('registration.html')
 
 
 
