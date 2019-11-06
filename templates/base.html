@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Roam</title>
+	<!-- account for message flashing: probably when successfully logged in/registered -->
+	<!-- TODO: TEST FLASHED MESSAGES! -->
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul class=flashes>
+			{% for message in messages %}
+				<li>{{ message }}</li>
+			{% endfor%}
+			</ul>
+		{% endif %}
+	{% endwith %}	
+</head>
+<body>
+	Roam
+	<hr>
+	{% block content %} CONTENT {% endblock %}
+</body>
+</html>

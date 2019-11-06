@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Title  -->
+<h1>Roam</h1>
+
+<!-- registration button -->
+<form action='/register'>
+    <button type='button'>Register</button>
+</form>
+
+<!-- login button -->
+<form action='/login'>
+    <button type='button'>Login</button>
+</form>
+
+<!-- Search bar for address -->
+<form class='search' action='/search'>
+	<input type='text' placeholder='Search address'>
+	<input type='submit'>
+</form>
+
+
+{% endblock %}
