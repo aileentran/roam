@@ -1,24 +1,36 @@
 {% extends 'base.html' %}
+
+{# navbar! Includes registration and login button #}
+{% block nav %}
+	<nav>
+		<a href="/registration_page">
+			<button>Register</button>
+		</a>
+
+		<a href="/login_page">
+			<button>Login</button>
+		</a>
+	</nav>
+{% endblock %}
+
 {% block content %}
 
-<!-- Title  -->
+{# <!-- Title  --> #}
 <h1>Roam</h1>
 
-<!-- registration button -->
-<form action='/register'>
-    <button type='button'>Register</button>
-</form>
+{# <!-- Search bar for address --> #}
+{# will float on top of map #}
+<section id="search-form">
+	<form class='search' action='/search'>
+		<input type='text' placeholder='Search address'>
+		<input type='submit'>
+	</form>
+</section>
 
-<!-- login button -->
-<form action='/login'>
-    <button type='button'>Login</button>
-</form>
-
-<!-- Search bar for address -->
-<form class='search' action='/search'>
-	<input type='text' placeholder='Search address'>
-	<input type='submit'>
-</form>
+{# will render map #}
+<section id="map">
+	<div class="map"></div>
+</section>
 
 
 {% endblock %}

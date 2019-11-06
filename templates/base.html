@@ -4,6 +4,12 @@
 	<title>Roam</title>
 	<!-- account for message flashing: probably when successfully logged in/registered -->
 	<!-- TODO: TEST FLASHED MESSAGES! -->
+		
+</head>
+<body>
+	{# navbar goes here #}
+	{% block nav %}{% endblock %}
+
 	{% with messages = get_flashed_messages() %}
 		{% if messages %}
 			<ul class=flashes>
@@ -12,11 +18,8 @@
 			{% endfor%}
 			</ul>
 		{% endif %}
-	{% endwith %}	
-</head>
-<body>
-	Roam
-	<hr>
+	{% endwith %}
+
 	{% block content %} CONTENT {% endblock %}
 </body>
 </html>
