@@ -22,6 +22,18 @@ def index():
 
     return render_template('homepage.html')
 
+##################################################################
+# Guest user experience! 
+
+
+
+
+
+
+
+##################################################################
+# Registered user experience###########################
+
 @app.route('/registration_page')
 def registration_page():
 	"""Presents registration page to get new user information."""
@@ -86,6 +98,8 @@ def login():
 
 	#trying to verify user email and password
 	if user != None and user.check_password(password) == True:
+		# adding user to session 
+		session["user"] = user.email
 		flash('You are logged in. Welcome!')
 		#TODO: decide where to redirect it to: dashboard or.. 
 		#another version of home page but with access to dashboard
@@ -97,6 +111,8 @@ def login():
 	else:
 		flash('You are not a registered user. If you want to register, please click the Register button to continue.')
 		return redirect('/')
+
+
 
 if __name__ == "__main__":
     app.debug = True
