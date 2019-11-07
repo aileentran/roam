@@ -20,7 +20,7 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     email = db.Column(db.String(75), nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(db.String(128))
     # String based on Twilio's messaging API - '+1234567890'
     phone = db.Column(db.String(15))
 
@@ -32,7 +32,7 @@ class User(db.Model):
 
         return f"<User user_id={self.user_id} email={self.email} phone={self.phone}>"
 
-    #setting functions to encrypt/hash passwords
+    #setting functions to encrypt/hash passwords; RETURNS NONE!
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
