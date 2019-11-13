@@ -3,3 +3,4 @@ env/
 .DS_Store
 testing_model_relationship.txt
 hash_password.txt
+server_scrap.py

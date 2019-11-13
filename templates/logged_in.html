@@ -1,0 +1,18 @@
+{% extends "map_base.html" %}
+
+{% block head %}
+	{# connecting to logged_in css #}
+	<link rel="stylesheet" href="/static/css/logged_in.css"/>
+{% endblock %}
+
+{% block side %}
+
+<div class="sidebar">
+	Welcome!
+{# TODO: link user info, routes, and logging out! #}
+  <a href="#home">User Info</a>
+  <a href="#news">Routes</a>
+  <a href="#contact">Log Out</a>
+</div>
+
+{% endblock %}

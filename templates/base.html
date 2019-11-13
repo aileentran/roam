@@ -4,11 +4,15 @@
 	<title>Roam</title>
 	<!-- account for message flashing: probably when successfully logged in/registered -->
 	<!-- TODO: TEST FLASHED MESSAGES! -->
-	{% block head %}HEAD INFO HERE!{% endblock %}
+	{% block head %}{% endblock %}
+	{% block maphead %}{% endblock %}
 </head>
 <body>
 	{# navbar goes here #}
 	{% block nav %}{% endblock %}
+
+	{# sidebar goes here #}
+	{% block side %} {% endblock %}
 
 	{% with messages = get_flashed_messages() %}
 		{% if messages %}
@@ -20,6 +24,8 @@
 		{% endif %}
 	{% endwith %}
 
-	{% block content %} CONTENT {% endblock %}
+	{% block map %}{% endblock %}
+
+	{% block content %}{% endblock %}
 </body>
 </html>

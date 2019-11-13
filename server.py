@@ -6,6 +6,12 @@ from flask_debugtoolbar import DebugToolbarExtension
 
 from model import db, connect_to_db, User, Route, Segment, Mode 
 
+import googlemaps
+
+from datetime import datetime
+
+gmaps = googlemaps.Client(key='AIzaSyB8cOt4MhRxcvoSKJC7M0XaXCvYFPyhCMQ')
+
 
 app = Flask(__name__)
 # required to have secret key to use Flask sessions and debug toolbar
@@ -21,18 +27,6 @@ def index():
     """Homepage: map, search bar, and register/login buttons."""
 
     return render_template('homepage.html')
-
-##################################################################
-# Guest user experience! 
-
-
-
-
-
-
-
-##################################################################
-# Registered user experience###########################
 
 @app.route('/registration_page')
 def registration_page():
@@ -103,7 +97,7 @@ def login():
 		flash('You are logged in. Welcome!')
 		#TODO: decide where to redirect it to: dashboard or.. 
 		#another version of home page but with access to dashboard
-		return redirect('/')
+		return redirect('/logged_in')
 	elif user != None:
 		flash('Your email or password is incorrect. Please try again.')
 		
@@ -111,6 +105,12 @@ def login():
 	else:
 		flash('You are not a registered user. If you want to register, please click the Register button to continue.')
 		return redirect('/')
+
+@app.route('/logged_in')
+def logged_in_page():
+	"""Shows logged in page: start, stop(s), mode(s), map, and sidebar with access to logout, user info and routes"""
+
+	return render_template('logged_in.html')
 
 
 

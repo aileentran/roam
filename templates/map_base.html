@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{# Loading Google Maps API #}
+{% block maphead %}
+	{# connecting to map_base.css #}
+	<link rel="stylesheet" href="/static/css/map_base.css"/>
+	{# connecting to map_base.js #}
+	<script src="/static/js/map_base.js"></script>
+	{# initializing map and added places library#}
+	<script
+		async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8cOt4MhRxcvoSKJC7M0XaXCvYFPyhCMQ&libraries=places&callback=initMap">
+	</script>
+{% endblock %}
+
+{% block map %}
+
+{# Title  #}
+<h1>Roam</h1>
+
+{# Search bar for address #}
+{# will float on top of map #}
+<section id="search-form">
+	<form class="search" action="/search" method="POST">
+		{# start location #}
+		<input id="start" class="controls" type="text" placeholder="Search start">
+		{# end location #}
+		<input id="stop" class="controls" type="text" placeholder="Search stop"> 
+		<select id="mode">
+			<option value="driving">Driving</option>
+			<option value="walking">Walking</option>
+			<option value="bicycling">Bicycling</option>
+			<option value="transit">Public Transportation</option>
+		<input type="submit">
+	</form>
+</section>
+
+{# will render map #}
+<section id="map">
+	<div class="map"></div>
+</section>
+{% endblock %}
