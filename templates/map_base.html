@@ -20,17 +20,21 @@
 
 {# Search bar for address #}
 {# will float on top of map #}
-<section id="search-form">
-	<form class="search" action="/search" method="POST">
+<section id="save-route">
+	<form class="save_route" action="/save_route" method="POST">
+		{# route name #}
+		<input name="name" type="text" placeholder="Route name"><br>
 		{# start location #}
-		<input id="start" class="controls" type="text" placeholder="Search start">
+		<input name="start" type="text" placeholder="Search start"><br>
 		{# end location #}
-		<input id="stop" class="controls" type="text" placeholder="Search stop"> 
-		<select id="mode">
+		<input name="stop" type="text" placeholder="Search stop"> 
+		<select name="mode">
 			<option value="driving">Driving</option>
 			<option value="walking">Walking</option>
 			<option value="bicycling">Bicycling</option>
 			<option value="transit">Public Transportation</option>
+
+		{# TODO: INCLUDE BUTTON TO ADD ANOTHER STOP + MODE #}
 		<input type="submit">
 	</form>
 </section>
