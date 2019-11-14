@@ -51,20 +51,24 @@ class Route(db.Model):
     name = db.Column(db.String(100), nullable=False)
 
     #starting location
+    #start address - will eventually enforce with searchBox 
+    start_address = db.Column(db.String(150), nullable=False)
     #name that user inputs to look for location - laymen term's like "Powell Bart"
-    start_name = db.Column(db.String(100), nullable=False)
-    #starting point's latitude - will have to grab from Google Maps API
-    start_lat = db.Column(db.Float, nullable=False)
-    #starting point's longitude - will have to grab from Google Maps API
-    start_lng = db.Column(db.Float, nullable=False)
+    start_name = db.Column(db.String(100))
+    #starting seg's latitude - will have to grab from Google Maps API
+    start_lat = db.Column(db.Integer)
+    #starting seg's longitude - will have to grab from Google Maps API
+    start_lng = db.Column(db.Integer)
 
     #end location
+    #end address - will eventually enforce with searchBox
+    end_address = db.Column(db.String(150), nullable=False)
     #laymen's name to look up for a specific location 
-    end_name = db.Column(db.String(100), nullable=False)
-    #end point's latitude - pull from Google Maps API
-    end_lat = db.Column(db.Float, nullable = False)
-    #end point's longitude - pull from Google Maps API
-    end_lng = db.Column(db.Float, nullable=False)
+    end_name = db.Column(db.String(100))
+    #end's latitude - pull from Google Maps API
+    end_lat = db.Column(db.Integer)
+    #end's longitude - pull from Google Maps API
+    end_lng = db.Column(db.Integer)
 
     # user_id of person who made this route
     user_id = db.Column(db.Integer,
@@ -92,20 +96,24 @@ class Segment(db.Model):
     order_num = db.Column(db.Integer, nullable=False, default=1)
 
     #starting location
+    #start address - will eventually enforce with searchBox 
+    start_address = db.Column(db.String(150), nullable=False)
     #name that user inputs to look for location - laymen term's like "Powell Bart"
-    start_name = db.Column(db.String(100), nullable=False)
+    start_name = db.Column(db.String(100))
     #starting seg's latitude - will have to grab from Google Maps API
-    start_lat = db.Column(db.Integer, nullable=False)
+    start_lat = db.Column(db.Integer)
     #starting seg's longitude - will have to grab from Google Maps API
-    start_lng = db.Column(db.Integer, nullable=False)
+    start_lng = db.Column(db.Integer)
 
     #end location
+    #end address - will eventually enforce with searchBox
+    end_address = db.Column(db.String(150), nullable=False)
     #laymen's name to look up for a specific location 
-    end_name = db.Column(db.String(100), nullable=False)
+    end_name = db.Column(db.String(100))
     #end's latitude - pull from Google Maps API
-    end_lat = db.Column(db.Integer, nullable = False)
+    end_lat = db.Column(db.Integer)
     #end's longitude - pull from Google Maps API
-    end_lng = db.Column(db.Integer, nullable=False)
+    end_lng = db.Column(db.Integer)
     
 
     # route id that contains this segment
