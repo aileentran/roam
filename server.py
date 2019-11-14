@@ -129,18 +129,24 @@ def save_route():
 	
 
 	# USE GOOGLE MAPS API TO GET INFO! 
-	# get start lat - using start address
-	# this is a LIST of info!! 
-	start_info = gmaps.geocode(start_address)
 
-	#result: 
-	# [{'address_components': [{'long_name': '1600', 'short_name': '1600', 'types': ['street_number']}, {'long_name': 'Amphitheatre Parkway', 'short_name': 'Amphitheatre Pkwy', 'types': ['route']}, {'long_name': 'Mountain View', 'short_name': 'Mountain View', 'types': ['locality', 'political']}, {'long_name': 'Santa Clara County', 'short_name': 'Santa Clara County', 'types': ['administrative_area_level_2', 'political']}, {'long_name': 'California', 'short_name': 'CA', 'types': ['administrative_area_level_1', 'political']}, {'long_name': 'United States', 'short_name': 'US', 'types': ['country', 'political']}, {'long_name': '94043', 'short_name': '94043', 'types': ['postal_code']}], 'formatted_address': '1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA', 'geometry': {'location': {'lat': 37.4215785, 'lng': -122.0837816}, 'location_type': 'ROOFTOP', 'viewport': {'northeast': {'lat': 37.42292748029149, 'lng': -122.0824326197085}, 'southwest': {'lat': 37.4202295197085, 'lng': -122.0851305802915}}}, 'place_id': 'ChIJtYuu0V25j4ARwu5e4wwRYgE', 'plus_code': {'compound_code': 'CWC8+JF Mountain View, California, United States', 'global_code': '849VCWC8+JF'}, 'types': ['street_address']}]
+	# get start coordinates - using start address
+	# this is a dictionary of places info!! 
+	start_info = gmaps.places(start_address)
+	# list of results, but coordinates is a dictionary of first element at idx 0
+	start_coord = start_info['results'][0]['geometry']['location']
+	start_lat = start_coord['lat']
+	start_lng = start_coord['lng']
+	
+	# get end coordinates using address
+	# this is a dictionary of places info!! 
+	end_info = gmaps.places(end_address)
+	# list of results, but coordinates is a dictionary of first element at idx 0
+	end_coord = end_info['results'][0]['geometry']['location']
+	end_lat = end_coord['lat']
+	end_lng = end_coord['lng']
 
-
-	for info in start_info:
-		if 'geometry' in info:
-			print('hi')
-
+	print(end_lng, "\t\t\t\t")
 	
 	# start lng - using start address
 	# end lat - using end address
@@ -155,7 +161,7 @@ def save_route():
 	# path to get there
 	# estimated arrival times 
 
-	return redirect('/')
+	return redirect('/logged_in')
 
 
 
