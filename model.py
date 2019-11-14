@@ -82,7 +82,7 @@ class Route(db.Model):
     def __repr__(self):
         """Readable information about route objects."""
 
-        return f"<Route route id={self.route_id} user id={self.user_id} route name={self.name} start location's name={self.start_name} starting longitude={self.start_lng} starting latitude={self.start_lat} end location's name={self.end_name} end longitude={self.end_lng} end latitude={self.end_lat}>"
+        return f"<Route route id={self.route_id} user id={self.user_id} route name={self.name} start address={self.start_address} starting longitude={self.start_lng} starting latitude={self.start_lat} end address={self.end_address} end longitude={self.end_lng} end latitude={self.end_lat}>"
 
 
 class Segment(db.Model):
