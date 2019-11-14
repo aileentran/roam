@@ -54,7 +54,7 @@ class Route(db.Model):
     #start address - will eventually enforce with searchBox 
     start_address = db.Column(db.String(150), nullable=False)
     #name that user inputs to look for location - laymen term's like "Powell Bart"
-    start_name = db.Column(db.String(100))
+    #start_name = db.Column(db.String(100))
     #starting seg's latitude - will have to grab from Google Maps API
     start_lat = db.Column(db.Integer)
     #starting seg's longitude - will have to grab from Google Maps API
@@ -64,7 +64,7 @@ class Route(db.Model):
     #end address - will eventually enforce with searchBox
     end_address = db.Column(db.String(150), nullable=False)
     #laymen's name to look up for a specific location 
-    end_name = db.Column(db.String(100))
+    #end_name = db.Column(db.String(100))
     #end's latitude - pull from Google Maps API
     end_lat = db.Column(db.Integer)
     #end's longitude - pull from Google Maps API

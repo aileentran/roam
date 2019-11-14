@@ -126,6 +126,8 @@ def save_route():
 
 	# get user obj - grab the right user then pass in user id
 	user_obj = User.query.get(session['user_id'])
+	# user id - will save in routes table
+	user_id = user_obj.user_id
 	
 
 	# USE GOOGLE MAPS API TO GET INFO! 
@@ -145,14 +147,13 @@ def save_route():
 	end_coord = end_info['results'][0]['geometry']['location']
 	end_lat = end_coord['lat']
 	end_lng = end_coord['lng']
-
-	print(end_lng, "\t\t\t\t")
 	
-	# start lng - using start address
-	# end lat - using end address
-	# end lng - using end address 
 
 	# store in database! 
+	new_route = Route(name=route_name, start_address=start_address, start_lat=start_lat, start_lng=start_lng, end_address=end_address, end_lat=end_lat, end_lng=end_lng, user_id=user_id)
+	print(new_route)
+	db.session.add(new_route)
+	db.session.commit()
 
 	# render new page 
 	#####frontend##### 
