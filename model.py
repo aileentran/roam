@@ -56,9 +56,9 @@ class Route(db.Model):
     #name that user inputs to look for location - laymen term's like "Powell Bart"
     #start_name = db.Column(db.String(100))
     #starting seg's latitude - will have to grab from Google Maps API
-    start_lat = db.Column(db.Integer)
+    start_lat = db.Column(db.Float)
     #starting seg's longitude - will have to grab from Google Maps API
-    start_lng = db.Column(db.Integer)
+    start_lng = db.Column(db.Float)
 
     #end location
     #end address - will eventually enforce with searchBox
@@ -66,9 +66,9 @@ class Route(db.Model):
     #laymen's name to look up for a specific location 
     #end_name = db.Column(db.String(100))
     #end's latitude - pull from Google Maps API
-    end_lat = db.Column(db.Integer)
+    end_lat = db.Column(db.Float)
     #end's longitude - pull from Google Maps API
-    end_lng = db.Column(db.Integer)
+    end_lng = db.Column(db.Float)
 
     # user_id of person who made this route
     user_id = db.Column(db.Integer,
@@ -101,9 +101,9 @@ class Segment(db.Model):
     #name that user inputs to look for location - laymen term's like "Powell Bart"
     # start_name = db.Column(db.String(100))
     #starting seg's latitude - will have to grab from Google Maps API
-    start_lat = db.Column(db.Integer)
+    start_lat = db.Column(db.Float)
     #starting seg's longitude - will have to grab from Google Maps API
-    start_lng = db.Column(db.Integer)
+    start_lng = db.Column(db.Float)
 
     #end location
     #end address - will eventually enforce with searchBox
@@ -111,9 +111,9 @@ class Segment(db.Model):
     #laymen's name to look up for a specific location 
     # stop_name = db.Column(db.String(100))
     #end's latitude - pull from Google Maps API
-    stop_lat = db.Column(db.Integer)
+    stop_lat = db.Column(db.Float)
     #end's longitude - pull from Google Maps API
-    stop_lng = db.Column(db.Integer)
+    stop_lng = db.Column(db.Float)
     
 
     # route id that contains this segment

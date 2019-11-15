@@ -97,7 +97,7 @@ def login():
 		flash('You are logged in. Welcome!')
 		#TODO: decide where to redirect it to: dashboard or.. 
 		#another version of home page but with access to dashboard
-		return redirect('/logged_in')
+		return redirect('/map')
 	elif user != None:
 		flash('Your email or password is incorrect. Please try again.')
 		
@@ -106,11 +106,11 @@ def login():
 		flash('You are not a registered user. If you want to register, please click the Register button to continue.')
 		return redirect('/')
 
-@app.route('/logged_in')
-def logged_in_page():
-	"""Shows logged in page: start, stop(s), mode(s), map, and sidebar with access to logout, user info and routes"""
+@app.route('/map')
+def map_page():
+	"""After user has logged in, show map page map: start, stop(s), mode(s), map, and sidebar with access to logout, user info and routes"""
 
-	return render_template('logged_in.html')
+	return render_template('map.html')
 
 @app.route('/save_route', methods=['POST'])
 def save_route():
@@ -193,7 +193,24 @@ def save_route():
 
 	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
 
-	return redirect('/logged_in')
+	return redirect('/map')
+
+@app.route('/users-routes')
+def users_routes():
+	"""Show all the saved routes."""
+
+	user_obj = User.query.filter_by(user_id=session['user_id']).first()
+	# send route obj
+	route_obj = user_obj.routes
+	print(route_obj)
+	# send segment obj 
+	###### NEED TO CHECK HOW TO GET SEG INFO! 
+	seg_obj = Segment.query.filter_by(route_id=route_obj.route_id)
+	print(seg_obj)
+	# seg_obj = route_obj.segments
+	# send mode obj 
+
+	return render_template('users-routes.html')
 
 
 
