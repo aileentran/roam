@@ -191,8 +191,21 @@ def save_route():
 	db.session.add(second_seg)
 	db.session.commit()
 
+	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
+
 	return redirect('/logged_in')
 
+
+
+@app.route('/log-out')
+def log_out():
+	"""Logs out user"""
+
+	# TODO: check if I've deleted user correctly
+	session['user_id']=''
+	flash('You are logged out. See you next time!')
+
+	return redirect('/')
 
 
 if __name__ == "__main__":
