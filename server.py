@@ -200,17 +200,28 @@ def users_routes():
 	"""Show all the saved routes."""
 
 	user_obj = User.query.filter_by(user_id=session['user_id']).first()
-	# send route obj
-	route_obj = user_obj.routes
-	print(route_obj)
-	# send segment obj 
-	###### NEED TO CHECK HOW TO GET SEG INFO! 
-	seg_obj = Segment.query.filter_by(route_id=route_obj.route_id)
-	print(seg_obj)
-	# seg_obj = route_obj.segments
-	# send mode obj 
 
-	return render_template('users-routes.html')
+	# LIST OF ROUTES!! 
+	# a user can have many routes 
+	route_list = user_obj.routes
+
+	# making dictionary of segments with route ids as keys 
+	# route_id num: [segment objects]
+	seg_dict={}
+	for idx, route in enumerate(route_list):
+		seg_obj = Segment.query.filter_by(route_id=route.route_id).all()
+		seg_dict[f'Route_id {route.route_id}'] = seg_obj
+
+	#making mode dictionary w/segment ids as keys
+	mode_dict={}
+	
+	for routes in seg_dict:
+		segments = seg_dict[routes]
+		for segment in segments:
+			print(segment)
+			mode_dict[f'Segment_id {segment.seg_id}'] = segment.mode
+
+	return render_template('users-routes.html', user=user_obj, routes=route_list, segments=seg_dict, modes=mode_dict)
 
 
 
