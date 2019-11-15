@@ -114,15 +114,21 @@ def logged_in_page():
 
 @app.route('/save_route', methods=['POST'])
 def save_route():
-	"""User saves new route."""
+	"""User saves new route, including one stop."""
 
 	# get route name - get from form!
 	route_name = request.form.get('name')
-
 	# get start address - from form 
 	start_address = request.form.get('start')
-	# get end address - from form
-	end_address = request.form.get('stop')
+
+	# get stop address - from form 
+	stop_address = request.form.get('stop')
+	# mode code for stop
+	mode_stop = request.form.get('mode_stop')
+
+	# get end address - from form 
+	end_address = request.form.get('end')
+	mode_end = request.form.get('mode_end')
 
 	# get user obj - grab the right user then pass in user id
 	user_obj = User.query.get(session['user_id'])
@@ -149,22 +155,22 @@ def save_route():
 	end_lng = end_coord['lng']
 	
 
-	# store in database! 
+	# store start and end in route table
 	new_route = Route(name=route_name, start_address=start_address, start_lat=start_lat, start_lng=start_lng, end_address=end_address, end_lat=end_lat, end_lng=end_lng, user_id=user_id)
-	print(new_route)
 	db.session.add(new_route)
+
+	# store first segment in segment table
+
+	# store second segment in segment table
+
+	# store first mode in mode table
+
+	# store second mode in mode table 
+
+
 	db.session.commit()
 
-	# render new page 
-	#####frontend##### 
-	# with route in dropdown 
-	# map with markers
-	# path to get there
-	# estimated arrival times 
-
 	return redirect('/logged_in')
-
-
 
 
 

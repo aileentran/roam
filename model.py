@@ -82,7 +82,7 @@ class Route(db.Model):
     def __repr__(self):
         """Readable information about route objects."""
 
-        return f"<Route route id={self.route_id} user id={self.user_id} route name={self.name} start address={self.start_address} starting longitude={self.start_lng} starting latitude={self.start_lat} end address={self.end_address} end longitude={self.end_lng} end latitude={self.end_lat}>"
+        return f"<Route route id={self.route_id} user id={self.user_id} route name={self.name} start address={self.start_address} starting latitude={self.start_lat} starting longitude={self.start_lng} end address={self.end_address} end latitude={self.end_lat} end longitude={self.end_lng}>"
 
 
 class Segment(db.Model):
@@ -99,7 +99,7 @@ class Segment(db.Model):
     #start address - will eventually enforce with searchBox 
     start_address = db.Column(db.String(150), nullable=False)
     #name that user inputs to look for location - laymen term's like "Powell Bart"
-    start_name = db.Column(db.String(100))
+    # start_name = db.Column(db.String(100))
     #starting seg's latitude - will have to grab from Google Maps API
     start_lat = db.Column(db.Integer)
     #starting seg's longitude - will have to grab from Google Maps API
@@ -107,13 +107,13 @@ class Segment(db.Model):
 
     #end location
     #end address - will eventually enforce with searchBox
-    end_address = db.Column(db.String(150), nullable=False)
+    stop_address = db.Column(db.String(150), nullable=False)
     #laymen's name to look up for a specific location 
-    end_name = db.Column(db.String(100))
+    # stop_name = db.Column(db.String(100))
     #end's latitude - pull from Google Maps API
-    end_lat = db.Column(db.Integer)
+    stop_lat = db.Column(db.Integer)
     #end's longitude - pull from Google Maps API
-    end_lng = db.Column(db.Integer)
+    stop_lng = db.Column(db.Integer)
     
 
     # route id that contains this segment
@@ -133,7 +133,7 @@ class Segment(db.Model):
     def __repr__(self):
         """Readable view of segment objects"""
 
-        return f"<Segment seg id={self.seg_id} route id={self.route_id} mode id={self.mode_code} start seg's name={self.start_seg_name} starting longitude={self.start_seg_lng} starting latitude={self.start_seg_lat} end seg's name={self.end_seg_name} end longitude={self.end_seg_lng} end latitude={self.end_seg_lat}>"
+        return f"<Segment seg id={self.seg_id} route id={self.route_id} mode id={self.mode_code} start seg's address={self.start_address} starting latitude={self.start_lat} starting longitude={self.start_lng} stop seg's address={self.stop_address} stop latitude={self.stop_lat} end longitude={self.stop_lng}>"
         
 
 #Modes of transportation table!
