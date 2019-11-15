@@ -120,8 +120,8 @@ class Segment(db.Model):
     route_id = db.Column(db.Integer,
                          db.ForeignKey("routes.route_id"))
     #id of associated mode of transportation
-    mode_code = db.Column(db.String(5),
-                        db.ForeignKey("modes.mode_code"))
+    mode_id = db.Column(db.Integer,
+                        db.ForeignKey("modes.mode_id"))
 
     #building relationship btwn segments and routes tables! 
     route = db.relationship("Route",
@@ -133,7 +133,7 @@ class Segment(db.Model):
     def __repr__(self):
         """Readable view of segment objects"""
 
-        return f"<Segment seg id={self.seg_id} route id={self.route_id} mode id={self.mode_code} start seg's address={self.start_address} starting latitude={self.start_lat} starting longitude={self.start_lng} stop seg's address={self.stop_address} stop latitude={self.stop_lat} end longitude={self.stop_lng}>"
+        return f"<Segment seg id={self.seg_id} route id={self.route_id} mode id={self.mode_id} start seg's address={self.start_address} starting latitude={self.start_lat} starting longitude={self.start_lng} stop seg's address={self.stop_address} stop latitude={self.stop_lat} end longitude={self.stop_lng}>"
         
 
 #Modes of transportation table!
@@ -142,14 +142,14 @@ class Mode(db.Model):
 
     __tablename__ = "modes"
 
-    mode_code = db.Column(db.String(5), primary_key=True)
+    mode_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     # TODO: name of mode of transportation - should match Google Maps API mode of transportation names!!!
     mode = db.Column(db.String(25), nullable=False)
  
     def __repr__(self):
         """Readable information about the mode of transportation"""
 
-        return f"<Mode mode code={self.mode_code} mode of transportation={self.mode}>"
+        return f"<Mode id ={self.mode_id} mode of transportation={self.mode}>"
 
 
 #################################################################################################

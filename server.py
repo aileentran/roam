@@ -121,14 +121,15 @@ def save_route():
 	# get start address - from form 
 	start_address = request.form.get('start')
 
-	# get stop address - from form 
+	# get stop info - from form 
 	stop_address = request.form.get('stop')
-	# mode code for stop
 	mode_stop = request.form.get('mode_stop')
+	stop_order = request.form.get('seg_order_stop')
 
-	# get end address - from form 
+	# get end info - from form 
 	end_address = request.form.get('end')
 	mode_end = request.form.get('mode_end')
+	end_order = request.form.get('seg_order_end')
 
 	# get user obj - grab the right user then pass in user id
 	user_obj = User.query.get(session['user_id'])
@@ -138,6 +139,7 @@ def save_route():
 
 	# USE GOOGLE MAPS API TO GET INFO! 
 
+	########## START ############
 	# get start coordinates - using start address
 	# this is a dictionary of places info!! 
 	start_info = gmaps.places(start_address)
@@ -145,7 +147,17 @@ def save_route():
 	start_coord = start_info['results'][0]['geometry']['location']
 	start_lat = start_coord['lat']
 	start_lng = start_coord['lng']
+
+	########## STOP ###############
+	# get stop coordinates using address
+	# this is a dictionary of places info!! 
+	stop_info = gmaps.places(stop_address)
+	# list of results, but coordinates is a dictionary of first element at idx 0
+	stop_coord = stop_info['results'][0]['geometry']['location']
+	stop_lat = stop_coord['lat']
+	stop_lng = stop_coord['lng']
 	
+	############# END #############
 	# get end coordinates using address
 	# this is a dictionary of places info!! 
 	end_info = gmaps.places(end_address)
@@ -153,21 +165,30 @@ def save_route():
 	end_coord = end_info['results'][0]['geometry']['location']
 	end_lat = end_coord['lat']
 	end_lng = end_coord['lng']
-	
 
 	# store start and end in route table
 	new_route = Route(name=route_name, start_address=start_address, start_lat=start_lat, start_lng=start_lng, end_address=end_address, end_lat=end_lat, end_lng=end_lng, user_id=user_id)
 	db.session.add(new_route)
-
-	# store first segment in segment table
-
-	# store second segment in segment table
+	db.session.commit()
 
 	# store first mode in mode table
+	first_mode = Mode(mode=mode_stop)
+	db.session.add(first_mode)
+	db.session.commit()
 
 	# store second mode in mode table 
+	second_mode = Mode(mode=mode_end)
+	db.session.add(second_mode)
+	db.session.commit()
 
+	# store first segment in segment table
+	first_seg = Segment(order_num=stop_order, start_address=start_address, start_lat=start_lat, start_lng=start_lng, stop_address=stop_address, stop_lat=stop_lat, stop_lng=stop_lng, route_id=new_route.route_id, mode_id=first_mode.mode_id)
+	db.session.add(first_seg)
+	db.session.commit()
 
+	# store second segment in segment table
+	second_seg = Segment(order_num=end_order, start_address=stop_address, start_lat=stop_lat, start_lng=stop_lng, stop_address=end_address, stop_lat=end_lat, stop_lng=end_lng, route_id=new_route.route_id, mode_id=second_mode.mode_id)
+	db.session.add(second_seg)
 	db.session.commit()
 
 	return redirect('/logged_in')
