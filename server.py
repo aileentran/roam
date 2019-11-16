@@ -199,27 +199,18 @@ def save_route():
 def users_routes():
 	"""Show all the saved routes."""
 
-	user_obj = User.query.filter_by(user_id=session['user_id']).first()
+	user_obj = User.query\
+	               .options(db.joinedload('routes')
+	               	          .joinedload('segments')
+	               	          .joinedload('mode'))\
+	               .get(session['user_id'])
 
 	# LIST OF ROUTES!! 
 	# a user can have many routes 
 	route_list = user_obj.routes
 
-	# making dictionary of segments with route ids as keys 
-	# route_id num: [segment objects]
-	seg_dict={}
-	for idx, route in enumerate(route_list):
-		seg_obj = Segment.query.filter_by(route_id=route.route_id).all()
-		seg_dict[f'Route_id {route.route_id}'] = seg_obj
 
-	#making mode dictionary w/segment ids as keys
-	mode_dict={}
-	for routes in seg_dict:
-		segments = seg_dict[routes]
-		for segment in segments:
-			mode_dict[f'Segment_id {segment.seg_id}'] = segment.mode
-
-	return render_template('users-routes.html', user=user_obj, routes=route_list, segments=seg_dict, modes=mode_dict)
+	return render_template('users-routes.html', user=user_obj, routes=route_list)
 
 
 

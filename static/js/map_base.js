@@ -33,6 +33,4 @@ function initMap(){
 		return "We cannot access your current location. Please input your address." 
 	}
 
-	
-
 };
