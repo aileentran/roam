@@ -2,16 +2,28 @@
 
 {% block content %}
 
-<TABLE  BORDER="5">
-   <TR>
-      <TH COLSPAN="2">
+{# for each route in routes list #}
+{% for route in routes %}
+<table  border="5">
+   <tr>
+      <th colspan="2">
       	{# pass in route name #}
-         <H3><BR>ROUTE NAME</H3>
-      </TH>
-   </TR>
-      <TH>Address</TH>
-      <TH>Mode of Transportation</TH>
-      <TH>Stop order</TH>
+         <h3><br>{{ route.name }}</h3>
+      </th>
+   </tr>
+      <th>Address</th>
+      <th>Mode of Transportation</th>
+      <th>Stop order</th>
+    {# list of segments for current route from segment dictionary #}
+    {{ route.route_id }}
+    {{ segments }}
+{#     {{ segments[f"Route_id {route.route_id}"] }} #}
+{#     {% for segment in segments[f'Route_id {route.route_id}'] %}
+    	<td>{{ segment.start_address }}</td>
+    	<td>{{ segment.mode }}</td>
+    	<td>{{ segment.order_num }}</td>
+    {% endfor %} #}
 
+{% endfor %}
 
 {% endblock %}

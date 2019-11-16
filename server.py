@@ -214,11 +214,9 @@ def users_routes():
 
 	#making mode dictionary w/segment ids as keys
 	mode_dict={}
-	
 	for routes in seg_dict:
 		segments = seg_dict[routes]
 		for segment in segments:
-			print(segment)
 			mode_dict[f'Segment_id {segment.seg_id}'] = segment.mode
 
 	return render_template('users-routes.html', user=user_obj, routes=route_list, segments=seg_dict, modes=mode_dict)
@@ -229,8 +227,7 @@ def users_routes():
 def log_out():
 	"""Logs out user"""
 
-	# TODO: check if I've deleted user correctly
-	session['user_id']=''
+	session.pop('user_id')
 	flash('You are logged out. See you next time!')
 
 	return redirect('/')
