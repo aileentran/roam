@@ -110,7 +110,7 @@ def login():
 def map_page():
 	"""After user has logged in, show map page map: start, stop(s), mode(s), map, and sidebar with access to logout, user info and routes"""
 
-	return render_template('map.html')
+	return render_template('map.html', route=None)
 
 @app.route('/save_route', methods=['POST'])
 def save_route():
@@ -227,9 +227,9 @@ def route_info(route_id):
 	# information about each segment 
 	for segment in route_obj.segments:
 		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode)
-		print(route_info)
+	
 
-	return render_template('map.html')
+	return render_template('map.html', route=route_obj)
 
 
 @app.route('/log-out')

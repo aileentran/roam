@@ -23,31 +23,41 @@
 <section id="save-route">
 	<form class="save_route" action="/save_route" method="POST">
 		{# route name #}
-		<input name="name" type="text" placeholder="Route name"><br>
+		<input name="name" type="text" value="{{ route.name.title() if route else ''}}" placeholder="Route name"><br>
 		{# start location #}
-		<input name="start" type="text" placeholder="Search start"><br>
+		<input name="start" type="text" value="{{ route.start_address if route else ''}}"placeholder="Search start"><br>
 		{# stop location #}
-		<input name="stop" type="text" placeholder="Search stop"> 
+		{# TODO: TAKE OUT SEGMENT HARDCODE! #}
+		<input name="stop" type="text" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
+
 		<select name="mode_stop">
+			{% if route: %}
+			<option value="{{ route.segments[0].mode.mode }}">{{ route.segments[0].mode.mode.title() }}</option> 
+			{% else %}
 			<option value="driving">Driving</option> {# google takes in driving #}
 			<option value="walking">Walking</option> {# google takes in walking #}
 			<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
 			<option value="transit">Public Transportation</option> {# google takes in transit #}
-		<input name="seg_order_stop" type="number" min="1" placeholder="Stop order">
+			{% endif %}
+		<input name="seg_order_stop" type="number" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
 
 		<br>
 
 		{# end destination #}
-		<input name="end" type="text" placeholder="Search end destination"> 
-		<select name="mode_end">
+		<input name="end" type="text" value="{{ route.segments[1].stop_address if route else '' }}" placeholder="Search end destination"> 
+		<select name="mode_stop">
+			{% if route: %}
+			<option value="{{ route.segments[1].mode.mode }}">{{ route.segments[1].mode.mode.title() }}</option> 
+			{% else %}
 			<option value="driving">Driving</option> {# google takes in driving #}
 			<option value="walking">Walking</option> {# google takes in walking #}
 			<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
 			<option value="transit">Public Transportation</option> {# google takes in transit #}
-		<input name="seg_order_end" type="number" min="1" placeholder="Stop order">
+			{% endif %}
+		<input name="seg_order_end" type="number" min="1" value="{{ route.segments[1].order_num if route else '' }}"placeholder="Stop order">
 
 		{# TODO: INCLUDE BUTTON TO ADD ANOTHER STOP + MODE #}
-
+		{# TODO: might have duplicates if hit submit. Check later #}
 		<input type="submit">
 	</form>
 </section>
@@ -56,5 +66,6 @@
 <section id="map">
 	<div class="map"></div>
 </section>
+
 {% endblock %}
 
