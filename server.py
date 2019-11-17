@@ -199,6 +199,9 @@ def save_route():
 def users_routes():
 	"""Show all the saved routes."""
 
+	# joining routes, segments, and mode tables for specified user
+	# reduces the number of queries
+	# user_obj has access to all route info!
 	user_obj = User.query\
 	               .options(db.joinedload('routes')
 	               	          .joinedload('segments')
@@ -212,6 +215,21 @@ def users_routes():
 
 	return render_template('users-routes.html', user=user_obj, routes=route_list)
 
+@app.route('/map/<int:route_id>')
+def route_info(route_id):
+	"""Shows route information on map page."""
+
+	route_obj = Route.query\
+					.options(db.joinedload('segments')
+								.joinedload('mode'))\
+					.get(route_id)
+
+	# information about each segment 
+	for segment in route_obj.segments:
+		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode)
+		print(route_info)
+
+	return render_template('map.html')
 
 
 @app.route('/log-out')
