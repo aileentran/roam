@@ -26,7 +26,7 @@ app.jinja_env.undefined = StrictUndefined
 def index():
     """Homepage: map, search bar, and register/login buttons."""
 
-    return render_template('homepage.html')
+    return render_template('homepage.html', route=None)
 
 @app.route('/registration_page')
 def registration_page():
@@ -110,7 +110,7 @@ def login():
 def map_page():
 	"""After user has logged in, show map page map: start, stop(s), mode(s), map, and sidebar with access to logout, user info and routes"""
 
-	return render_template('map.html', route=None)
+	return render_template('map.html', route=None, seg_info=None)
 
 @app.route('/save_route', methods=['POST'])
 def save_route():
@@ -228,8 +228,14 @@ def route_info(route_id):
 	seg_info={} 
 	for idx, segment in enumerate(route_obj.segments):
 		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode)
-		seg_info[f'Segment {idx}']=route_info
-	print(seg_info['Segment 0'][rows])
+
+		# TODO: figure out if want to pass in details OR entire route info
+		# accessing distance, duration, and fare
+		details = route_info['rows'][0]['elements'][0]
+		# getting idx to match order num of segment
+		seg_info[f'Segment {idx + 1}']=details
+
+	print(seg_info)
 
 	return render_template('map.html', route=route_obj, seg_info=seg_info)
 

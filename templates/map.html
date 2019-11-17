@@ -18,7 +18,16 @@
 {% endblock %}
 
 {% block routeinfo %}
-	{% for segment in seg_info %}
-		{{ segment.rows }}
-	{% endfor %}
+	{% if route %}
+		{# need loop to go through segments #}
+		{% for segment in seg_info %}
+			{{ segment }}
+			Distance: {{ seg_info[segment]['distance']['text'] }}
+			Duration: {{ seg_info[segment]['duration']['text'] }}
+			{# also have access to fare if transit! #}
+{# 			{% if seg_info[segment]['fare'] %}
+				Fare: {{ seg_info[segment]['fare']}}
+			{% endif %} #}
+		{% endfor %}
+	{% endif %}
 {% endblock %}
