@@ -15,8 +15,10 @@
   <a href="/log-out">Log Out</a>
 </div>
 
-<section id="route-info">
-	<div name="route-info"></div>
-</section>
+{% endblock %}
 
+{% block routeinfo %}
+	{% for segment in seg_info %}
+		{{ segment.rows }}
+	{% endfor %}
 {% endblock %}

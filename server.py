@@ -224,12 +224,14 @@ def route_info(route_id):
 								.joinedload('mode'))\
 					.get(route_id)
 
-	# information about each segment 
-	for segment in route_obj.segments:
+	# information about each segment
+	seg_info={} 
+	for idx, segment in enumerate(route_obj.segments):
 		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode)
-	
+		seg_info[f'Segment {idx}']=route_info
+	print(seg_info['Segment 0'][rows])
 
-	return render_template('map.html', route=route_obj)
+	return render_template('map.html', route=route_obj, seg_info=seg_info)
 
 
 @app.route('/log-out')
