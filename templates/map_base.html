@@ -1,3 +1,4 @@
+{# dynamic forms using AJAX and JS #}
 {% extends 'base.html' %}
 
 {# Loading Google Maps API #}
@@ -19,7 +20,7 @@
 <h1>Roam</h1>
 
 {# Search bar for address #}
-{# will float on top of map #}
+{# TODO: will float on top of map #}
 <section id="save-route">
 	<form class="save_route" action="/save_route" method="POST">
 		{# route name #}
@@ -28,63 +29,48 @@
 		<input name="start" type="text" value="{{ route.start_address if route else ''}}"placeholder="Search start"><br>
 		{# stop location #}
 		{# TODO: TAKE OUT SEGMENT HARDCODE! #}
-		<input name="stop" type="text" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
 
-		<select name="mode_stop">
-			{% if route: %}
-			<option value="{{ route.segments[0].mode.mode }}">{{ route.segments[0].mode.mode.title() }}</option> 
-			{% else %}
-			<option value="driving">Driving</option> {# google takes in driving #}
-			<option value="walking">Walking</option> {# google takes in walking #}
-			<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
-			<option value="transit">Public Transportation</option> {# google takes in transit #}
-			{% endif %}
-		<input name="seg_order_stop" type="number" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
+		{# list of stops #}
+		<ul id='stop_list'>
+			<li>
+				<input name="stop" type="text" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
 
-		{% if route %}
-			<span name="duration">Distance: {{ seg_info['Segment 1']['distance']['text'] }}</span>
+				<select name="mode_stop">
+					{% if route: %}
+					<option value="{{ route.segments[0].mode.mode }}">{{ route.segments[0].mode.mode.title() }}</option> 
+					{% else %}
+					<option value="driving">Driving</option> {# google takes in driving #}
+					<option value="walking">Walking</option> {# google takes in walking #}
+					<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
+					<option value="transit">Public Transportation</option> {# google takes in transit #}
+					{% endif %}
+				</select>
+				<input name="seg_order_stop" type="number" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
 
-			<span name="duration">Duration: {{ seg_info['Segment 1']['duration']['text'] }} </span>
-		{% endif %}
+				{% if route %}
+					<span name="duration">Distance: {{ seg_info['Segment 1']['distance']['text'] }}</span>
 
+					<span name="duration">Duration: {{ seg_info['Segment 1']['duration']['text'] }} </span>
+				{% endif %}
+				{% if not route %}
+				{# button to add stops #}
+				<button id='add_stop'>+</button>
+			</li>
+		</ul>
 		<br>
 
-		{# end destination #}
-		<input name="end" type="text" value="{{ route.segments[1].stop_address if route else '' }}" placeholder="Search end destination"> 
-		<select name="mode_stop">
-			{% if route: %}
-			<option value="{{ route.segments[1].mode.mode }}">{{ route.segments[1].mode.mode.title() }}</option> 
-			{% else %}
-			<option value="driving">Driving</option> {# google takes in driving #}
-			<option value="walking">Walking</option> {# google takes in walking #}
-			<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
-			<option value="transit">Public Transportation</option> {# google takes in transit #}
-			{% endif %}
-		<input name="seg_order_end" type="number" min="1" value="{{ route.segments[1].order_num if route else '' }}"placeholder="Stop order">
-
-		{% if route %}
-			<span name="duration">Distance: {{ seg_info['Segment 2']['distance']['text'] }}</span>
-
-			<span name="duration">Duration: {{ seg_info['Segment 2']['duration']['text'] }} </span>
+		<input type="submit">
 		{% endif %}
-
-		<br>
-
 		{# TODO: INCLUDE BUTTON TO ADD ANOTHER STOP + MODE #}
 		{# TODO: might have duplicates if hit submit. Check later #}
-		{% if not route %}
-			<input type="submit">
-		{% endif %}
-
 	</form>
-
+</section>
 	{% if route %}
 		<button
 			id="show_directions"
 			data-route-id="{{ route.route_id }}"
 		>Directions</button>
 	{% endif %}
-</section>
 
 {# will render map #}
 <section id="map">

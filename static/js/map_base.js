@@ -21,7 +21,6 @@ function initMap(){
 
 		$.get(`/map/${routeId}/directions`, (seg_info)=>{
 			// looping through list of segments
-			console.log(seg_info)
 			for (const segment of seg_info){
 				// set the info in the window
 				
@@ -51,7 +50,6 @@ function initMap(){
 
 			// last stop/final destination
 			const finalStop = seg_info[seg_info.length - 1];
-			console.log(finalStop);
 
 			const segInfoContent = (
 				`<div class="window-content"
@@ -77,5 +75,40 @@ function initMap(){
 			});
 
 		});
+	});
+	$('#add_stop').on('click', (evt)=>{
+		evt.preventDefault();
+		evt.stopPropagation();
+		// pointing at add_stop button
+		const button = document.getElementById('add_stop');
+		// grabbing unordered list of stops
+		const stopList = document.getElementById('stop_list');
+
+		stopList.append(`
+		<li>
+			<input name="stop" type="text" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
+
+				<select name="mode_stop">
+					{% if route: %}
+					<option value="{{ route.segments[0].mode.mode }}">{{ route.segments[0].mode.mode.title() }}</option> 
+					{% else %}
+					<option value="driving">Driving</option> {# google takes in driving #}
+					<option value="walking">Walking</option> {# google takes in walking #}
+					<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
+					<option value="transit">Public Transportation</option> {# google takes in transit #}
+					{% endif %}
+				</select>
+				<input name="seg_order_stop" type="number" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
+
+				{% if route %}
+					<span name="duration">Distance: {{ seg_info['Segment 1']['distance']['text'] }}</span>
+
+					<span name="duration">Duration: {{ seg_info['Segment 1']['duration']['text'] }} </span>
+				{% endif %}
+				{% if not route %}
+				{# button to add stops #}
+				<button id='add_stop'>+</button>
+			</li>
+			`)
 	});
 };
