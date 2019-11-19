@@ -235,10 +235,32 @@ def route_info(route_id):
 		# getting idx to match order num of segment
 		seg_info[f'Segment {idx + 1}']=details
 
-	print(seg_info)
-
 	return render_template('map.html', route=route_obj, seg_info=seg_info)
 
+@app.route('/map/<int:route_id>/directions')
+def directions(route_id):
+	"""JSON information about route."""
+
+	route_obj = Route.query\
+					.options(db.joinedload('segments')
+								.joinedload('mode'))\
+					.get(route_id)
+
+	seg_info = [
+		{
+			"id": segment.seg_id,
+			"orderNum": segment.order_num,
+			"start_lat": segment.start_lat,
+			"start_lng": segment.start_lng,
+			"stop_lat": segment.stop_lat,
+			"stop_lng": segment.stop_lng,
+			"mode": segment.mode.mode
+		}
+
+		for segment in route_obj.segments
+	]
+
+	return jsonify(seg_info)
 
 @app.route('/log-out')
 def log_out():

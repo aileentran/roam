@@ -72,10 +72,18 @@
 
 		{# TODO: INCLUDE BUTTON TO ADD ANOTHER STOP + MODE #}
 		{# TODO: might have duplicates if hit submit. Check later #}
-		{% if route == None %}
-		<input type="submit">
+		{% if not route %}
+			<input type="submit">
 		{% endif %}
+
 	</form>
+
+	{% if route %}
+		<button
+			id="show_directions"
+			data-route-id="{{ route.route_id }}"
+		>Directions</button>
+	{% endif %}
 </section>
 
 {# will render map #}
