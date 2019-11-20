@@ -5,10 +5,9 @@ function dynamicForm() {
 
 
 	$('#add_stop').on('click', (evt) => {
-		console.log("clicked");
 
 		// pointing at add_stop button
-		// const button = document.getElementById('add_stop');
+		const button = document.getElementById('add_stop');
 		// // grabbing unordered list of stops
 		// const stopList = document.getElementById('stop_list');
 		// console.log(stopList);
@@ -24,8 +23,6 @@ function dynamicForm() {
 				</select>
 
 				<input name="seg_order_stop" type="number" min="1" placeholder="Stop order">
-
-				<button type="button" id='add_stop'>+</button>
 		</li>
 			`);
 	});
