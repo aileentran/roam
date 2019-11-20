@@ -45,6 +45,14 @@ function dynamicForm() {
 			stopEle['mode'] = document.getElementById('mode_stop');
 			stopEle['stop order'] = document.getElementById('seg_order_stop');
 		};
+
+		const data = {
+			name: routeName,
+			startAddress: start, 
+			stopInfo: stopEle
+		};
+		
+		fetch('/save_route', data);
 	});
 };
 
