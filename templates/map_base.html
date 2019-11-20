@@ -42,7 +42,6 @@
 						<span name="duration">Duration: {{ seg_info['Segment 1']['duration']['text'] }} </span>
 					{% endif %}
 
-
 					{% if not route %}
 					{# button to add stops #}
 					<button type='button' id='add_stop'>+</button>
@@ -51,19 +50,19 @@
 			<br>
 
 			<input id="submit" type="submit">
+			{% else %}
+				<br>
+				<button
+					type='button'
+					id="show_directions"
+					data-route-id="{{ route.route_id }}"
+				>Directions
+				</button>
 			{% endif %}
 			{# TODO: INCLUDE BUTTON TO ADD ANOTHER STOP + MODE #}
 			{# TODO: might have duplicates if hit submit. Check later #}
 		</form>
 	</section>
-	{% if route %}
-		<button
-			type='button'
-			id="show_directions"
-			data-route-id="{{ route.route_id }}"
-		>Directions</button>
-	{% endif %}
-
 {% endblock%}
 
 {# Loading Google Maps API #}

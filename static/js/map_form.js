@@ -17,16 +17,16 @@ function dynamicForm() {
 			<input name="stop" type="text" placeholder="Search stop">
 
 				<select name="mode_stop">
-					<option value="driving">Driving</option> {# google takes in driving #}
-					<option value="walking">Walking</option> {# google takes in walking #}
-					<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
-					<option value="transit">Public Transportation</option> {# google takes in transit #}
+					<option value="driving">Driving</option> 
+					<option value="walking">Walking</option> 
+					<option value="bicycling">Bicycling</option> 
+					<option value="transit">Public Transportation</option>
 				</select>
-				
+
 				<input name="seg_order_stop" type="number" min="1" placeholder="Stop order">
 
-				<button id='add_stop' type="button">+</button>
-			</li>
+				<button type="button" id='add_stop'>+</button>
+		</li>
 			`);
 	});
 
