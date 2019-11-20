@@ -1,6 +1,71 @@
 {# dynamic forms using AJAX and JS #}
 {% extends 'base.html' %}
 
+{% block content %}
+
+	{# connecting to map_form.js #}
+	<script src="/static/js/map_form.js"></script>
+	{# Title  #}
+	<h1>Roam</h1>
+
+	{# Search bar for address #}
+	{# TODO: will float on top of map #}
+	<section id="save-route">
+		<form class="save_route" action="/save_route" method="POST">
+			{# route name #}
+			<input name="name" type="text" value="{{ route.name.title() if route else ''}}" placeholder="Route name"><br>
+			{# start location #}
+			<input name="start" type="text" value="{{ route.start_address if route else ''}}"placeholder="Search start"><br>
+			{# stop location #}
+			{# TODO: TAKE OUT SEGMENT HARDCODE! #}
+
+			{# list of stops #}
+			<ul id='stop_list'>
+				<li>
+					<input name="stop" type="text" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
+
+					<select name="mode_stop">
+						{% if route %}
+						<option value="{{ route.segments[0].mode.mode }}">{{ route.segments[0].mode.mode.title() }}</option> 
+						{% else %}
+						<option value="driving">Driving</option> {# google takes in driving #}
+						<option value="walking">Walking</option> {# google takes in walking #}
+						<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
+						<option value="transit">Public Transportation</option> {# google takes in transit #}
+						{% endif %}
+					</select>
+					<input name="seg_order_stop" type="number" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
+
+					{% if route %}
+						<span name="duration">Distance: {{ seg_info['Segment 1']['distance']['text'] }}</span>
+
+						<span name="duration">Duration: {{ seg_info['Segment 1']['duration']['text'] }} </span>
+					{% endif %}
+
+
+					{% if not route %}
+					{# button to add stops #}
+					<button type='button' id='add_stop'>+</button>
+				</li>
+			</ul>
+			<br>
+
+			<input id="submit" type="submit">
+			{% endif %}
+			{# TODO: INCLUDE BUTTON TO ADD ANOTHER STOP + MODE #}
+			{# TODO: might have duplicates if hit submit. Check later #}
+		</form>
+	</section>
+	{% if route %}
+		<button
+			type='button'
+			id="show_directions"
+			data-route-id="{{ route.route_id }}"
+		>Directions</button>
+	{% endif %}
+
+{% endblock%}
+
 {# Loading Google Maps API #}
 {% block maphead %}
 	{# connecting to map_base.css #}
@@ -14,68 +79,11 @@
 	</script>
 {% endblock %}
 
+
 {% block map %}
-
-{# Title  #}
-<h1>Roam</h1>
-
-{# Search bar for address #}
-{# TODO: will float on top of map #}
-<section id="save-route">
-	<form class="save_route" action="/save_route" method="POST">
-		{# route name #}
-		<input name="name" type="text" value="{{ route.name.title() if route else ''}}" placeholder="Route name"><br>
-		{# start location #}
-		<input name="start" type="text" value="{{ route.start_address if route else ''}}"placeholder="Search start"><br>
-		{# stop location #}
-		{# TODO: TAKE OUT SEGMENT HARDCODE! #}
-
-		{# list of stops #}
-		<ul id='stop_list'>
-			<li>
-				<input name="stop" type="text" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
-
-				<select name="mode_stop">
-					{% if route: %}
-					<option value="{{ route.segments[0].mode.mode }}">{{ route.segments[0].mode.mode.title() }}</option> 
-					{% else %}
-					<option value="driving">Driving</option> {# google takes in driving #}
-					<option value="walking">Walking</option> {# google takes in walking #}
-					<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
-					<option value="transit">Public Transportation</option> {# google takes in transit #}
-					{% endif %}
-				</select>
-				<input name="seg_order_stop" type="number" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
-
-				{% if route %}
-					<span name="duration">Distance: {{ seg_info['Segment 1']['distance']['text'] }}</span>
-
-					<span name="duration">Duration: {{ seg_info['Segment 1']['duration']['text'] }} </span>
-				{% endif %}
-				{% if not route %}
-				{# button to add stops #}
-				<button id='add_stop'>+</button>
-			</li>
-		</ul>
-		<br>
-
-		<input type="submit">
-		{% endif %}
-		{# TODO: INCLUDE BUTTON TO ADD ANOTHER STOP + MODE #}
-		{# TODO: might have duplicates if hit submit. Check later #}
-	</form>
-</section>
-	{% if route %}
-		<button
-			id="show_directions"
-			data-route-id="{{ route.route_id }}"
-		>Directions</button>
-	{% endif %}
-
-{# will render map #}
-<section id="map">
-	<div class="map"></div>
-</section>
-
+	{# will render map #}
+	<section id="map">
+		<div class="map"></div>
+	</section>
 {% endblock %}
 
