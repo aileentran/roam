@@ -13,18 +13,18 @@
 	<section id="save-route">
 		<form class="save_route" action="/save_route" method="POST">
 			{# route name #}
-			<input name="name" type="text" value="{{ route.name.title() if route else ''}}" placeholder="Route name"><br>
+			<input id="name" type="text" value="{{ route.name.title() if route else ''}}" placeholder="Route name"><br>
 			{# start location #}
-			<input name="start" type="text" value="{{ route.start_address if route else ''}}"placeholder="Search start"><br>
+			<input id="start" type="text" value="{{ route.start_address if route else ''}}"placeholder="Search start"><br>
 			{# stop location #}
 			{# TODO: TAKE OUT SEGMENT HARDCODE! #}
 
 			{# list of stops #}
 			<ul id='stop_list'>
 				<li>
-					<input name="stop" type="text" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
+					<input id="stop" type="text" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
 
-					<select name="mode_stop">
+					<select id="mode_stop">
 						{% if route %}
 						<option value="{{ route.segments[0].mode.mode }}">{{ route.segments[0].mode.mode.title() }}</option> 
 						{% else %}
@@ -34,12 +34,12 @@
 						<option value="transit">Public Transportation</option> {# google takes in transit #}
 						{% endif %}
 					</select>
-					<input name="seg_order_stop" type="number" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
+					<input id="seg_order_stop" type="number" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
 
 					{% if route %}
-						<span name="duration">Distance: {{ seg_info['Segment 1']['distance']['text'] }}</span>
+						<span id="duration">Distance: {{ seg_info['Segment 1']['distance']['text'] }}</span>
 
-						<span name="duration">Duration: {{ seg_info['Segment 1']['duration']['text'] }} </span>
+						<span id="duration">Duration: {{ seg_info['Segment 1']['duration']['text'] }} </span>
 					{% endif %}
 
 					{% if not route %}
@@ -59,7 +59,6 @@
 				>Directions
 				</button>
 			{% endif %}
-			{# TODO: INCLUDE BUTTON TO ADD ANOTHER STOP + MODE #}
 			{# TODO: might have duplicates if hit submit. Check later #}
 		</form>
 	</section>

@@ -7,3 +7,4 @@ server_scrap.py
 interactive_form_ex.html
 map_base_scrap.js
 map_base_static.html
+server_static.py

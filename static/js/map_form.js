@@ -28,9 +28,24 @@ function dynamicForm() {
 	});
 
 	// submitting route name, address, mode, stop order
-	// $('#submit').on('click', (evt)=>{
+	$('#submit').on('click', (evt)=>{
+		event.preventDefault();
 
-	// });
+		// grabbing info from HTML
+		const routeName = document.getElementById('name');
+		const start = document.getElementById('start');
+		const stopList = document.getElementById('stop_list');
+		const stopInfo = stopList.getElementsByTagName('li');
+
+		let stopEle = {};
+
+		// looping through stop list and packaging up info into stopEle obj
+		for (const stop of stopInfo){
+			stopEle['address'] = document.getElementById('stop');
+			stopEle['mode'] = document.getElementById('mode_stop');
+			stopEle['stop order'] = document.getElementById('seg_order_stop');
+		};
+	});
 };
 
 // calls dynamicForm function!! 

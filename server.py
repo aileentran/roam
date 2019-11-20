@@ -116,11 +116,10 @@ def map_page():
 def save_route():
 	"""User saves new route, including one stop."""
 
-	# get route name - get from form!
 	route_name = request.form.get('name')
-	# get start address - from form 
 	start_address = request.form.get('start')
 
+	
 	# get stop info - from form 
 	stop_address = request.form.get('stop')
 	mode_stop = request.form.get('mode_stop')
