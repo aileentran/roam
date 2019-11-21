@@ -112,13 +112,21 @@ def map_page():
 
 	return render_template('map.html', route=None, seg_info=None)
 
-@app.route('/save_route', methods=['POST'])
+@app.route('/save_route', methods=["POST"])
 def save_route():
 	"""User saves new route, including one stop."""
 
-	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
+	# flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
+	print('hitting save route!')
 
-	return redirect('/map')
+	name = request.form.get('name')
+	start_address = request.form.get('startAddress')
+	stop_info = request.form.get('stopInfo')
+
+	# do database stuff with the info
+	# return whatever we want
+
+	return jsonify({'the year is 3833, sentient yogurt rules the land': 'no'})
 
 @app.route('/users-routes')
 def users_routes():

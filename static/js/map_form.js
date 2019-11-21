@@ -28,7 +28,7 @@ function dynamicForm() {
 	});
 
 	// submitting route name, address, mode, stop order
-	$('#submit').on('click', (evt)=>{
+	$('#submit').on('click', async (evt)=>{
 		event.preventDefault();
 
 		// grabbing info from HTML
@@ -52,7 +52,21 @@ function dynamicForm() {
 			stopInfo: stopEle
 		};
 		
-		fetch('/save_route', data);
+		// const response = await fetch('/save_route', 
+		// 	{ 	
+		// 		method: 'POST',
+		// 		body: JSON.stringify(data), 
+		// 		headers: {'Content-Type': 'application/json'} 
+		// 	}
+		// );
+		// const response2 = await response.json()
+		// console.log(response2)
+		$.post('/save_route', data, (resp) => {
+			console.log(resp)
+			// with the response we can show stuff on the page
+			// such as showing "it was successfully saved"
+
+		})
 	});
 };
 
