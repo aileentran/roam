@@ -46,36 +46,39 @@ function dynamicForm() {
 			stopEle['stop order'] = document.getElementsByClassName('stop_order');
 		};
 
-		// looping through all addresses and saving string to list 
+		// looping through all addresses and saving string to obj w/idx as key
 		let stopAddressValues = {};
 		for (const address in stopEle['address']){
-			console.log(address);
-			console.log(stopEle['address'][address].value)
+			stopAddressValues[address] = stopEle['address'][address].value;
 		};
-		// converting array into string
-		stopAddressValues = stopAddressValues.toString();
+		// converting obj into JSON string
+		const stopAddressJSON = JSON.stringify(stopAddressValues);
 
-		// looping through all modes and saving string to list
-		const modeValues = [];
-		for (const mode of stopEle['mode']){
-			modeValues.push(mode.value)
+		// looping through all modes and saving string to obj
+		let modeValues = {};
+		for (const mode in stopEle['mode']){
+			modeValues[mode] = stopEle['mode'][mode].value;
+		};
+		// converting modeValues obj to JSON
+		const modeJSON = JSON.stringify(modeValues);
+
+		// loop through all stop orders and saving integer to obj w/idx as key
+		let stopOrderValues = {};
+		for(const order in stopEle['stop order']){
+			stopOrderValues[order] = stopEle['stop order'][order].value;
 		};
 
-		// loop through all stop orders and saving integer to list
-		const stopOrderValues = [];
-		for(const order of stopEle['stop order']){
-			stopOrderValues.push(order.value)
-		};
+		// converting stopOrderValues to JSON
+		const orderJSON = JSON.stringify(stopOrderValues);
+
 
 		const data = {
 			name: routeName,
 			startAddress: start, 
-			stopAddress: stopAddressValues,
-			mode: modeValues,
-			stopOrder: stopOrderValues
+			stopAddress: stopAddressJSON,
+			mode: modeJSON,
+			stopOrder: orderJSON
 		};
-
-		console.log(data)
 
 		// ex: how to package stop info 
 		// {0: {}, 1: {}, 2:{}}

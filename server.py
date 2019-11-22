@@ -119,8 +119,10 @@ def save_route():
 	name = request.form.get('name')
 	start_address = request.form.get('startAddress')
 	stop_address = request.form.get('stopAddress')
+	mode = request.form.get('mode')
+	stop_order = request.form.get('stopOrder')
 
-	print(name, start_address, stop_address)
+	print(name, start_address, stop_address, mode, stop_order)
 
 	# do database stuff with the info
 	# return whatever we want
