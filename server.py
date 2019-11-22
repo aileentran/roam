@@ -116,15 +116,16 @@ def map_page():
 def save_route():
 	"""User saves new route, including one stop."""
 
-	# flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
-	print('hitting save route!')
-
 	name = request.form.get('name')
 	start_address = request.form.get('startAddress')
-	stop_info = request.form.get('stopInfo')
+	stop_address = request.form.get('stopAddress')
+
+	print(name, start_address, stop_address)
 
 	# do database stuff with the info
 	# return whatever we want
+
+	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
 
 	return jsonify({'the year is 3833, sentient yogurt rules the land': 'no'})
 

@@ -32,8 +32,8 @@ function dynamicForm() {
 		event.preventDefault();
 
 		// grabbing info from HTML
-		const routeName = document.getElementById('name');
-		const start = document.getElementById('start');
+		const routeName = document.getElementById('name').value;
+		const start = document.getElementById('start').value;
 		const stopList = document.getElementById('stop_list');
 		const stopInfo = stopList.getElementsByTagName('li');
 
@@ -41,16 +41,26 @@ function dynamicForm() {
 
 		// looping through stop list and packaging up info into stopEle obj
 		for (const stop of stopInfo){
-			stopEle['address'] = document.getElementById('stop');
-			stopEle['mode'] = document.getElementById('mode_stop');
-			stopEle['stop order'] = document.getElementById('seg_order_stop');
+			stopEle['address'] = document.getElementById('stop').value;
+			stopEle['mode'] = document.getElementById('mode_stop').value;
+			stopEle['stop order'] = document.getElementById('seg_order_stop').value;
 		};
+
+		console.log('route', routeName)
+		console.log('start', start)
+		console.log('stop address', stopEle['address'])
 
 		const data = {
 			name: routeName,
 			startAddress: start, 
-			stopInfo: stopEle
+			stopAddress: stopEle['address'],
+			mode: stopEle['mode'],
+			stopOrder: stopEle['stop order']
 		};
+
+		// ex: how to package stop info 
+		// {0: {}, 1: {}, 2:{}}
+
 		
 		// const response = await fetch('/save_route', 
 		// 	{ 	
