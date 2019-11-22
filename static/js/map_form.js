@@ -47,10 +47,13 @@ function dynamicForm() {
 		};
 
 		// looping through all addresses and saving string to list 
-		const stopAddressValues = [];
-		for (const address of stopEle['address']){
-			stopAddressValues.push(address.value);
+		let stopAddressValues = {};
+		for (const address in stopEle['address']){
+			console.log(address);
+			console.log(stopEle['address'][address].value)
 		};
+		// converting array into string
+		stopAddressValues = stopAddressValues.toString();
 
 		// looping through all modes and saving string to list
 		const modeValues = [];
@@ -64,8 +67,6 @@ function dynamicForm() {
 			stopOrderValues.push(order.value)
 		};
 
-		console.log(stopOrderValues);
-
 		const data = {
 			name: routeName,
 			startAddress: start, 
@@ -73,6 +74,8 @@ function dynamicForm() {
 			mode: modeValues,
 			stopOrder: stopOrderValues
 		};
+
+		console.log(data)
 
 		// ex: how to package stop info 
 		// {0: {}, 1: {}, 2:{}}
