@@ -13,16 +13,16 @@ function dynamicForm() {
 		// console.log(stopList);
 		$('#stop_list').append(`
 		<li>
-			<input name="stop" type="text" placeholder="Search stop">
+			<input name="stop" type="text" class="stop_address" placeholder="Search stop">
 
-				<select name="mode_stop">
+				<select name="mode_stop" class="mode_stop">
 					<option value="driving">Driving</option> 
 					<option value="walking">Walking</option> 
 					<option value="bicycling">Bicycling</option> 
 					<option value="transit">Public Transportation</option>
 				</select>
 
-				<input name="seg_order_stop" type="number" min="1" placeholder="Stop order">
+				<input name="seg_order_stop" type="number" class="stop_order" min="1" placeholder="Stop order">
 		</li>
 			`);
 	});
@@ -39,23 +39,39 @@ function dynamicForm() {
 
 		let stopEle = {};
 
-		// looping through stop list and packaging up info into stopEle obj
+		// looping through stop list and extracting ALL inputs of each type
 		for (const stop of stopInfo){
-			stopEle['address'] = document.getElementById('stop').value;
-			stopEle['mode'] = document.getElementById('mode_stop').value;
-			stopEle['stop order'] = document.getElementById('seg_order_stop').value;
+			stopEle['address'] = document.getElementsByClassName('stop_address');
+			stopEle['mode'] = document.getElementsByClassName('mode_stop');
+			stopEle['stop order'] = document.getElementsByClassName('stop_order');
 		};
 
-		console.log('route', routeName)
-		console.log('start', start)
-		console.log('stop address', stopEle['address'])
+		// looping through all addresses and saving string to list 
+		const stopAddressValues = [];
+		for (const address of stopEle['address']){
+			stopAddressValues.push(address.value);
+		};
+
+		// looping through all modes and saving string to list
+		const modeValues = [];
+		for (const mode of stopEle['mode']){
+			modeValues.push(mode.value)
+		};
+
+		// loop through all stop orders and saving integer to list
+		const stopOrderValues = [];
+		for(const order of stopEle['stop order']){
+			stopOrderValues.push(order.value)
+		};
+
+		console.log(stopOrderValues);
 
 		const data = {
 			name: routeName,
 			startAddress: start, 
-			stopAddress: stopEle['address'],
-			mode: stopEle['mode'],
-			stopOrder: stopEle['stop order']
+			stopAddress: stopAddressValues,
+			mode: modeValues,
+			stopOrder: stopOrderValues
 		};
 
 		// ex: how to package stop info 

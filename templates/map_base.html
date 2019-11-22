@@ -22,9 +22,9 @@
 			{# list of stops #}
 			<ul id='stop_list'>
 				<li>
-					<input id="stop" type="text" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
+					<input name="stop" type="text" class="stop_address" value="{{ route.segments[0].stop_address if route else '' }}"placeholder="Search stop">
 
-					<select id="mode_stop">
+					<select id="mode_stop" class="mode_stop">
 						{% if route %}
 						<option value="{{ route.segments[0].mode.mode }}">{{ route.segments[0].mode.mode.title() }}</option> 
 						{% else %}
@@ -34,7 +34,7 @@
 						<option value="transit">Public Transportation</option> {# google takes in transit #}
 						{% endif %}
 					</select>
-					<input id="seg_order_stop" type="number" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
+					<input id="seg_order_stop" type="number" class="stop_order" min="1" value="{{ route.segments[0].order_num if route else '' }}"placeholder="Stop order">
 
 					{% if route %}
 						<span id="duration">Distance: {{ seg_info['Segment 1']['distance']['text'] }}</span>
