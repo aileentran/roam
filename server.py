@@ -172,10 +172,16 @@ def save_route():
 
 	########### STOP ORDER #############
 
-	# store route info 
+	# store route info in routes table
 	new_route = Route(name=name, start_address=start_address, start_lat=start_lat, start_lng=start_lng, end_address=end_address, end_lat=end_lat, end_lng=end_lng, user_id=user_id)
 	db.session.add(new_route)
 	db.session.commit()
+
+	# storing mode in modes table
+	# go through dictionary and save individual modes to table
+
+	# go through stop info and save to segments table
+	# need to extract lat and lng for each stop from stop_latlng dictionary
 
 	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
 
