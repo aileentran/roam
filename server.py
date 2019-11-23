@@ -121,11 +121,18 @@ def save_route():
 	stop_address = request.form.get('stopAddress')
 	mode = request.form.get('mode')
 	stop_order = request.form.get('stopOrder')
+	user_id = User.query.get(session['user_id']).user_id
 
-	print(name, start_address, stop_address, mode, stop_order)
+	# converting JSON to python dictionary
+	stop_address = eval(stop_address)
+	mode = eval(mode)
+	stop_order = eval(stop_order)
+	print(stop_order)
+	print(type(stop_order))
+	
 
 	# do database stuff with the info
-	# return whatever we want
+	# return whatever we wRant
 
 	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
 
