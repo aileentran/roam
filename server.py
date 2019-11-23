@@ -179,6 +179,10 @@ def save_route():
 
 	# storing mode in modes table
 	# go through dictionary and save individual modes to table
+	for m in mode.keys():
+		md = Mode(mode=mode[m])
+		db.session.add(md)
+		db.session.commit()
 
 	# go through stop info and save to segments table
 	# need to extract lat and lng for each stop from stop_latlng dictionary
