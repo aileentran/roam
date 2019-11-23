@@ -127,12 +127,20 @@ def save_route():
 	stop_address = eval(stop_address)
 	mode = eval(mode)
 	stop_order = eval(stop_order)
-	print(stop_order)
-	print(type(stop_order))
-	
+
+	# grabbing final stop = last stop 
+	# stop_address keys are strings!
+	max_stop = 0
+	final = ''
+	for stop in stop_address.keys():
+		stop = int(stop)
+		if stop > max_stop:
+			stop = str(stop)
+			final = stop_address[stop]
+	print(final)
 
 	# do database stuff with the info
-	# return whatever we wRant
+	# return whatever we want
 
 	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
 
