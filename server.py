@@ -128,16 +128,47 @@ def save_route():
 	mode = eval(mode)
 	stop_order = eval(stop_order)
 
-	# grabbing final stop = last stop 
+	# grabbing end/final stop = last stop 
 	# stop_address keys are strings!
 	max_stop = 0
-	final = ''
+	end_address = ''
 	for stop in stop_address.keys():
 		stop = int(stop)
 		if stop > max_stop:
 			stop = str(stop)
-			final = stop_address[stop]
-	print(final)
+			end_address = stop_address[stop]
+	
+	# USE GOOGLE MAPS PLACES API TO GET LAT AND LNG
+	##############START################
+	start_info = gmaps.places(start_address)
+	# list of results, but coordinates is a dictionary of first element at idx 0
+	start_coord = start_info['results'][0]['geometry']['location']
+	start_lat = start_coord['lat']
+	start_lng = start_coord['lng']
+
+	##########FINAL/END DESTINATION##############
+	end_info = gmaps.places(end_address)
+	# list of results, but coordinates is a dictionary of first element at idx 0
+	end_coord = end_info['results'][0]['geometry']['location']
+	end_lat = end_coord['lat']
+	end_lng = end_coord['lng']
+
+	##########ALL STOPS INBETWEEN#############
+	# get all stops EXCEPT FOR FINAL/END!! 
+	# save the lat and lng of each stop with.. a dictionary?
+	stop_latlng = {}
+	for stop in stop_address.keys():
+		curr_address = stop_address[stop]
+		curr_info = gmaps.places(curr_address)
+		curr_coord = curr_info['results'][0]['geometry']['location']
+		curr_lat = curr_coord['lat']
+		curr_lng = curr_coord['lng']
+
+		# save into dictionary
+		stop_latlng[stop] = curr_coord
+		print(curr_address)
+
+	print(stop_latlng)
 
 	# do database stuff with the info
 	# return whatever we want
