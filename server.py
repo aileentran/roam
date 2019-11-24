@@ -172,15 +172,9 @@ def save_route():
 	db.session.add(new_route)
 	db.session.commit()
 
-	# storing mode in modes table
-	# go through dictionary and save individual modes to table
-	for m in mode.keys():
-		md = Mode(mode=mode[m])
-		db.session.add(md)
-		db.session.commit()
-
 	# go through stop info and save to segments table
-	# need to extract lat and lng for each stop from stop_latlng dictionary
+	# need to extract lat and lng for each stop from stop_coord dictionary
+	# using stop key to access all other dictionaries: stop_address, stop_coord, mode, stop_order
 	for stop in stop_address.keys():
 
 		stop = int(stop)
@@ -191,6 +185,11 @@ def save_route():
 		seg_stop = ""
 		seg_stop_lat = ""
 		seg_stop_lng = ""
+
+		# must be an integer! 
+		mode_id = 0
+		order_num = 0
+		route_id = 0
 
 		# for the first segment, start of segment is actual start address
 		if stop == 0:
@@ -208,14 +207,21 @@ def save_route():
 		seg_stop_lat = stop_coord[str(stop)]['lat']
 		seg_stop_lng = stop_coord[str(stop)]['lng']
 
-		print(stop)
-		print(seg_start)
-		print(seg_start_lat)
-		print(seg_start_lng)
+		# adding mode of this segment to modes table
+		# go through dictionary and save individual modes to table
+		md = Mode(mode=mode[str(stop)])
+		db.session.add(md)
+		db.session.commit()
 
-		print(seg_stop)
-		print(seg_stop_lat)
-		print(seg_stop_lng)
+		mode_id = md.mode_id
+		order_num = stop_order[str(stop)]
+		route_id = new_route.route_id
+
+		# adding each segment into segments table!
+
+		segment = Segment(order_num=order_num, start_address=seg_start, start_lat=seg_start_lat, start_lng=seg_start_lng, stop_address=seg_stop, stop_lat=seg_stop_lat, stop_lng=seg_stop_lng, route_id=route_id, mode_id=mode_id)
+		db.session.add(segment)
+		db.session.commit()
 
 	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
 
