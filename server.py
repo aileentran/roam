@@ -153,10 +153,10 @@ def save_route():
 	end_lat = end_coord['lat']
 	end_lng = end_coord['lng']
 
-	########## ALL STOPS INBETWEEN #############
+	########## ALL STOPS (no start address) #############
 	# get all stops INCLUDING final/endstop! 
 	# save the lat and lng of each stop with.. a dictionary?
-	stop_latlng = {}
+	stop_coord = {}
 	for stop in stop_address.keys():
 		curr_address = stop_address[stop]
 		curr_info = gmaps.places(curr_address)
@@ -165,12 +165,7 @@ def save_route():
 		# curr_lng = curr_coord['lng']
 
 		# save into dictionary
-		stop_latlng[stop] = curr_coord
-
-	########## MODE ###############
-
-
-	########### STOP ORDER #############
+		stop_coord[stop] = curr_coord
 
 	# store route info in routes table
 	new_route = Route(name=name, start_address=start_address, start_lat=start_lat, start_lng=start_lng, end_address=end_address, end_lat=end_lat, end_lng=end_lng, user_id=user_id)
@@ -186,6 +181,41 @@ def save_route():
 
 	# go through stop info and save to segments table
 	# need to extract lat and lng for each stop from stop_latlng dictionary
+	for stop in stop_address.keys():
+
+		stop = int(stop)
+		seg_start = ""
+		seg_start_lat = ""
+		seg_start_lng = ""
+
+		seg_stop = ""
+		seg_stop_lat = ""
+		seg_stop_lng = ""
+
+		# for the first segment, start of segment is actual start address
+		if stop == 0:
+			seg_start = start_address
+			seg_start_lat = start_lat
+			seg_start_lng = start_lng
+
+		else:
+			seg_start = stop_address[str(stop - 1)]
+			seg_start_lat = stop_coord[str(stop - 1)]['lat']
+			seg_start_lng = stop_coord[str(stop - 1)]['lng']
+
+		# grabbing stop addresses
+		seg_stop = stop_address[str(stop)]
+		seg_stop_lat = stop_coord[str(stop)]['lat']
+		seg_stop_lng = stop_coord[str(stop)]['lng']
+
+		print(stop)
+		print(seg_start)
+		print(seg_start_lat)
+		print(seg_start_lng)
+
+		print(seg_stop)
+		print(seg_stop_lat)
+		print(seg_stop_lng)
 
 	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
 
