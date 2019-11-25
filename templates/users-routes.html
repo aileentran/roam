@@ -16,9 +16,12 @@
             <th>Mode of Transportation</th>
             <th>Stop order</th>
         </tr>
+        <tr> 
+            <td>{{ route.start_address }}</td>
+        </tr>
         {% for segment in route.segments %}
             <tr>
-                <td>{{ segment.start_address }}</td>
+                <td>{{ segment.stop_address }}</td>
                 <td>{{ segment.mode.mode }}</td>
                 <td>{{ segment.order_num }}</td>
             </tr>

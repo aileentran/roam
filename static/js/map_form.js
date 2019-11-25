@@ -80,25 +80,11 @@ function dynamicForm() {
 			stopOrder: orderJSON
 		};
 
-		// ex: how to package stop info 
-		// {0: {}, 1: {}, 2:{}}
-
-		
-		// const response = await fetch('/save_route', 
-		// 	{ 	
-		// 		method: 'POST',
-		// 		body: JSON.stringify(data), 
-		// 		headers: {'Content-Type': 'application/json'} 
-		// 	}
-		// );
-		// const response2 = await response.json()
-		// console.log(response2)
+		// maybe use this later to populate 
 		$.post('/save_route', data, (resp) => {
-			console.log(resp)
-			// with the response we can show stuff on the page
-			// such as showing "it was successfully saved"
+			alert(resp);
 
-		})
+		});
 	});
 };
 

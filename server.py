@@ -131,7 +131,7 @@ def save_route():
 	# grabbing end/final stop = last stop 
 	# stop_address keys are strings!
 	max_stop = 0
-	end_address = ''
+	end_address = stop_address['0']
 	for stop in stop_address.keys():
 		stop = int(stop)
 		if stop > max_stop:
@@ -223,9 +223,7 @@ def save_route():
 		db.session.add(segment)
 		db.session.commit()
 
-	flash('Your new route has been successfully added! You can view it by hitting the "Route" tab. :)')
-
-	return jsonify({'the year is 3833, sentient yogurt rules the land': 'no'})
+	return 'Your new route has been successfully added! You can view it by hitting the "Route" tab. :)'
 
 @app.route('/users-routes')
 def users_routes():
