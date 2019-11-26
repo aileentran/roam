@@ -247,7 +247,7 @@ def users_routes():
 
 @app.route('/map/<int:route_id>')
 def route_info(route_id):
-	"""Shows route information on map page."""
+	"""Shows route information AS JSON!"""
 
 	route_obj = Route.query\
 					.options(db.joinedload('segments')
@@ -255,17 +255,25 @@ def route_info(route_id):
 					.get(route_id)
 
 	# information about each segment
-	seg_info={} 
+	seg_info={
+		"routeName": route_obj.name,
+	} 
+
 	for idx, segment in enumerate(route_obj.segments):
 		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode)
 
-		# TODO: figure out if want to pass in details OR entire route info
-		# accessing distance, duration, and fare
-		details = route_info['rows'][0]['elements'][0]
-		# getting idx to match order num of segment
-		seg_info[f'Segment {idx + 1}']=details
+		# return example: 
+		# {'destination_addresses': ['1825 4th St, San Francisco, CA 94158, USA'], 'origin_addresses': ['1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA'], 'rows': [{'elements': [{'distance': {'text': '54.8 km', 'value': 54814}, 'duration': {'text': '38 mins', 'value': 2307}, 'status': 'OK'}]}], 'status': 'OK'}
 
-	return render_template('map.html', route=route_obj, seg_info=seg_info)
+		# accessing distance, duration, and fare
+		# details = route_info['rows'][0]['elements'][0]
+
+		# getting idx to match order num of segment
+
+		seg_info[f'Segment {idx + 1}']=route_info
+
+
+	return jsonify(seg_info)
 
 @app.route('/map/<int:route_id>/directions')
 def directions(route_id):
