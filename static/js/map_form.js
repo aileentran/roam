@@ -35,37 +35,31 @@ function dynamicForm() {
 		const routeName = document.getElementById('name').value;
 		const start = document.getElementById('start').value;
 		const stopList = document.getElementById('stop_list');
-		const stopInfo = stopList.getElementsByTagName('li');
-
-		let stopEle = {};
-
-		// looping through stop list and extracting ALL inputs of each type
-		for (const stop of stopInfo){
-			stopEle['address'] = document.getElementsByClassName('stop_address');
-			stopEle['mode'] = document.getElementsByClassName('mode_stop');
-			stopEle['stop order'] = document.getElementsByClassName('stop_order');
-		};
+		const addresses = document.getElementsByClassName('stop_address');
+		const modes = document.getElementsByClassName('mode_stop');
+		const stopOrder = document.getElementsByClassName('stop_order');
 
 		// looping through all addresses and saving string to obj w/idx as key
 		let stopAddressValues = {};
-		for (const address in stopEle['address']){
-			stopAddressValues[address] = stopEle['address'][address].value;
+		for (const address in addresses){
+			stopAddressValues[address] = addresses[address].value;
 		};
+
 		// converting obj into JSON string
 		const stopAddressJSON = JSON.stringify(stopAddressValues);
 
 		// looping through all modes and saving string to obj
 		let modeValues = {};
-		for (const mode in stopEle['mode']){
-			modeValues[mode] = stopEle['mode'][mode].value;
+		for (const mode in modes){
+			modeValues[mode] = modes[mode].value;
 		};
 		// converting modeValues obj to JSON
 		const modeJSON = JSON.stringify(modeValues);
 
 		// loop through all stop orders and saving integer to obj w/idx as key
 		let stopOrderValues = {};
-		for(const order in stopEle['stop order']){
-			stopOrderValues[order] = stopEle['stop order'][order].value;
+		for(const order in stopOrder){
+			stopOrderValues[order] = stopOrder[order].value;
 		};
 
 		// converting stopOrderValues to JSON
@@ -86,6 +80,9 @@ function dynamicForm() {
 
 		});
 	});
+
+	// handle making multiple stop thingies after picking which route to look at!
+
 };
 
 // calls dynamicForm function!! 
