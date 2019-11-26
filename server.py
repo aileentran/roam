@@ -286,14 +286,28 @@ def route_info(route_id):
 		duration = route_info['rows'][0]['elements'][0]['duration']['text']
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
 		
-
-		seg_info[f'Segment {idx + 1}']={
+		# include fare cost if segment mode is transit
+		if segment.mode.mode == 'transit':
+			seg_info[f'Segment {idx + 1}']={
 			'start': start,
 			'stop': stop, 
+			'mode': segment.mode.mode,
 			'distance': distance_km,
 			'duration': duration,
-			'seconds': seconds
+			'seconds': seconds,
+			'currency': route_info['rows'][0]['elements'][0]['fare']['currency'],
+			'fare': route_info['rows'][0]['elements'][0]['fare']['text']
 		}
+
+		else:
+			seg_info[f'Segment {idx + 1}']={
+				'start': start,
+				'stop': stop, 
+				'mode': segment.mode.mode,
+				'distance': distance_km,
+				'duration': duration,
+				'seconds': seconds
+			}
 
 	return jsonify(seg_info)
 
