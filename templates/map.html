@@ -15,4 +15,14 @@
   <a href="/log-out">Log Out</a>
 </div>
 
+<ul>
+	{% for route in routes %}
+		<li>
+			<a class="route" data-route-id="{{ route.route_id }}">
+				{{ route.name }}
+			</a>
+		</li>
+	{% endfor %}
+</ul>
+
 {% endblock %}

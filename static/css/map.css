@@ -48,3 +48,11 @@
     float: none;
   }
 }
+
+a.route {
+  cursor: pointer;
+}
+
+a.route:hover {
+  text-decoration: underline;
+}

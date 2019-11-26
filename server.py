@@ -8,7 +8,7 @@ from model import db, connect_to_db, User, Route, Segment, Mode
 
 import googlemaps
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 gmaps = googlemaps.Client(key='AIzaSyB8cOt4MhRxcvoSKJC7M0XaXCvYFPyhCMQ')
 
@@ -110,7 +110,17 @@ def login():
 def map_page():
 	"""After user has logged in, show map page map: start, stop(s), mode(s), map, and sidebar with access to logout, user info and routes"""
 
-	return render_template('map.html', route=None, seg_info=None)
+	user_obj = User.query\
+               .options(db.joinedload('routes')
+               	          .joinedload('segments')
+               	          .joinedload('mode'))\
+               .get(session['user_id'])
+
+	# LIST OF ROUTES!! 
+	# a user can have many routes 
+	route_list = user_obj.routes
+
+	return render_template('map.html', user=user_obj, routes=route_list, route=None, seg_info=None)
 
 @app.route('/save_route', methods=["POST"])
 def save_route():
@@ -264,14 +274,26 @@ def route_info(route_id):
 
 		# return example: 
 		# {'destination_addresses': ['1825 4th St, San Francisco, CA 94158, USA'], 'origin_addresses': ['1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA'], 'rows': [{'elements': [{'distance': {'text': '54.8 km', 'value': 54814}, 'duration': {'text': '38 mins', 'value': 2307}, 'status': 'OK'}]}], 'status': 'OK'}
+		# NOTE: duration value = time expressed in seconds 
 
 		# accessing distance, duration, and fare
 		# details = route_info['rows'][0]['elements'][0]
 
 		# getting idx to match order num of segment
+		start = route_info['origin_addresses']
+		stop = route_info['destination_addresses']
+		distance_km = route_info['rows'][0]['elements'][0]['distance']['text']
+		duration = route_info['rows'][0]['elements'][0]['duration']['text']
+		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
+		
 
-		seg_info[f'Segment {idx + 1}']=route_info
-
+		seg_info[f'Segment {idx + 1}']={
+			'start': start,
+			'stop': stop, 
+			'distance': distance_km,
+			'duration': duration,
+			'seconds': seconds
+		}
 
 	return jsonify(seg_info)
 

@@ -83,16 +83,29 @@ function dynamicForm() {
 
 	// handle making multiple stop thingies after picking which route to look at!
 
-	$.get(`/map/${routeId}`, (resp) =>{
-		console.log('hi')
-		// what to add as many stop list ele's as there are stops
-		// insert data INTO the stops with `${stuff}`
-
-		// for (const segment of Object.keys(seg_info))
-	});
+	
 };
 
 // calls dynamicForm function!! 
 $(document).ready(function() {
 	dynamicForm();
+
+// 
+	$('a.route').on('click', (evt) => {
+		const routeId = $(evt.target).data('routeId');
+		console.log(routeId);
+
+		$.get(`/map/${routeId}`, (resp) =>{
+			console.log('hi');
+
+			console.log(resp);
+
+			// what to add as many stop list ele's as there are stops
+			// insert data INTO the stops with `${stuff}`
+
+			// for (const segment of Object.keys(seg_info)){
+
+			// };
+		});
+	});
 });
