@@ -51,6 +51,7 @@
 
 a.route {
   cursor: pointer;
+  margin: 0;
 }
 
 a.route:hover {

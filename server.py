@@ -270,14 +270,11 @@ def route_info(route_id):
 	} 
 
 	for idx, segment in enumerate(route_obj.segments):
-		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode)
+		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode, datetime.now())
 
 		# return example: 
 		# {'destination_addresses': ['1825 4th St, San Francisco, CA 94158, USA'], 'origin_addresses': ['1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA'], 'rows': [{'elements': [{'distance': {'text': '54.8 km', 'value': 54814}, 'duration': {'text': '38 mins', 'value': 2307}, 'status': 'OK'}]}], 'status': 'OK'}
 		# NOTE: duration value = time expressed in seconds 
-
-		# accessing distance, duration, and fare
-		# details = route_info['rows'][0]['elements'][0]
 
 		# getting idx to match order num of segment
 		start = route_info['origin_addresses']
