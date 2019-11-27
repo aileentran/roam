@@ -293,11 +293,6 @@ def route_info(route_id):
 		# need to convert time to timezone of... start address...? 
 
 
-
-
-
-
-
 		# include fare cost if segment mode is transit
 		if segment.mode.mode == 'transit':
 			seg_info[f'segment_{idx + 1}']={

@@ -95,52 +95,67 @@ function dynamicForm() {
 // calls dynamicForm function!! 
 $(document).ready(function() {
 	dynamicForm();
-
-// 
-	$('a.route').on('click', (evt) => {
-		const routeId = $(evt.target).data('routeId');
-
-		$.get(`/map/${routeId}`, (resp) =>{
-
-			// populating route name
-			$('#name').val(resp.routeName)
-			// populating start address
-			$('#start').val(resp.segment_1.start)
-			// populate stop info
-			$('#stop').val(resp.segment_1.stop)
-			$('#mode_stop').html(`<option value="${resp.segment_1.mode}">${resp.segment_1.mode}</option> `)
-			$('#seg_order_stop').val(resp.segment_1.order)
-			$('#distance').text(`Distance ${resp.segment_1.distance}`)
-			$('#duration').text(`Time ${resp.segment_1.duration}`)
-
-			// what to add as many stop list ele's as there are stops
-			// insert data INTO the stops with `${stuff}`
-			// TODO: figure out what to loop through. segment 2 and beyond really. 
-			for (const info of Object.keys(resp)){
-				
-				if (info !== 'routeName' && info !== 'segment_1'){
-					console.log(info)
-					console.log(resp[info].stop)
-					console.log(typeof resp[info].stop)
-					$('#stop_list').append(`
-								<li>
-									<input name="stop" type="text" class="stop_address" value="${resp[info].stop}" placeholder="Search stop">
-
-										<select name="mode_stop" class="mode_stop">
-											<option value="${resp[info].mode}">${resp[info].mode}</option>
-
-										<input name="seg_order_stop" type="number" class="stop_order" min="1" value="${resp[info].order}"placeholder="Stop order">
-								</li>
-
-								<span id="distance">Distance ${resp[info].distance}</span>
-
-								<span id="duration">Time ${resp[info].duration}</span>
-							`);
-				};	
-			};
-
-
-
-		});
-	});
 });
+// selecting a route and populating the form 
+$('a.route').on('click', (evt) => {
+	const routeId = $(evt.target).data('routeId');
+
+	$.get(`/map/${routeId}`, (resp) =>{
+
+		// populating route name
+		$('#name').val(resp.routeName)
+		// populating start address
+		$('#start').val(resp.segment_1.start)
+		// populate stop info
+		$('#stop').val(resp.segment_1.stop)
+		$('#mode_stop').html(`<option value="${resp.segment_1.mode}">${resp.segment_1.mode}</option> `)
+		$('#seg_order_stop').val(resp.segment_1.order)
+		$('#distance').text(`Distance ${resp.segment_1.distance}`)
+		$('#duration').text(`Time ${resp.segment_1.duration}`)
+
+		// what to add as many stop list ele's as there are stops
+		// insert data INTO the stops with `${stuff}`
+		// TODO: figure out what to loop through. segment 2 and beyond really. 
+		for (const info of Object.keys(resp)){
+			
+			if (info !== 'routeName' && info !== 'segment_1'){
+				console.log(info)
+				console.log(resp[info].stop)
+				console.log(typeof resp[info].stop)
+				$('#stop_list').append(`
+							<li>
+								<input name="stop" type="text" class="stop_address" value="${resp[info].stop}" placeholder="Search stop">
+
+									<select name="mode_stop" class="mode_stop">
+										<option value="${resp[info].mode}">${resp[info].mode}</option>
+
+									<input name="seg_order_stop" type="number" class="stop_order" min="1" value="${resp[info].order}"placeholder="Stop order">
+									<span id="distance">Distance ${resp[info].distance}</span>
+
+									<span id="duration">Time ${resp[info].duration}</span>
+							</li>
+
+						`);
+			};	
+		};
+
+		// place to update ETA info
+
+		// $('#eta').
+
+		// swapping submit button to directions
+		$('#submit').replaceWith(`<button
+				type='button'
+				id="show_directions"
+				data-route-id="${routeId}"
+			>Directions
+			</button>`)
+
+	});
+	// change submit button to directions = pins on map! 
+	// maybe save room for update button??
+});
+
+
+
+
