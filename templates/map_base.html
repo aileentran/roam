@@ -45,14 +45,6 @@
 			<br>
 
 			<input id="submit" type="submit">
-			{% else %}
-				<br>
-				<button
-					type='button'
-					id="show_directions"
-					data-route-id="{{ route.route_id }}"
-				>Directions
-				</button>
 			{% endif %}
 			{# TODO: might have duplicates if hit submit. Check later #}
 		</form>
