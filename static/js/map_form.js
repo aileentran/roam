@@ -24,6 +24,12 @@ function dynamicForm() {
 
 				<input name="seg_order_stop" type="number" class="stop_order" min="1" placeholder="Stop order">
 		</li>
+
+		<span id="distance"></span>
+
+		<span id="duration"></span>
+
+		<span id="eta"></span>
 			`);
 	});
 
@@ -128,6 +134,12 @@ $(document).ready(function() {
 
 										<input name="seg_order_stop" type="number" class="stop_order" min="1" placeholder="Stop order">
 								</li>
+
+								<span id="distance"></span>
+
+								<span id="duration"></span>
+
+								<span id="eta"></span>
 							`);
 				}	
 			};
