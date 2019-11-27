@@ -283,6 +283,21 @@ def route_info(route_id):
 		duration = route_info['rows'][0]['elements'][0]['duration']['text']
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
 
+		# TODO: CONVERT TIME INTO CURRENT TIMEZONE!!!!!
+		# calculate ETA
+		print(datetime.now())
+		print(seconds)
+		print(datetime.now() + timedelta(seconds=seconds))
+
+		# oh crap! getting stuff like 2019-11-27 01:38:05.992292
+		# need to convert time to timezone of... start address...? 
+
+
+
+
+
+
+
 		# include fare cost if segment mode is transit
 		if segment.mode.mode == 'transit':
 			seg_info[f'segment_{idx + 1}']={
