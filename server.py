@@ -266,7 +266,7 @@ def route_info(route_id):
 
 	# information about each segment
 	seg_info={
-		"routeName": route_obj.name,
+		"routeName": route_obj.name.title(),
 	} 
 
 	for idx, segment in enumerate(route_obj.segments):
@@ -285,25 +285,27 @@ def route_info(route_id):
 		
 		# include fare cost if segment mode is transit
 		if segment.mode.mode == 'transit':
-			seg_info[f'Segment {idx + 1}']={
+			seg_info[f'segment_{idx + 1}']={
 			'start': start,
 			'stop': stop, 
-			'mode': segment.mode.mode,
+			'mode': segment.mode.mode.title(),
 			'distance': distance_km,
 			'duration': duration,
 			'seconds': seconds,
 			'currency': route_info['rows'][0]['elements'][0]['fare']['currency'],
-			'fare': route_info['rows'][0]['elements'][0]['fare']['text']
+			'fare': route_info['rows'][0]['elements'][0]['fare']['text'],
+			'order': segment.order_num
 		}
 
 		else:
-			seg_info[f'Segment {idx + 1}']={
+			seg_info[f'segment_{idx + 1}']={
 				'start': start,
 				'stop': stop, 
-				'mode': segment.mode.mode,
+				'mode': segment.mode.mode.title(),
 				'distance': distance_km,
 				'duration': duration,
-				'seconds': seconds
+				'seconds': seconds,
+				'order': segment.order_num
 			}
 
 	return jsonify(seg_info)

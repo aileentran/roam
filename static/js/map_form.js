@@ -96,16 +96,41 @@ $(document).ready(function() {
 		console.log(routeId);
 
 		$.get(`/map/${routeId}`, (resp) =>{
-			console.log('hi');
+			console.log(resp)
+			console.log(resp.segment_1.mode)
 
-			console.log(resp);
+			// populating route name
+			$('#name').val(resp.routeName)
+			// populating start address
+			$('#start').val(resp.segment_1.start)
+			// populate stop info
+			$('#stop').val(resp.segment_1.stop)
+			$('#mode_stop').html(`<option value="${resp.segment_1.mode}">${resp.segment_1.mode}</option> `)
+			$('#seg_order_stop').val(resp.segment_1.order)
 
 			// what to add as many stop list ele's as there are stops
 			// insert data INTO the stops with `${stuff}`
+			// TODO: figure out what to loop through. segment 2 and beyond really. 
+			for (const info of Object.keys(resp)){
 
-			// for (const segment of Object.keys(seg_info)){
+				
+				if (info !== 'routeName' && info !== 'segment_1'){
+					$('#stop_list').append(`
+								<li>
+									<input name="stop" type="text" class="stop_address" placeholder="Search stop">
 
-			// };
+										<select name="mode_stop" class="mode_stop">
+											<option value="driving">Driving</option> 
+											<option value="walking">Walking</option> 
+											<option value="bicycling">Bicycling</option> 
+											<option value="transit">Public Transportation</option>
+										</select>
+
+										<input name="seg_order_stop" type="number" class="stop_order" min="1" placeholder="Stop order">
+								</li>
+							`);
+				}	
+			};
 		});
 	});
 });
