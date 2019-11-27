@@ -11,7 +11,10 @@ function initMap(){
 		center: {lat: 37.601773, lng: -122.202870},
 		zoom: 11
 	})
+	
+};
 
+function markers(){
 	const infoWindow = new google.maps.InfoWindow;
 
 	$('#show_directions').on('click', (evt) => {
@@ -77,3 +80,7 @@ function initMap(){
 		});
 	});
 };
+
+$(document).ready(function() {
+	markers();
+});
