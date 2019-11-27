@@ -277,12 +277,12 @@ def route_info(route_id):
 		# NOTE: duration value = time expressed in seconds 
 
 		# getting idx to match order num of segment
-		start = route_info['origin_addresses']
-		stop = route_info['destination_addresses']
+		start = route_info['origin_addresses'][0]
+		stop = route_info['destination_addresses'][0]
 		distance_km = route_info['rows'][0]['elements'][0]['distance']['text']
 		duration = route_info['rows'][0]['elements'][0]['duration']['text']
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
-		
+
 		# include fare cost if segment mode is transit
 		if segment.mode.mode == 'transit':
 			seg_info[f'segment_{idx + 1}']={

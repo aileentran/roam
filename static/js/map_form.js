@@ -99,11 +99,8 @@ $(document).ready(function() {
 // 
 	$('a.route').on('click', (evt) => {
 		const routeId = $(evt.target).data('routeId');
-		console.log(routeId);
 
 		$.get(`/map/${routeId}`, (resp) =>{
-			console.log(resp)
-			console.log(resp.segment_1.mode)
 
 			// populating route name
 			$('#name').val(resp.routeName)
@@ -113,36 +110,39 @@ $(document).ready(function() {
 			$('#stop').val(resp.segment_1.stop)
 			$('#mode_stop').html(`<option value="${resp.segment_1.mode}">${resp.segment_1.mode}</option> `)
 			$('#seg_order_stop').val(resp.segment_1.order)
+			$('#distance').text(`Distance ${resp.segment_1.distance}`)
+			$('#duration').text(`Time ${resp.segment_1.duration}`)
 
 			// what to add as many stop list ele's as there are stops
 			// insert data INTO the stops with `${stuff}`
 			// TODO: figure out what to loop through. segment 2 and beyond really. 
 			for (const info of Object.keys(resp)){
-
 				
 				if (info !== 'routeName' && info !== 'segment_1'){
+					console.log(info)
+					console.log(resp[info].stop)
+					console.log(typeof resp[info].stop)
 					$('#stop_list').append(`
 								<li>
-									<input name="stop" type="text" class="stop_address" placeholder="Search stop">
+									<input name="stop" type="text" class="stop_address" value="${resp[info].stop}" placeholder="Search stop">
 
 										<select name="mode_stop" class="mode_stop">
-											<option value="driving">Driving</option> 
-											<option value="walking">Walking</option> 
-											<option value="bicycling">Bicycling</option> 
-											<option value="transit">Public Transportation</option>
-										</select>
+											<option value="${resp[info].mode}">${resp[info].mode}</option>
 
-										<input name="seg_order_stop" type="number" class="stop_order" min="1" placeholder="Stop order">
+										<input name="seg_order_stop" type="number" class="stop_order" min="1" value="${resp[info].order}"placeholder="Stop order">
 								</li>
 
-								<span id="distance"></span>
+								<span id="distance">Distance ${resp[info].distance}</span>
 
-								<span id="duration"></span>
+								<span id="duration">Time ${resp[info].duration}</span>
 
 								<span id="eta"></span>
 							`);
-				}	
+				};	
 			};
+
+
+
 		});
 	});
 });
