@@ -135,8 +135,6 @@ $(document).ready(function() {
 								<span id="distance">Distance ${resp[info].distance}</span>
 
 								<span id="duration">Time ${resp[info].duration}</span>
-
-								<span id="eta"></span>
 							`);
 				};	
 			};
