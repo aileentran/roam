@@ -5,6 +5,7 @@
 
 	{# connecting to map_form.js #}
 	<script src="/static/js/map_form.js"></script>
+
 	{# Title  #}
 	<h1>Roam</h1>
 
@@ -45,7 +46,9 @@
 			<br>
 
 			{# TODO: might have duplicates if hit submit. Check later #}
-			<input id="submit" type="submit">
+			<span id="button-container">
+				<input id="submit" type="submit">
+			</span>
 			{% endif %}
 		</form>
 	</section>
@@ -55,13 +58,15 @@
 {% block maphead %}
 	{# connecting to map_base.css #}
 	<link rel="stylesheet" href="/static/css/map_base.css"/>
-	{# connecting to map_base.js #}
-	<script src="/static/js/map_base.js"></script>
+	{# connecting to init_map.js #}
+	<script src="/static/js/init_map.js"></script>
 	{# initializing map and added places library#}
 	<script
 		async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8cOt4MhRxcvoSKJC7M0XaXCvYFPyhCMQ&libraries=places&callback=initMap">
 	</script>
+
+	<script src="/static/js/map_visuals.js"></script>
 {% endblock %}
 
 

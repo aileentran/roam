@@ -96,6 +96,7 @@ function dynamicForm() {
 $(document).ready(function() {
 	dynamicForm();
 });
+
 // selecting a route and populating the form 
 $('a.route').on('click', (evt) => {
 	const routeId = $(evt.target).data('routeId');
@@ -119,9 +120,6 @@ $('a.route').on('click', (evt) => {
 		for (const info of Object.keys(resp)){
 			
 			if (info !== 'routeName' && info !== 'segment_1'){
-				console.log(info)
-				console.log(resp[info].stop)
-				console.log(typeof resp[info].stop)
 				$('#stop_list').append(`
 							<li>
 								<input name="stop" type="text" class="stop_address" value="${resp[info].stop}" placeholder="Search stop">
@@ -144,13 +142,21 @@ $('a.route').on('click', (evt) => {
 		// $('#eta').
 
 		// swapping submit button to directions
-		$('#submit').replaceWith(`<button
-				type='button'
-				id="show_directions"
-				data-route-id="${routeId}"
-			>Directions
-			</button>`)
+		// $('#submit').replaceWith(`<button
+		// 		type='button'
+		// 		id="show_directions"
+		// 		data-route-id="${routeId}"
+		// 	>Directions
+		// 	</button>`)
 
+		$('#button-container').html(`<button
+		 		type='button'
+		 		id="show_directions"
+		 		data-route-id="${routeId}"
+		 	>Directions
+		 	</button>`)
+		
+		markers();
 	});
 	// change submit button to directions = pins on map! 
 	// maybe save room for update button??
