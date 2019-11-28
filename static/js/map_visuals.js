@@ -90,9 +90,12 @@ function calcRoute(){
 		$.get(`/map/${routeId}/directions`, (seg_info)=>{
 			console.log('grabbing info about segs from server to draw route')
 			// looping through list of segments
+
+			let info = {};
+
 			for (const segment of seg_info){
 				// get start and end's lat/lang AND mode of travel
-				const info = {
+				info = {
 					origin: {
 						lat: segment.start_lat,
 						lng: segment.start_lng
@@ -104,16 +107,18 @@ function calcRoute(){
 					travelMode: segment.mode.toUpperCase()
 				};
 
-			directionsService.route(info, (response, status) => {
-				if (status === 'OK') {
-					directionsRenderer.setDirections(response);
-				} else {
-					alert(`Directions request unsuccessful due to: ${status}`);
-				}
-			});
-
+				console.log(info)
 				
 			};
+
+			directionsService.route(info, (response, status) => {
+					if (status === 'OK') {
+						console.log(response)
+						directionsRenderer.setDirections(response);
+					} else {
+						alert(`Directions request unsuccessful due to: ${status}`);
+					}
+				});
 
 		});
 	});
