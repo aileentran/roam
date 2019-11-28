@@ -153,6 +153,8 @@ $('a.route').on('click', (evt) => {
 		 	</button>`)
 
 		markers();
+		prepDirections();
+		calcRoute();
 	});
 	// change submit button to directions = pins on map! 
 	// maybe save room for update button??

@@ -40,7 +40,7 @@ function markers(){
 					infoWindow.setContent(segInfoContent);
 					infoWindow.open(map, startMarker)
 				});
-			}
+			};
 
 			// last stop/final destination
 			const finalStop = seg_info[seg_info.length - 1];
@@ -65,10 +65,56 @@ function markers(){
 			finalMarker.addListener('click', ()=>{
 				infoWindow.close();
 				infoWindow.setContent(segInfoContent);
-				infoWindow.open(map, finalMarker)
+				infoWindow.open(map, finalMarker);
 			});
 
 		});
 	});
-};
+}
 
+// drawing directions on map!
+// prepping the directionsRenderer
+function prepDirections(){
+	var directionsService = new google.maps.DirectionsService();
+	var directionsRenderer = new google.maps.DirectionsRenderer();
+
+	directionsRenderer.set(window.map);
+	console.log('preparing map for drawing directions')
+}
+
+// actually calculating the route
+// need to pass in route info from server via JSON
+// need event listener on the show_directions button 
+// AJAX to grab info about the segment... 
+function calcRoute(){
+	$('#show_directions').on('click', (evt) => {
+		console.log('directions button listener to draw directions')
+
+		// taken from HTML data-route-id and grabs data from map_base.html
+		const routeId = $(evt.target).data('routeId');
+
+		$.get(`/map/${routeId}/directions`, (seg_info)=>{
+			console.log('grabbing info about segs from server to draw route')
+			// looping through list of segments
+			for (const segment of seg_info){
+				// get start and end's lat/lang AND mode of travel
+				const info = {
+					origin: {
+						lat: segment.start_lat,
+						lng: segment.start_lng
+					},
+					destination: {
+						lat: segment.stop_lat,
+						lng: segment.stop_lng
+					},
+					travelMode: segment.mode.toUpperCase()
+				};
+
+				console.log(info)
+
+				
+			};
+
+		});
+	});
+}

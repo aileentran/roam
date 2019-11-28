@@ -233,7 +233,7 @@ def save_route():
 		db.session.add(segment)
 		db.session.commit()
 
-	return 'Your new route has been successfully added! You can view it by hitting the "Route" tab. :)'
+	return 'Your new route has been successfully added! If you do not see your new route in the list, please refresh the page. :)'
 
 @app.route('/users-routes')
 def users_routes():
