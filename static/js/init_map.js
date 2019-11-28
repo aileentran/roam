@@ -3,6 +3,7 @@
 
 // this function called in homepage.html inside API connection
 function initMap(){ 
+	console.log('initializing map')
 
 	window.map = new google.maps.Map(
 	document.getElementById("map"),

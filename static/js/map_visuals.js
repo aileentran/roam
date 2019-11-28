@@ -2,15 +2,18 @@
 "use strict";
 
 function markers(){
+	console.log('markers function')
 
 	const infoWindow = new google.maps.InfoWindow;
 
 	$('#show_directions').on('click', (evt) => {
+		console.log('directions button listener to make markers')
 
 		// taken from HTML data-route-id and grabs data from map_base.html
 		const routeId = $(evt.target).data('routeId');
 
 		$.get(`/map/${routeId}/directions`, (seg_info)=>{
+			console.log('grabbing info about segment and plopping down markers')
 			// looping through list of segments
 			for (const segment of seg_info){
 				// set the info in the window
@@ -69,6 +72,3 @@ function markers(){
 	});
 };
 
-// $(document).ready(function() {
-// 	markers();
-// });

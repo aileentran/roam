@@ -3,9 +3,11 @@
 
 function dynamicForm() {
 
+console.log('dynamic form function')
 
 	$('#add_stop').on('click', (evt) => {
 
+		console.log('add stop button')
 		// pointing at add_stop button
 		const button = document.getElementById('add_stop');
 		// // grabbing unordered list of stops
@@ -36,6 +38,8 @@ function dynamicForm() {
 	// submitting route name, address, mode, stop order
 	$('#submit').on('click', async (evt)=>{
 		event.preventDefault();
+
+		console.log('submit click event')
 
 		// grabbing info from HTML
 		const routeName = document.getElementById('name').value;
@@ -85,11 +89,9 @@ function dynamicForm() {
 			alert(resp);
 
 		});
-	});
 
-	// handle making multiple stop thingies after picking which route to look at!
-
-	
+		// TODO: reload page to add new route to list??? 
+	});	
 };
 
 // calls dynamicForm function!! 
@@ -99,10 +101,12 @@ $(document).ready(function() {
 
 // selecting a route and populating the form 
 $('a.route').on('click', (evt) => {
+	console.log('a.route event listener')
+
 	const routeId = $(evt.target).data('routeId');
 
 	$.get(`/map/${routeId}`, (resp) =>{
-
+		console.log('ajax getting route id and populating form')
 		// populating route name
 		$('#name').val(resp.routeName)
 		// populating start address
@@ -141,21 +145,13 @@ $('a.route').on('click', (evt) => {
 
 		// $('#eta').
 
-		// swapping submit button to directions
-		// $('#submit').replaceWith(`<button
-		// 		type='button'
-		// 		id="show_directions"
-		// 		data-route-id="${routeId}"
-		// 	>Directions
-		// 	</button>`)
-
 		$('#button-container').html(`<button
 		 		type='button'
 		 		id="show_directions"
 		 		data-route-id="${routeId}"
 		 	>Directions
 		 	</button>`)
-		
+
 		markers();
 	});
 	// change submit button to directions = pins on map! 
