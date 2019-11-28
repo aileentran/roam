@@ -70,17 +70,7 @@ function markers(){
 
 		});
 	});
-}
-
-// drawing directions on map!
-// prepping the directionsRenderer
-function prepDirections(){
-	var directionsService = new google.maps.DirectionsService();
-	var directionsRenderer = new google.maps.DirectionsRenderer();
-
-	directionsRenderer.set(window.map);
-	console.log('preparing map for drawing directions')
-}
+};
 
 // actually calculating the route
 // need to pass in route info from server via JSON
@@ -92,6 +82,10 @@ function calcRoute(){
 
 		// taken from HTML data-route-id and grabs data from map_base.html
 		const routeId = $(evt.target).data('routeId');
+
+		const directionsService = new google.maps.DirectionsService();
+	    const directionsRenderer = new google.maps.DirectionsRenderer();
+	    directionsRenderer.setMap(window.map);
 
 		$.get(`/map/${routeId}/directions`, (seg_info)=>{
 			console.log('grabbing info about segs from server to draw route')
@@ -110,7 +104,13 @@ function calcRoute(){
 					travelMode: segment.mode.toUpperCase()
 				};
 
-				console.log(info)
+			directionsService.route(info, (response, status) => {
+				if (status === 'OK') {
+					directionsRenderer.setDirections(response);
+				} else {
+					alert(`Directions request unsuccessful due to: ${status}`);
+				}
+			});
 
 				
 			};
