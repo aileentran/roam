@@ -119,8 +119,11 @@ $('a.route').on('click', (evt) => {
 		$('#duration').text(`Time ${resp.segment_1.duration}`)
 
 		// what to add as many stop list ele's as there are stops
-		// insert data INTO the stops with `${stuff}`
-		// TODO: figure out what to loop through. segment 2 and beyond really. 
+		// insert data INTO the stops with `${stuff}` 
+
+		// keeping track of total travel time for entire route
+		let travelTime = 0;
+
 		for (const info of Object.keys(resp)){
 			
 			if (info !== 'routeName' && info !== 'segment_1'){
@@ -138,12 +141,17 @@ $('a.route').on('click', (evt) => {
 							</li>
 
 						`);
-			};	
+			};
+			
+			// summing up total travel time
+			if (info !== 'routeName'){
+				const time = resp[info].durationInt;
+				travelTime += time;
+			}
 		};
 
-		// place to update ETA info
-
-		// $('#eta').
+		// returning total travel time for route
+		$('#eta').text(`Travel time: ${travelTime} mins`)
 
 		$('#button-container').html(`<button
 		 		type='button'
@@ -153,7 +161,7 @@ $('a.route').on('click', (evt) => {
 		 	</button>`)
 
 		markers();
-		
+
 		calcRoute();
 	});
 	// change submit button to directions = pins on map! 

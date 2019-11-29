@@ -288,7 +288,9 @@ def route_info(route_id):
 		start = route_info['origin_addresses'][0]
 		stop = route_info['destination_addresses'][0]
 		distance_km = route_info['rows'][0]['elements'][0]['distance']['text']
-		duration = route_info['rows'][0]['elements'][0]['duration']['text']
+		duration_text = route_info['rows'][0]['elements'][0]['duration']['text']
+		duration_int = int(duration_text.split(' ')[0])
+		print(duration_int)
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
 
 		# TODO: CONVERT TIME INTO CURRENT TIMEZONE!!!!!
@@ -330,7 +332,8 @@ def route_info(route_id):
 			'stop': stop, 
 			'mode': segment.mode.mode.title(),
 			'distance': distance_km,
-			'duration': duration,
+			'duration': duration_text,
+			'durationInt': duration_int,
 			'seconds': seconds,
 			'currency': route_info['rows'][0]['elements'][0]['fare']['currency'],
 			'fare': route_info['rows'][0]['elements'][0]['fare']['text'],
@@ -343,7 +346,8 @@ def route_info(route_id):
 				'stop': stop, 
 				'mode': segment.mode.mode.title(),
 				'distance': distance_km,
-				'duration': duration,
+				'duration': duration_text,
+				'durationInt': duration_int,
 				'seconds': seconds,
 				'order': segment.order_num
 			}

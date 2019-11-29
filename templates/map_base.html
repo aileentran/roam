@@ -36,15 +36,16 @@
 
 					<span id="duration"></span>
 
-					<span id="eta"></span>
-
 					{% if not route %}
 					{# button to add stops #}
 					<button type='button' id='add_stop'>+</button>
 				</li>
 			</ul>
 			<br>
+			{# where total travel time will live! #}
+			<span id="eta"></span>
 
+			<br>
 			{# TODO: might have duplicates if hit submit. Check later #}
 			<span id="button-container">
 				<input id="submit" type="submit">
