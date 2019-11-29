@@ -8,7 +8,15 @@ from model import db, connect_to_db, User, Route, Segment, Mode
 
 import googlemaps
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+
+import time
+
+import pytz
+
+import tzlocal 
+
+from dateutil import tz
 
 gmaps = googlemaps.Client(key='AIzaSyB8cOt4MhRxcvoSKJC7M0XaXCvYFPyhCMQ')
 
@@ -285,9 +293,29 @@ def route_info(route_id):
 
 		# TODO: CONVERT TIME INTO CURRENT TIMEZONE!!!!!
 		# calculate ETA
+
+
+		# from_zone = tz.tzutc()
+		# to_zone = tz.tzlocal()
+
+
+
+		eta = datetime.now() + timedelta(seconds=seconds)
+
+		eta_str = eta.strftime('%a %b %d, %Y at %I:%M %p')
 		print(datetime.now())
-		print(seconds)
-		print(datetime.now() + timedelta(seconds=seconds))
+		
+		print(eta_str)
+		print(type(eta_str))
+
+		# utc = datetime.strptime(eta_str, '%a %b %d, %Y at %I:%M %p')
+		# print(utc)
+
+		# utc = utc.replace(tzinfo=from_zone)
+		# print(utc)
+
+		# current_timezone = utc.astimezone(to_zone)
+		# print(current_timezone)
 
 		# oh crap! getting stuff like 2019-11-27 01:38:05.992292
 		# need to convert time to timezone of... start address...? 

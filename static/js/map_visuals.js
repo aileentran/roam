@@ -108,8 +108,6 @@ function calcRoute(){
 				
 			}
 
-			console.log(info);
-
 			for (const leg of info){
 				console.log('IN THE LEG LOOP??')
 
