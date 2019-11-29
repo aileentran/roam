@@ -174,7 +174,7 @@ $('a.route').on('click', (evt) => {
 
 // comparing all route travel times
 $('#compare').on('click', (evt) =>{
-	console.log('evt listener for travel-time button')
+	console.log('evt listener for comparing travel times button')
 	// need to get routeId to get specific route's total travel time
 	const routeId = $(evt.target).data('routeId');
 	console.log(routeId)
