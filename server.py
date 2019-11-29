@@ -294,17 +294,22 @@ def route_info(route_id):
 		# TODO: CONVERT TIME INTO CURRENT TIMEZONE!!!!!
 		# calculate ETA
 
+		# oh crap! getting stuff like 2019-11-27 01:38:05.992292
+		# need to convert time to timezone of... start address...? 
 
 		# from_zone = tz.tzutc()
-		# to_zone = tz.tzlocal()
+		to_zone = tz.tzlocal()
 
-
+		print(datetime.now(tz=to_zone))
+		# result from 11/28/19 at 7:40-ish pm
+		# 2019-11-29 03:42:39.362671+00:00
+		# does python think i'm in UTC?? 
 
 		eta = datetime.now() + timedelta(seconds=seconds)
 
 		eta_str = eta.strftime('%a %b %d, %Y at %I:%M %p')
 		print(datetime.now())
-		
+
 		print(eta_str)
 		print(type(eta_str))
 
@@ -316,9 +321,6 @@ def route_info(route_id):
 
 		# current_timezone = utc.astimezone(to_zone)
 		# print(current_timezone)
-
-		# oh crap! getting stuff like 2019-11-27 01:38:05.992292
-		# need to convert time to timezone of... start address...? 
 
 
 		# include fare cost if segment mode is transit
