@@ -84,18 +84,15 @@ function calcRoute(){
 		const routeId = $(evt.target).data('routeId');
 
 		const directionsService = new google.maps.DirectionsService();
-	    const directionsRenderer = new google.maps.DirectionsRenderer();
-	    directionsRenderer.setMap(window.map);
 
 		$.get(`/map/${routeId}/directions`, (seg_info)=>{
 			console.log('grabbing info about segs from server to draw route')
 			// looping through list of segments
 
-			let info = {};
-
+			let info = []
 			for (const segment of seg_info){
 				// get start and end's lat/lang AND mode of travel
-				info = {
+				const leg = {
 					origin: {
 						lat: segment.start_lat,
 						lng: segment.start_lng
@@ -107,18 +104,29 @@ function calcRoute(){
 					travelMode: segment.mode.toUpperCase()
 				};
 
-				console.log(info)
+				info.push(leg);
 				
-			};
+			}
 
-			directionsService.route(info, (response, status) => {
+			console.log(info);
+
+			for (const leg of info){
+				console.log('IN THE LEG LOOP??')
+
+				// making new directionsRenderer for every segment = new route for every segment
+				const directionsRenderer = new google.maps.DirectionsRenderer();
+	    		directionsRenderer.setMap(window.map);
+
+				directionsService.route(leg, (response, status) => {
+					console.log('in the drawing route!');
+
 					if (status === 'OK') {
-						console.log(response)
 						directionsRenderer.setDirections(response);
 					} else {
 						alert(`Directions request unsuccessful due to: ${status}`);
 					}
 				});
+			}
 
 		});
 	});
