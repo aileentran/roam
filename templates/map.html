@@ -18,12 +18,14 @@
 <ul>
 	{% for route in routes %}
 		<li>
-			{# passing setting data to route-id and passing it when clicked #}
+			{# setting data to route-id and passing it when clicked #}
 			<a class="route" data-route-id="{{ route.route_id }}">
 				{{ route.name }}
 			</a>
+			<span id="travel-time" data-route-id="{{ route.route_id }}"></span>
 		</li>
 	{% endfor %}
+	<button type="button" id="compare">Compare Travel Times</button>
 </ul>
 
 {% endblock %}

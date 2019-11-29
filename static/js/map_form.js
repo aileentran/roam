@@ -151,23 +151,48 @@ $('a.route').on('click', (evt) => {
 		};
 
 		// returning total travel time for route
-		$('#eta').text(`Travel time: ${travelTime} mins`)
+		$('#eta').text(`Travel time: ${travelTime} mins`);
 
+		// changing submit button to directions button
 		$('#button-container').html(`<button
 		 		type='button'
 		 		id="show_directions"
 		 		data-route-id="${routeId}"
 		 	>Directions
-		 	</button>`)
+		 	</button>`);
 
+		// calling functions from map_visuals.js
+		// puts down markers
 		markers();
 
+		// draws paths
 		calcRoute();
 	});
 	// change submit button to directions = pins on map! 
 	// maybe save room for update button??
 });
 
+// comparing all route travel times
+$('#compare').on('click', (evt) =>{
+	console.log('evt listener for travel-time button')
+	// need to get routeId to get specific route's total travel time
+	const routeId = $(evt.target).data('routeId');
+	console.log(routeId)
 
+	$.get(`/map/${routeId}`, (resp) =>{
+		console.log('ajax req for comparison button')
+
+		let travelTime = 0;
+
+		for (const info of Object.keys(resp)){
+			if (info !== 'routeName'){
+				const time = resp[info].durationInt;
+				travelTime += time;
+			};
+		}
+
+		$('#travel-time').text(`Travel time: ${travelTime} mins`)
+	});
+});
 
 

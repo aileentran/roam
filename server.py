@@ -290,7 +290,6 @@ def route_info(route_id):
 		distance_km = route_info['rows'][0]['elements'][0]['distance']['text']
 		duration_text = route_info['rows'][0]['elements'][0]['duration']['text']
 		duration_int = int(duration_text.split(' ')[0])
-		print(duration_int)
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
 
 		# TODO: CONVERT TIME INTO CURRENT TIMEZONE!!!!!
@@ -302,7 +301,8 @@ def route_info(route_id):
 		# from_zone = tz.tzutc()
 		to_zone = tz.tzlocal()
 
-		print(datetime.now(tz=to_zone))
+		# print(datetime.now(tz=to_zone))
+
 		# result from 11/28/19 at 7:40-ish pm
 		# 2019-11-29 03:42:39.362671+00:00
 		# does python think i'm in UTC?? 
@@ -310,10 +310,10 @@ def route_info(route_id):
 		eta = datetime.now() + timedelta(seconds=seconds)
 
 		eta_str = eta.strftime('%a %b %d, %Y at %I:%M %p')
-		print(datetime.now())
+		# print(datetime.now())
 
-		print(eta_str)
-		print(type(eta_str))
+		# print(eta_str)
+		# print(type(eta_str))
 
 		# utc = datetime.strptime(eta_str, '%a %b %d, %Y at %I:%M %p')
 		# print(utc)
