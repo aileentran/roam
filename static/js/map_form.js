@@ -176,23 +176,30 @@ $('a.route').on('click', (evt) => {
 $('#compare').on('click', (evt) =>{
 	console.log('evt listener for comparing travel times button')
 	// need to get routeId to get specific route's total travel time
-	const routeId = $(evt.target).data('routeId');
-	console.log(routeId)
 
-	$.get(`/map/${routeId}`, (resp) =>{
-		console.log('ajax req for comparison button')
+	// returns a string version of route python objs
+	const numRoutes = $(evt.target).data('routes');
+		
+	// iterating through equivalent of routeId
+	for (let i = 1; i <= numRoutes; i++ ){
+		console.log('looping through route ids')
 
-		let travelTime = 0;
+		$.get(`/map/${i}`, (resp) =>{
+			console.log('ajax req for comparison button')
 
-		for (const info of Object.keys(resp)){
-			if (info !== 'routeName'){
-				const time = resp[info].durationInt;
-				travelTime += time;
-			};
-		}
+			let travelTime = 0;
 
-		$('#travel-time').text(`Travel time: ${travelTime} mins`)
-	});
+			// calculating total travel time for a route
+			for (const info of Object.keys(resp)){
+				if (info !== 'routeName'){
+					const time = resp[info].durationInt;
+					travelTime += time;
+				};
+			}
+
+			$(`#travel-time-${i}`).text(`Travel time: ${travelTime} mins`)
+		});
+	}
 });
 
 
