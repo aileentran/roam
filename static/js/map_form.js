@@ -3,7 +3,15 @@
 
 function dynamicForm() {
 
-console.log('dynamic form function')
+	console.log('dynamic form function')
+
+
+	const startInput = document.getElementById('start');
+	const startOptions = {
+	  types: ['address']
+	};
+
+	const autocompleteStart = new google.maps.places.Autocomplete(startInput, startOptions);
 
 	$('#add_stop').on('click', (evt) => {
 
@@ -15,7 +23,7 @@ console.log('dynamic form function')
 		// console.log(stopList);
 		$('#stop_list').append(`
 		<li>
-			<input name="stop" type="text" class="stop_address" placeholder="Search stop">
+			<input name="stop" id="stop" type="text" class="stop_address" placeholder="Search stop">
 
 				<select name="mode_stop" class="mode_stop">
 					<option value="driving">Driving</option> 
@@ -34,6 +42,18 @@ console.log('dynamic form function')
 		<span id="eta"></span>
 			`);
 	});
+
+
+	// TODO: get added stops to autocomplete as well. 
+	const stopList = document.getElementById('stop_list');
+	console.log(stopList)
+
+	const stopInput = document.getElementById('stop');
+	const stopOptions = {
+	  types: ['address']
+	};
+
+	const autocompleteStop = new google.maps.places.Autocomplete(stopInput, stopOptions);
 
 	// submitting route name, address, mode, stop order
 	$('#submit').on('click', async (evt)=>{
