@@ -293,20 +293,7 @@ def route_info(route_id):
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
 
 		# TODO: CONVERT TIME INTO CURRENT TIMEZONE!!!!!
-		# calculate ETA
-
-		# oh crap! getting stuff like 2019-11-27 01:38:05.992292
-		# need to convert time to timezone of... start address...? 
-
-		# from_zone = tz.tzutc()
-		# to_zone = tz.tzlocal()
-
-		# print(datetime.now(tz=to_zone))
-
-		# result from 11/28/19 at 7:40-ish pm
-		# 2019-11-29 03:42:39.362671+00:00
-		# does python think i'm in UTC?? 
-
+		# calculate ETA - hardcoded to PST 
 		# convert from utc to local time 
 		print('this is now')
 		print(datetime.now())
@@ -323,18 +310,7 @@ def route_info(route_id):
 		print('prettier eta')
 		print(eta_str)
 
-		# print(eta_str)
-		# print(type(eta_str))
-
-		# utc = datetime.strptime(eta_str, '%a %b %d, %Y at %I:%M %p')
-		# print(utc)
-
-		# utc = utc.replace(tzinfo=from_zone)
-		# print(utc)
-
-		# current_timezone = utc.astimezone(to_zone)
-		# print(current_timezone)
-
+		print('\n\n\n\n')
 
 		# include fare cost if segment mode is transit
 		if segment.mode.mode == 'transit':
@@ -346,6 +322,7 @@ def route_info(route_id):
 			'duration': duration_text,
 			'durationInt': duration_int,
 			'seconds': seconds,
+			'eta': eta_str,
 			'currency': route_info['rows'][0]['elements'][0]['fare']['currency'],
 			'fare': route_info['rows'][0]['elements'][0]['fare']['text'],
 			'order': segment.order_num
@@ -360,6 +337,7 @@ def route_info(route_id):
 				'duration': duration_text,
 				'durationInt': duration_int,
 				'seconds': seconds,
+				'eta': eta_str,
 				'order': segment.order_num
 			}
 

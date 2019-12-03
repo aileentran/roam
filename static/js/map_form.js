@@ -6,14 +6,14 @@ function dynamicForm() {
 	console.log('dynamic form function')
 
 	// autocomplete for start address
-	console.log('autocomplete for start address')
+	// console.log('autocomplete for start address')
 
-	const startInput = document.getElementById('start');
-	const startOptions = {
-	  types: ['address']
-	};
+	// const startInput = document.getElementById('start');
+	// const startOptions = {
+	//   types: ['address']
+	// };
 
-	const autocompleteStart = new google.maps.places.Autocomplete(startInput, startOptions);
+	// const autocompleteStart = new google.maps.places.Autocomplete(startInput, startOptions);
 
 	$('#add_stop').on('click', (evt) => {
 
@@ -43,17 +43,6 @@ function dynamicForm() {
 
 		<span id="eta"></span>
 			`);
-
-		const stopList = document.getElementById('stop_list');
-
-		console.log(stopList)
-		console.log(typeof stopList)
-		console.log(Object.keys(stopList))
-		console.log(Object.values(stopList))
-
-		// const stops = document.getElementById('stop')
-		// console.log(stops)
-
 	});
 
 
@@ -63,15 +52,15 @@ function dynamicForm() {
 	// TODO: get added stops to autocomplete as well. 
 
 
-	const stopList = document.getElementById('stop_list');
-	console.log(stopList)
+	// const stopList = document.getElementById('stop_list');
+	// console.log(stopList)
 
-	const stopInput = document.getElementById('stop');
-	const stopOptions = {
-	  types: ['address']
-	};
+	// const stopInput = document.getElementById('stop');
+	// const stopOptions = {
+	//   types: ['address']
+	// };
 
-	const autocompleteStop = new google.maps.places.Autocomplete(stopInput, stopOptions);
+	// const autocompleteStop = new google.maps.places.Autocomplete(stopInput, stopOptions);
 
 	// submitting route name, address, mode, stop order
 	$('#submit').on('click', async (evt)=>{
@@ -189,7 +178,7 @@ $('a.route').on('click', (evt) => {
 		};
 
 		// returning total travel time for route
-		$('#eta').text(`Travel time: ${travelTime} mins`);
+		$('#eta').text(`Travel time: ${travelTime} mins ETA: ${eta}`);
 
 		// changing submit button to directions button
 		$('#button-container').html(`<button

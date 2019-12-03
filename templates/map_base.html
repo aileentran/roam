@@ -52,8 +52,6 @@
 
 					<span id="duration"></span>
 
-					<span id="eta"></span>
-
 					{% if not route %}
 					{# button to add stops #}
 					<button type='button' id='add_stop'>+</button>
@@ -66,6 +64,8 @@
 				<input id="submit" type="submit">
 			</span>
 			{% endif %}
+			
+			<span id="eta"></span>
 		</form>
 	</section>
 {% endblock%}
