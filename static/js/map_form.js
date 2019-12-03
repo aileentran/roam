@@ -190,10 +190,6 @@ $('a.route').on('click', (evt) => {
 		 	>Directions
 		 	</button>`);
 
-		// calling functions from map_visuals.js
-		// puts down markers
-		markers();
-
 		// draws paths
 		calcRoute();
 	});
