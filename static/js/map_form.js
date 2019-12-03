@@ -222,8 +222,8 @@ $('#compare').on('click', (evt) =>{
 	for (let info of isoRouteId ){
 		console.log('looping through list of route info')
 		
-		const routeId = info[0]
-		console.log(routeId)
+		// grabbing char at first index and converting it to a number
+		const routeId = Number(info[0]);
 
 		$.get(`/map/${routeId}`, (resp) =>{
 			console.log('ajax req for comparison button')
