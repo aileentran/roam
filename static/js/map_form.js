@@ -205,15 +205,27 @@ $('a.route').on('click', (evt) => {
 $('#compare').on('click', (evt) =>{
 	console.log('evt listener for comparing travel times button')
 	// need to get routeId to get specific route's total travel time
+ 
+	// gets python obj of routes as a string
+	// isolate the route id
+	const routeStr = $(evt.target).data('routes');
 
-	// returns a string version of route python objs
-	const numRoutes = $(evt.target).data('routes');
+	// splitting the string to isolate the route id
+	// first idx (idx = 0) is just '[<Route'
+	// route id is first idx of lst at idx 1+
+	const splitRouteId = routeStr.split('route id=');
+	// isolating route id by making new list W/OUT '[<Route'
+	const isoRouteId = splitRouteId.slice(1);
+	console.log(isoRouteId);
 		
-	// iterating through equivalent of routeId
-	for (let i = 1; i <= numRoutes; i++ ){
-		console.log('looping through route ids')
+	// iterating through equivalent of routeId ONLY IF FOR FIRST USER!!
+	for (let info of isoRouteId ){
+		console.log('looping through list of route info')
+		
+		const routeId = info[0]
+		console.log(routeId)
 
-		$.get(`/map/${i}`, (resp) =>{
+		$.get(`/map/${routeId}`, (resp) =>{
 			console.log('ajax req for comparison button')
 
 			let travelTime = 0;
@@ -226,7 +238,7 @@ $('#compare').on('click', (evt) =>{
 				};
 			}
 
-			$(`#travel-time-${i}`).text(`Travel time: ${travelTime} mins`)
+			$(`#travel-time-${routeId}`).text(`Travel time: ${travelTime} mins`)
 		});
 	}
 });
