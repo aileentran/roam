@@ -278,6 +278,7 @@ def route_info(route_id):
 	} 
 
 
+	# total_seconds = 0
 
 	for idx, segment in enumerate(route_obj.segments):
 		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode, departure_time=datetime.now())
@@ -294,25 +295,31 @@ def route_info(route_id):
 		duration_int = int(duration_text.split(' ')[0])
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
 
+		
+
+		# total_seconds += seconds
+
 		# TODO: CONVERT TIME INTO CURRENT TIMEZONE!!!!!
 		# calculate ETA - hardcoded to PST 
 		# convert from utc to local time 
-		print('this is now')
-		print(datetime.now())
 
-		PST = datetime.now() - timedelta(hours = 8)
-		print('this is now in PST')
-		print(PST)
 
-		eta = PST + timedelta(seconds=seconds)
-		print('eta!')
-		print(eta)
+		# print('this is now')
+		# print(datetime.now())
 
-		eta_str = eta.strftime('%a %b %d, %Y at %I:%M %p')
-		print('prettier eta')
-		print(eta_str)
+		# PST = datetime.now() - timedelta(hours = 8)
+		# print('this is now in PST')
+		# print(PST)
 
-		print('\n\n\n\n')
+		# eta = PST + timedelta(seconds=seconds)
+		# print('eta!')
+		# print(eta)
+
+		# eta_str = eta.strftime('%a %b %d, %Y at %I:%M %p')
+		# print('prettier eta')
+		# print(eta_str)
+
+		# print('\n\n\n\n')
 
 		# include fare cost if segment mode is transit
 		if segment.mode.mode == 'transit':
@@ -324,7 +331,7 @@ def route_info(route_id):
 			'duration': duration_text,
 			'durationInt': duration_int,
 			'seconds': seconds,
-			'eta': eta_str,
+			# 'eta': eta_str,
 			'currency': route_info['rows'][0]['elements'][0]['fare']['currency'],
 			'fare': route_info['rows'][0]['elements'][0]['fare']['text'],
 			'order': segment.order_num
@@ -339,7 +346,7 @@ def route_info(route_id):
 				'duration': duration_text,
 				'durationInt': duration_int,
 				'seconds': seconds,
-				'eta': eta_str,
+				# 'eta': eta_str,
 				'order': segment.order_num
 			}
 

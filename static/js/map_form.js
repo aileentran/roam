@@ -142,8 +142,8 @@ $('a.route').on('click', (evt) => {
 		$('#stop').val(resp.segment_1.stop)
 		$('#mode_stop').html(`<option value="${resp.segment_1.mode}">${resp.segment_1.mode}</option> `)
 		$('#seg_order_stop').val(resp.segment_1.order)
-		$('#distance').text(`Distance ${resp.segment_1.distance}`)
-		$('#duration').text(`Time ${resp.segment_1.duration}`)
+		$('.distance').text(`Distance ${resp.segment_1.distance}`)
+		$('.duration').text(`Time ${resp.segment_1.duration}`)
 
 		// what to add as many stop list ele's as there are stops
 		// insert data INTO the stops with `${stuff}` 
@@ -162,9 +162,9 @@ $('a.route').on('click', (evt) => {
 										<option value="${resp[info].mode}">${resp[info].mode}</option>
 
 									<input name="seg_order_stop" type="number" class="stop_order" min="1" value="${resp[info].order}"placeholder="Stop order">
-									<span id="distance">Distance ${resp[info].distance}</span>
+									<span class="distance">Distance ${resp[info].distance}</span>
 
-									<span id="duration">Time ${resp[info].duration}</span>
+									<span class="duration">Time ${resp[info].duration}</span>
 							</li>
 
 						`);
@@ -179,6 +179,8 @@ $('a.route').on('click', (evt) => {
 
 		// returning total travel time for route
 		$('#total-time').text(`Travel time: ${travelTime} mins`);
+
+		// $('.eta').text(`ETA: ${resp.segment_1.eta}`)
 
 		// changing submit button to directions button
 		$('#button-container').html(`<button
