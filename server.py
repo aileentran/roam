@@ -299,7 +299,7 @@ def route_info(route_id):
 		# need to convert time to timezone of... start address...? 
 
 		# from_zone = tz.tzutc()
-		to_zone = tz.tzlocal()
+		# to_zone = tz.tzlocal()
 
 		# print(datetime.now(tz=to_zone))
 
@@ -307,10 +307,21 @@ def route_info(route_id):
 		# 2019-11-29 03:42:39.362671+00:00
 		# does python think i'm in UTC?? 
 
-		eta = datetime.now() + timedelta(seconds=seconds)
+		# convert from utc to local time 
+		print('this is now')
+		print(datetime.now())
+
+		PST = datetime.now() - timedelta(hours = 8)
+		print('this is now in PST')
+		print(PST)
+
+		eta = PST + timedelta(seconds=seconds)
+		print('eta!')
+		print(eta)
 
 		eta_str = eta.strftime('%a %b %d, %Y at %I:%M %p')
-		# print(datetime.now())
+		print('prettier eta')
+		print(eta_str)
 
 		# print(eta_str)
 		# print(type(eta_str))

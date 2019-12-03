@@ -1,6 +1,22 @@
 {# dynamic forms using AJAX and JS #}
 {% extends 'base.html' %}
 
+{# Loading Google Maps API #}
+{% block maphead %}
+	{# connecting to map_base.css #}
+	<link rel="stylesheet" href="/static/css/map_base.css"/>
+	{# connecting to init_map.js #}
+	<script src="/static/js/init_map.js"></script>
+	{# initializing map and added places library#}
+	<script
+		async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8cOt4MhRxcvoSKJC7M0XaXCvYFPyhCMQ&libraries=places&callback=initMap">
+	</script>
+	{# connecting to map_visuals.js #}
+	<script src="/static/js/map_visuals.js"></script>
+
+{% endblock %}
+
 {% block content %}
 
 	{# connecting to map_form.js #}
@@ -36,16 +52,15 @@
 
 					<span id="duration"></span>
 
+					<span id="eta"></span>
+
 					{% if not route %}
 					{# button to add stops #}
 					<button type='button' id='add_stop'>+</button>
 				</li>
 			</ul>
 			<br>
-			{# where total travel time will live! #}
-			<span id="eta"></span>
 
-			<br>
 			{# TODO: might have duplicates if hit submit. Check later #}
 			<span id="button-container">
 				<input id="submit" type="submit">
@@ -55,22 +70,6 @@
 	</section>
 {% endblock%}
 
-{# Loading Google Maps API #}
-{% block maphead %}
-	{# connecting to map_base.css #}
-	<link rel="stylesheet" href="/static/css/map_base.css"/>
-	{# connecting to init_map.js #}
-	<script src="/static/js/init_map.js"></script>
-	{# initializing map and added places library#}
-	<script
-		async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8cOt4MhRxcvoSKJC7M0XaXCvYFPyhCMQ&libraries=places&callback=initMap">
-	</script>
-	{# connecting to map_visuals.js #}
-	<script src="/static/js/map_visuals.js"></script>
-
-{% endblock %}
-
 
 {% block map %}
 	{# will render map #}
@@ -78,4 +77,3 @@
 		<div class="map"></div>
 	</section>
 {% endblock %}
-

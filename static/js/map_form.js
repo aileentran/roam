@@ -5,6 +5,8 @@ function dynamicForm() {
 
 	console.log('dynamic form function')
 
+	// autocomplete for start address
+	console.log('autocomplete for start address')
 
 	const startInput = document.getElementById('start');
 	const startOptions = {
@@ -41,10 +43,26 @@ function dynamicForm() {
 
 		<span id="eta"></span>
 			`);
+
+		const stopList = document.getElementById('stop_list');
+
+		console.log(stopList)
+		console.log(typeof stopList)
+		console.log(Object.keys(stopList))
+		console.log(Object.values(stopList))
+
+		// const stops = document.getElementById('stop')
+		// console.log(stops)
+
 	});
 
 
+
+	// autocomplete for stop addresses
+
 	// TODO: get added stops to autocomplete as well. 
+
+
 	const stopList = document.getElementById('stop_list');
 	console.log(stopList)
 
@@ -221,5 +239,3 @@ $('#compare').on('click', (evt) =>{
 		});
 	}
 });
-
-
