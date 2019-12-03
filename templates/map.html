@@ -21,7 +21,7 @@
 			<a class="route" data-route-id="{{ route.route_id }}">
 				{{ route.name }}
 			</a>
-			<span class="travel-time"></span>
+			<span id="travel-time-{{ route.route_id }}"></span>
 		</li>
 	{% endfor %}
 	<button type="button" id="compare" data-routes="{{ routes }}">Compare Travel Times</button>
