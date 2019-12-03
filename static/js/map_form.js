@@ -178,7 +178,7 @@ $('a.route').on('click', (evt) => {
 		};
 
 		// returning total travel time for route
-		$('#eta').text(`Travel time: ${travelTime} mins ETA: ${eta}`);
+		$('#total-time').text(`Travel time: ${travelTime} mins`);
 
 		// changing submit button to directions button
 		$('#button-container').html(`<button

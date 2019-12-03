@@ -52,20 +52,20 @@
 
 					<span id="duration"></span>
 
+					<span id=total-time></span>
+
 					{% if not route %}
 					{# button to add stops #}
 					<button type='button' id='add_stop'>+</button>
 				</li>
 			</ul>
 			<br>
-
+			
 			{# TODO: might have duplicates if hit submit. Check later #}
 			<span id="button-container">
 				<input id="submit" type="submit">
 			</span>
 			{% endif %}
-			
-			<span id="eta"></span>
 		</form>
 	</section>
 {% endblock%}
