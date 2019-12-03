@@ -238,7 +238,7 @@ $('#compare').on('click', (evt) =>{
 				};
 			}
 
-			$(`#travel-time-${routeId}`).text(`Travel time: ${travelTime} mins`)
+			$(`.travel-time`).text(`Travel time: ${travelTime} mins`)
 		});
 	}
 });
