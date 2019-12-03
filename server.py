@@ -243,26 +243,6 @@ def save_route():
 
 	return 'Your new route has been successfully added! If you do not see your new route in the list, please refresh the page. :)'
 
-@app.route('/users-routes')
-def users_routes():
-	"""Show all the saved routes."""
-
-	# joining routes, segments, and mode tables for specified user
-	# reduces the number of queries
-	# user_obj has access to all route info!
-	user_obj = User.query\
-	               .options(db.joinedload('routes')
-	               	          .joinedload('segments')
-	               	          .joinedload('mode'))\
-	               .get(session['user_id'])
-
-	# LIST OF ROUTES!! 
-	# a user can have many routes 
-	route_list = user_obj.routes
-
-
-	return render_template('users-routes.html', user=user_obj, routes=route_list)
-
 @app.route('/map/<int:route_id>')
 def route_info(route_id):
 	"""Shows route information AS JSON!"""
