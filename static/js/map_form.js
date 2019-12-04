@@ -193,23 +193,6 @@ $('a.route').on('click', (evt) => {
 			$(`#total-time`).text(`Travel time: ${min} mins`)
 		}
 
-		// // JS's Date.now works with UTC in milliseconds
-		// // convert travelTime (seconds) in to milliseconds 
-		// const millisecTravel = travelTime * 1000;
-		// // const now = Date(Date.now());
-		// console.log(Date.now())
-
-		// const current = new Date()
-		// const eta = Date.now() + millisecTravel;
-		// current.setTime(eta);
-
-		// console.log(current)
-
-		// console.log(Date(current))
-		// // console.log(now.setHours(hours, min))
-
-		// // $('.eta').text(`ETA: ${resp.segment_1.eta}`)
-
 		// changing submit button to directions button
 		$('#button-container').html(`<button
 		 		type='button'
