@@ -272,12 +272,9 @@ def route_info(route_id):
 		stop = route_info['destination_addresses'][0]
 		distance_km = route_info['rows'][0]['elements'][0]['distance']['text']
 		duration_text = route_info['rows'][0]['elements'][0]['duration']['text']
-		duration_int = int(duration_text.split(' ')[0])
+		# duration_int = int(duration_text.split(' ')[0])
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
 
-		print(duration_text)
-		print(duration_int)
-		print(seconds)
 
 		# total_seconds += seconds
 
@@ -311,7 +308,7 @@ def route_info(route_id):
 			'mode': segment.mode.mode.title(),
 			'distance': distance_km,
 			'duration': duration_text,
-			'durationInt': duration_int,
+			# 'durationInt': duration_int,
 			'seconds': seconds,
 			# 'eta': eta_str,
 			'currency': route_info['rows'][0]['elements'][0]['fare']['currency'],
@@ -326,7 +323,7 @@ def route_info(route_id):
 				'mode': segment.mode.mode.title(),
 				'distance': distance_km,
 				'duration': duration_text,
-				'durationInt': duration_int,
+				# 'durationInt': duration_int,
 				'seconds': seconds,
 				# 'eta': eta_str,
 				'order': segment.order_num
