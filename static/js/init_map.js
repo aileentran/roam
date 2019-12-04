@@ -8,7 +8,7 @@ function initMap(){
 	window.map = new google.maps.Map(
 	document.getElementById("map"),
 	{
-		// HB coordinates
+		// SF Bay coordinates
 		center: {lat: 37.601773, lng: -122.202870},
 		zoom: 11
 	})

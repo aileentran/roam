@@ -27,10 +27,11 @@ function markers(){
 					        </div>`
 		        );
 
+				// mark all the start address
 				const startMarker = new MarkerWithLabel({
 					position:{
-						lat: 37.601773, 
-						lng: -122.202870
+						lat: segment.start_lat,
+						lng: segment.start_lng
 					},
 					map: window.map,
 					draggable: false,
@@ -60,12 +61,17 @@ function markers(){
 					        </div>`
 		        );
 
-			const finalMarker = new google.maps.Marker({
+			const finalMarker = new MarkerWithLabel({
 				position:{
 					lat: finalStop.stop_lat,
 					lng: finalStop.stop_lng
 				},
-				map: map,
+				map: window.map,
+				draggable: false,
+				// ${idx} to make labels
+				labelContent: `1`,
+				labelAnchor: new google.maps.Point(0, 35),
+				labelClass: 'mapIcon'
 			});
 
 			finalMarker.addListener('click', ()=>{
