@@ -95,7 +95,8 @@ function calcRoute(){
 				// making new directionsRenderer for every segment = new route for every segment
 				const directionsRenderer = new google.maps.DirectionsRenderer({
 					suppressMarkers: true,
-					suppressBicyclingLayer: true
+					suppressBicyclingLayer: true,
+					preserveViewport: true
 				});
 	    		directionsRenderer.setMap(window.map);
 
