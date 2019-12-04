@@ -170,33 +170,45 @@ $('a.route').on('click', (evt) => {
 						`);
 			};
 			
-			// summing up total travel time
+			// summing up total travel time in seconds
 			if (info !== 'routeName'){
-				const time = resp[info].durationInt;
+				const time = resp[info].seconds;
 				travelTime += time;
 			}
 		};
+		//converting from seconds to days, hours, min
+		const days = travelTime / (60 * 60 * 24);
 
-		// returning total travel time for route
-		$('#total-time').text(`Travel time: ${travelTime} mins`);
+		travelTime = travelTime % (3600 * 24);
+		const hours = Math.floor(travelTime / (60 * 60));
 
-		// const days = travelTime / (60 * 60 * 24);
+		travelTime = travelTime % (60 * 60);
+		const min = Math.round(travelTime / 60);
 
-		// travelTime = travelTime % (3600 * 24);
-		// const hours = Math.round(travelTime / (60 * 60));
+		if (days >= 1){
+			$(`#total-time`).text(`Travel time: ${days} day ${hours} hours ${min} mins`);
+		} else if (hours >= 1){
+			$(`#total-time`).text(`Travel time: ${hours} hours ${min} mins`)
+		} else {
+			$(`#total-time`).text(`Travel time: ${min} mins`)
+		}
 
-		// travelTime = travelTime % (60 * 60);
-		// const min = Math.round(travelTime / 60);
+		// // JS's Date.now works with UTC in milliseconds
+		// // convert travelTime (seconds) in to milliseconds 
+		// const millisecTravel = travelTime * 1000;
+		// // const now = Date(Date.now());
+		// console.log(Date.now())
 
-		// if (days >= 1){
-		// 	$(`#total-time`).text(`Travel time: ${days} day ${hours} hours ${min} mins`);
-		// } else if (hours >= 1){
-		// 	$(`#total-time`).text(`Travel time: ${hours} hours ${min} mins`)
-		// } else {
-		// 	$(`#total-time`).text(`Travel time: ${min} mins`)
-		// }
+		// const current = new Date()
+		// const eta = Date.now() + millisecTravel;
+		// current.setTime(eta);
 
-		// $('.eta').text(`ETA: ${resp.segment_1.eta}`)
+		// console.log(current)
+
+		// console.log(Date(current))
+		// // console.log(now.setHours(hours, min))
+
+		// // $('.eta').text(`ETA: ${resp.segment_1.eta}`)
 
 		// changing submit button to directions button
 		$('#button-container').html(`<button
