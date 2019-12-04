@@ -14,10 +14,17 @@ function markers(){
 
 		$.get(`/map/${routeId}/directions`, (seg_info)=>{
 			console.log('grabbing info about segment and plopping down markers')
+
+			// setting zoom function to encase ALL markers
+			// create empty LatLngBounds object
+			var bounds = new google.maps.LatLngBounds();
+
 			// looping through list of segments
 			for (const idx in seg_info){
+
 				const segment = seg_info[idx];
-				const stopOrder = Number(idx) + 1;
+				// customized markers based on address order
+				const addressOrder = Number(idx) + 1;
 
 				// mark all the start address
 				const startMarker = new MarkerWithLabel({
@@ -27,29 +34,35 @@ function markers(){
 					},
 					map: window.map,
 					draggable: false,
-					// ${idx} to make labels
-					labelContent: `${stopOrder}`,
+					labelContent: `${addressOrder}`,
 					labelAnchor: new google.maps.Point(0, 35),
 					labelClass: 'mapIcon'
 				});
 
-			// last stop/final destination
-			const finalStop = seg_info[seg_info.length - 1];
 
-			const finalMarker = new MarkerWithLabel({
-				position:{
-					lat: finalStop.stop_lat,
-					lng: finalStop.stop_lng
-				},
-				map: window.map,
-				draggable: false,
-				// ${idx} to make labels
-				labelContent: `${seg_info.length + 1}`,
-				labelAnchor: new google.maps.Point(0, 35),
-				labelClass: 'mapIcon'
-			});
-		};
+				// last stop/final destination
+				const finalStop = seg_info[seg_info.length - 1];
 
+				const finalMarker = new MarkerWithLabel({
+					position:{
+						lat: finalStop.stop_lat,
+						lng: finalStop.stop_lng
+					},
+					map: window.map,
+					draggable: false,
+					// ${idx} to make labels
+					labelContent: `${seg_info.length + 1}`,
+					labelAnchor: new google.maps.Point(0, 35),
+					labelClass: 'mapIcon'
+				});
+
+				//extend the bounds to include each marker's position
+	  			bounds.extend(startMarker.position);
+	  			bounds.extend(finalMarker.position);
+
+	  			//now fit the map to the newly inclusive bounds
+				map.fitBounds(bounds);
+			};
 		});
 	});
 };
