@@ -226,7 +226,7 @@ def save_route():
 		seg_stop_lng = stop_coord[str(stop)]['lng']
 
 		# adding mode of this segment to modes table
-		# go through dictionary and save individual modes to table
+		# go through dictionary and save individual modes to table	
 		md = Mode(mode=mode[str(stop)])
 		db.session.add(md)
 		db.session.commit()
