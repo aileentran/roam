@@ -15,7 +15,9 @@ function markers(){
 		$.get(`/map/${routeId}/directions`, (seg_info)=>{
 			console.log('grabbing info about segment and plopping down markers')
 			// looping through list of segments
-			for (const segment of seg_info){
+			for (const idx in seg_info){
+				const segment = seg_info[idx];
+				const stopOrder = Number(idx) + 1;
 
 				// mark all the start address
 				const startMarker = new MarkerWithLabel({
@@ -26,7 +28,7 @@ function markers(){
 					map: window.map,
 					draggable: false,
 					// ${idx} to make labels
-					labelContent: `1`,
+					labelContent: `${stopOrder}`,
 					labelAnchor: new google.maps.Point(0, 35),
 					labelClass: 'mapIcon'
 				});
@@ -42,7 +44,7 @@ function markers(){
 				map: window.map,
 				draggable: false,
 				// ${idx} to make labels
-				labelContent: `1`,
+				labelContent: `${seg_info.length + 1}`,
 				labelAnchor: new google.maps.Point(0, 35),
 				labelClass: 'mapIcon'
 			});
