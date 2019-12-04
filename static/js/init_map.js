@@ -12,5 +12,9 @@ function initMap(){
 		center: {lat: 37.601773, lng: -122.202870},
 		zoom: 11
 	})
+
+	// adds live traffic layer
+	// const trafficLayer = new google.maps.TrafficLayer();
+ //  	trafficLayer.setMap(map);
 	
 };

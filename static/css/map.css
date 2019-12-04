@@ -57,3 +57,12 @@ a.route {
 a.route:hover {
   text-decoration: underline;
 }
+
+/*named in map_visuals.js*/
+.mapIcon {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    background: #ea4335;
+    transform: translate(-5px, -2px);
+}

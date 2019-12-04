@@ -201,6 +201,8 @@ $('a.route').on('click', (evt) => {
 		 	>Directions
 		 	</button>`);
 
+		$.getScript('/static/js/MarkerWithLabel.js', markers);
+
 		// draws paths
 		calcRoute();
 	});
