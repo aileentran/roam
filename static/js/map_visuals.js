@@ -4,7 +4,7 @@
 function markers(){
 	console.log('markers function');
 
-	const infoWindow = new google.maps.InfoWindow;
+	// const infoWindow = new google.maps.InfoWindow;
 
 	$('#show_directions').on('click', (evt) => {
 		console.log('directions button listener to make markers')
@@ -16,16 +16,6 @@ function markers(){
 			console.log('grabbing info about segment and plopping down markers')
 			// looping through list of segments
 			for (const segment of seg_info){
-				// set the info in the window
-				
-				const segInfoContent = (
-				`<div class="window-content"
-								<ul class="seg-info">
-					            <li><b>Stop order: </b>${segment.orderNum}</li>
-					            <li><b>Mode of transportation: </b>${segment.mode}</li>
-					          	</ul>
-					        </div>`
-		        );
 
 				// mark all the start address
 				const startMarker = new MarkerWithLabel({
@@ -41,25 +31,8 @@ function markers(){
 					labelClass: 'mapIcon'
 				});
 
-
-				startMarker.addListener('click', ()=>{
-					infoWindow.close();
-					infoWindow.setContent(segInfoContent);
-					infoWindow.open(map, startMarker)
-				});
-			};
-
 			// last stop/final destination
 			const finalStop = seg_info[seg_info.length - 1];
-
-			const segInfoContent = (
-				`<div class="window-content"
-								<ul class="seg-info">
-					            <li><b>Stop order: </b>${finalStop.orderNum}</li>
-					            <li><b>Mode of transportation: </b>${finalStop.mode}</li>
-					          	</ul>
-					        </div>`
-		        );
 
 			const finalMarker = new MarkerWithLabel({
 				position:{
@@ -73,12 +46,7 @@ function markers(){
 				labelAnchor: new google.maps.Point(0, 35),
 				labelClass: 'mapIcon'
 			});
-
-			finalMarker.addListener('click', ()=>{
-				infoWindow.close();
-				infoWindow.setContent(segInfoContent);
-				infoWindow.open(map, finalMarker);
-			});
+		};
 
 		});
 	});
