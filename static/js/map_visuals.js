@@ -93,7 +93,7 @@ function calcRoute(){
 				console.log('IN THE LEG LOOP??')
 
 				// making new directionsRenderer for every segment = new route for every segment
-				const directionsRenderer = new google.maps.DirectionsRenderer();
+				const directionsRenderer = new google.maps.DirectionsRenderer({suppressMarkers: true});
 	    		directionsRenderer.setMap(window.map);
 
 				directionsService.route(leg, (response, status) => {
