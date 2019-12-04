@@ -275,7 +275,9 @@ def route_info(route_id):
 		duration_int = int(duration_text.split(' ')[0])
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
 
-		
+		print(duration_text)
+		print(duration_int)
+		print(seconds)
 
 		# total_seconds += seconds
 

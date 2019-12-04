@@ -180,6 +180,22 @@ $('a.route').on('click', (evt) => {
 		// returning total travel time for route
 		$('#total-time').text(`Travel time: ${travelTime} mins`);
 
+		// const days = travelTime / (60 * 60 * 24);
+
+		// travelTime = travelTime % (3600 * 24);
+		// const hours = Math.round(travelTime / (60 * 60));
+
+		// travelTime = travelTime % (60 * 60);
+		// const min = Math.round(travelTime / 60);
+
+		// if (days >= 1){
+		// 	$(`#total-time`).text(`Travel time: ${days} day ${hours} hours ${min} mins`);
+		// } else if (hours >= 1){
+		// 	$(`#total-time`).text(`Travel time: ${hours} hours ${min} mins`)
+		// } else {
+		// 	$(`#total-time`).text(`Travel time: ${min} mins`)
+		// }
+
 		// $('.eta').text(`ETA: ${resp.segment_1.eta}`)
 
 		// changing submit button to directions button
@@ -229,12 +245,33 @@ $('#compare').on('click', (evt) =>{
 			// calculating total travel time for a route
 			for (const info of Object.keys(resp)){
 				if (info !== 'routeName'){
-					const time = resp[info].durationInt;
+					const time = resp[info].seconds;
 					travelTime += time;
 				};
 			}
 
-			$(`#travel-time-${routeId}`).text(`Travel time: ${travelTime} mins`)
+			// converting seconds to days, hours, min
+			// probably don't need days... 
+			const days = travelTime / (60 * 60 * 24);
+
+			travelTime = travelTime % (3600 * 24);
+			const hours = Math.floor(travelTime / (60 * 60));
+
+			travelTime = travelTime % (60 * 60);
+			const min = Math.round(travelTime / 60);
+
+			if (days === 1){
+				$(`#travel-time-${routeId}`).text(`Travel time: ${days} day ${hours} hour ${min} mins`);
+			} else if (days > 1){
+				$(`#travel-time-${routeId}`).text(`Travel time: ${days} day ${hours} hours ${min} mins`);
+			} else if (hours === 1){
+				$(`#travel-time-${routeId}`).text(`Travel time: ${hours} hour ${min} mins`);
+			} else if (hours > 1){
+				$(`#travel-time-${routeId}`).text(`Travel time: ${hours} hours ${min} mins`);
+			} else {
+				$(`#travel-time-${routeId}`).text(`Travel time: ${min} mins`);
+			}
+
 		});
 	}
 });
