@@ -6,25 +6,30 @@
 {% endblock %}
 
 {% block side %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col">
+			<div class="sidebar">
+			{# TODO: link user info! #}
+			  <h3>Roam</h3>
+			  <a href="/user-info">User Info</a>
+			  <a href="/log-out">Log Out</a>
 
-<div class="sidebar">
-	Welcome!
-{# TODO: link user info! #}
-  <a href="/user-info">User Info</a>
-  <a href="/log-out">Log Out</a>
+					<ul>
+						{% for route in routes %}
+							<li>
+								{# setting data to route-id and passing it when clicked #}
+								<a class="route" data-route-id="{{ route.route_id }}">
+									{{ route.name }}
+								</a>
+								<span id="travel-time-{{ route.route_id }}"></span>
+							</li>
+						{% endfor %}
+						<button type="button" id="compare" data-routes="{{ routes }}">Compare Travel Times</button>
+				</ul>
+			</div>
+		</div>	
+	</div>
 </div>
-
-<ul>
-	{% for route in routes %}
-		<li>
-			{# setting data to route-id and passing it when clicked #}
-			<a class="route" data-route-id="{{ route.route_id }}">
-				{{ route.name }}
-			</a>
-			<span id="travel-time-{{ route.route_id }}"></span>
-		</li>
-	{% endfor %}
-	<button type="button" id="compare" data-routes="{{ routes }}">Compare Travel Times</button>
-</ul>
 
 {% endblock %}
