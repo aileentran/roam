@@ -50,7 +50,7 @@ function markers(){
 					},
 					map: window.map,
 					draggable: false,
-					// ${idx} to make labels
+					// last address is always one more than the # of segs
 					labelContent: `${seg_info.length + 1}`,
 					labelAnchor: new google.maps.Point(0, 35),
 					labelClass: 'mapIcon'
@@ -112,6 +112,8 @@ function calcRoute(){
 					preserveViewport: true
 				});
 	    		directionsRenderer.setMap(window.map);
+	    		
+	    		directionsRenderer.setPanel(document.getElementById('directionsPanel'));
 
 				directionsService.route(leg, (response, status) => {
 					console.log('in the drawing route!');
