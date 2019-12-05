@@ -5,6 +5,8 @@
 	  src="https://code.jquery.com/jquery-3.4.1.js"
 	  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	  crossorigin="anonymous"></script>
+
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<title>Roam</title>
 	{% block head %}{% endblock %}
 	{% block maphead %}{% endblock %}
@@ -26,6 +28,9 @@
 		{% endif %}
 	{% endwith %}
 
+	{# Title  #}
+	<h1>Roam</h1>
+
 	{% block routeinfo %}{% endblock %}
 
 	
@@ -34,6 +39,9 @@
 	{% block map %}{% endblock %}
 
 	{% block scripts %}{% endblock %}
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
