@@ -129,8 +129,8 @@ $(document).ready(function() {
 // toggling/hiding saved routes
 
 $('.saved-routes').on('click', (evt)=>{
-	console.log('toggle listener')
-	$('#users-routes').toggle()
+	console.log('toggle listener');
+	$('#users-routes').toggle();
 })
 
 // selecting a route and populating the form 
