@@ -163,7 +163,7 @@ $('a.route').on('click', (evt) => {
 			if (info !== 'routeName' && info !== 'segment_1'){
 				$('#stop_list').append(`
 							<li>
-								<input name="stop" type="text" class="stop_address" value="${resp[info].stop}" placeholder="Search stop">
+								<input name="stop" type="text" class="stop_address form-control" value="${resp[info].stop}" placeholder="Search stop">
 
 									<select name="mode_stop" class="mode_stop">
 										<option value="${resp[info].mode}">${resp[info].mode}</option>

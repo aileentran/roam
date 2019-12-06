@@ -79,6 +79,8 @@ function calcRoute(){
 
 		const directionsService = new google.maps.DirectionsService();
 
+		$('#users-routes').hide();
+
 		$.get(`/map/${routeId}/directions`, (seg_info)=>{
 			console.log('grabbing info about segs from server to draw route')
 			// looping through list of segments
@@ -112,7 +114,7 @@ function calcRoute(){
 					preserveViewport: true
 				});
 	    		directionsRenderer.setMap(window.map);
-	    		
+
 	    		directionsRenderer.setPanel(document.getElementById('directionsPanel'));
 
 				directionsService.route(leg, (response, status) => {
