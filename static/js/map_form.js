@@ -128,7 +128,7 @@ $(document).ready(function() {
 
 // selecting a route and populating the form 
 $('a.route').on('click', (evt) => {
-	console.log('a.route event listener')
+	console.log('.route event listener')
 
 	const routeId = $(evt.target).data('routeId');
 

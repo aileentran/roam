@@ -1,13 +1,18 @@
 body {
   margin: 0;
+  /*display: flex;*/
 }
 
 #map {
-	width: 1750px;
-	height: 1000px;
+	width: 1000px;
+	height: 1500px;
 }
 
 #stop_list{
 	padding-inline-start: 0px;
 	margin-block-start: 0px;
+}
+
+.sidebar{
+	width: 100%;
 }

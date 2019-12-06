@@ -15,9 +15,6 @@
 	{# navbar goes here #}
 	{% block nav %}{% endblock %}
 
-	{# sidebar goes here #}
-	{% block side %} {% endblock %}
-
 	{% with messages = get_flashed_messages() %}
 		{% if messages %}
 			<ul class=flashes>
@@ -28,15 +25,28 @@
 		{% endif %}
 	{% endwith %}
 
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-9">
+				{% block content %}{% endblock %}
+
+				{% block map %}{% endblock %}
+			</div>
+			<div class="col-3">
+				{# sidebar goes here #}
+				{% block side %}
+
+				 {% endblock %}
+				 
+			</div>
+			
+		</div>
+	</div>
+
 	{% block routeinfo %}{% endblock %}
 
-	
-	{% block content %}{% endblock %}
-
-	{% block map %}{% endblock %}
-
 	{% block scripts %}{% endblock %}
-
+	<script src="/static/js/map_form.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
