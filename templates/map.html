@@ -10,11 +10,11 @@
     <div class="row">
         <div class="col">
 			<div class="sidebar">
-				<h3>Roam</h3>
+				<h1>Roam</h1>
 				{# TODO: link user info! #}
 				  <a href="/user-info">User Info</a>
 				  <a href="/log-out">Log Out</a>
-
+				  <h4>Saved Routes</h4>
 					<ul>
 						{% for route in routes %}
 							<li>
@@ -25,9 +25,10 @@
 								<span id="travel-time-{{ route.route_id }}"></span>
 							</li>
 						{% endfor %}
+
 						<button type="button" id="compare" data-routes="{{ routes }}">Compare Travel Times</button>
 					</ul>
-					</div>
+				</div>
 		</div>
 	</div>
 </div>
