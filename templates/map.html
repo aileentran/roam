@@ -12,9 +12,8 @@
 			<div class="sidebar">
 				<h1>Roam</h1>
 				{# TODO: link user info! #}
-				  <a href="/user-info">User Info</a>
-				  <a href="/log-out">Log Out</a>
-				  <h4>Saved Routes</h4>
+				  {# <a href="/user-info">User Info</a> #}
+				  <h4> Saved Routes </h4>
 					<ul>
 						{% for route in routes %}
 							<li>
@@ -28,6 +27,7 @@
 
 						<button type="button" id="compare" data-routes="{{ routes }}">Compare Travel Times</button>
 					</ul>
+					<a href="/log-out">Log Out</a>
 				</div>
 		</div>
 	</div>
