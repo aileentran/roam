@@ -25,7 +25,7 @@ function dynamicForm() {
 		// console.log(stopList);
 		$('#stop_list').append(`
 		<li>
-			<input name="stop" id="stop" type="text" class="stop_address" placeholder="Search stop">
+			<input name="stop" id="stop" type="text" class="stop_address" placeholder="Stop Address">
 
 				<select name="mode_stop" class="mode_stop">
 					<option value="driving">Driving</option> 
@@ -34,7 +34,7 @@ function dynamicForm() {
 					<option value="transit">Public Transportation</option>
 				</select>
 
-				<input name="seg_order_stop" type="number" class="stop_order" min="1" placeholder="Stop order">
+				<input name="seg_order_stop" type="number" class="stop_order" min="1" placeholder="Stop Order">
 		</li>
 
 		<span id="distance"></span>

@@ -18,8 +18,6 @@
 {% endblock %}
 
 {% block content %}
-
-	{# connecting to map_form.js #}
 	
 
 	{# Search bar for address #}
@@ -28,34 +26,40 @@
 		<form class="save_route" action="/save_route" method="POST">
 			<div class="form-group">
 			{# route name #}
-				<input id="name" type="text" placeholder="Route name"><br>
+			<input class="form-control form-control-lg" id="name" type="text" placeholder="Route Name"><br>
 				{# start location #}
-				<input id="start" type="text"placeholder="Search start"><br>
+				<input class="form-control form-control-md" type="text"placeholder="Start Address"><br>
 			{# stop location #}
 
 			{# list of stops #}
-			<ul id='stop_list'>
-				<li>
-					<input name="stop" type="text" id="stop" class="stop_address"placeholder="Search stop">
+			<div class="form-row">
+				<div class="col">
+					<ul id='stop_list'>
+						<li>
+							<input name="stop" type="text" id="stop" class="stop_address"placeholder="Stop Address">
 
-					<select id="mode_stop" class="mode_stop">
-						<option value="driving">Driving</option> {# google takes in driving #}
-						<option value="walking">Walking</option> {# google takes in walking #}
-						<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
-						<option value="transit">Public Transportation</option> {# google takes in transit #}
-					</select>
-					<input id="seg_order_stop" type="number" class="stop_order" min="1" placeholder="Stop order">
+							<select id="mode_stop" class="mode_stop">
+								<option value="driving">Driving</option> {# google takes in driving #}
+								<option value="walking">Walking</option> {# google takes in walking #}
+								<option value="bicycling">Bicycling</option> {# google takes in bicycling #}
+								<option value="transit">Public Transportation</option> {# google takes in transit #}
+							</select>
+							<input id="seg_order_stop" type="number" class="stop_order" min="1" placeholder="Stop order">
 
-					<span class="distance"></span>
+							<span class="distance"></span>
 
-					<span class="duration"></span>
+							<span class="duration"></span>
 
 
-					{% if not route %}
-					{# button to add stops #}
-					<button type='button' id='add_stop'>+</button>
-				</li>
-			</ul>
+							{% if not route %}
+							{# button to add stops #}
+							<button type='button' id='add_stop'>+</button>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+			
 			<br>
 
 			{# TODO: might have duplicates if hit submit. Check later #}
