@@ -201,6 +201,7 @@ $('a.route').on('click', (evt) => {
 		 	>Directions
 		 	</button>`);
 
+		// draw customized markers
 		$.getScript('/static/js/MarkerWithLabel.js', markers);
 
 		// draws paths
