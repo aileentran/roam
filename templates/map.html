@@ -13,8 +13,10 @@
 				<h1>Roam</h1>
 				{# TODO: link user info! #}
 				  {# <a href="/user-info">User Info</a> #}
-				  <h4> Saved Routes </h4>
-					<ul>
+				  <a class="saved-routes"> 
+				  	Saved Routes
+				  </a>
+					<ul id="users-routes">
 						{% for route in routes %}
 							<li>
 								{# setting data to route-id and passing it when clicked #}
@@ -28,6 +30,8 @@
 						<button type="button" id="compare" data-routes="{{ routes }}">Compare Travel Times</button>
 					</ul>
 					<a href="/log-out">Log Out</a>
+
+					<div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
 				</div>
 		</div>
 	</div>

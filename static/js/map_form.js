@@ -25,7 +25,7 @@ function dynamicForm() {
 		// console.log(stopList);
 		$('#stop_list').append(`
 		<li>
-			<input name="stop" id="stop" type="text" class="stop_address" placeholder="Stop Address">
+			<input name="stop" id="stop" type="text" class="stop_address form-control" placeholder="Stop Address">
 
 				<select name="mode_stop" class="mode_stop">
 					<option value="driving">Driving</option> 
@@ -125,6 +125,13 @@ function dynamicForm() {
 $(document).ready(function() {
 	dynamicForm();
 });
+
+// toggling/hiding saved routes
+
+$('.saved-routes').on('click', (evt)=>{
+	console.log('toggle listener')
+	$('#users-routes').toggle()
+})
 
 // selecting a route and populating the form 
 $('a.route').on('click', (evt) => {

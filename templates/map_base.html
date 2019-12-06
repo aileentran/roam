@@ -22,6 +22,7 @@
 
 	{# Search bar for address #}
 	{# TODO: will float on top of map #}
+<div class="float-left">
 	<section id="save-route">
 		<form class="save_route" action="/save_route" method="POST">
 			<div class="form-group">
@@ -36,7 +37,7 @@
 				<div class="col">
 					<ul id='stop_list'>
 						<li>
-							<input name="stop" type="text" id="stop" class="stop_address"placeholder="Stop Address">
+							<input name="stop" type="text" id="stop" class="stop_address form-control" placeholder="Stop Address">
 
 							<select id="mode_stop" class="mode_stop">
 								<option value="driving">Driving</option> {# google takes in driving #}
@@ -71,6 +72,7 @@
 			<span id=total-time></span>
 		</form>
 	</section>
+</div>
 {% endblock%}
 
 
@@ -79,6 +81,4 @@
 	<section id="map">
 		<div class="map"></div>
 	</section>
-
-	<div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
 {% endblock %}

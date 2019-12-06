@@ -37,6 +37,11 @@ ul {
     padding-inline-start: 0px;
 }
 
+.form-control{
+	display: inline-block;
+	width: 30em;
+}
+
 img.adp-marker2{
 	display:none;
 }
