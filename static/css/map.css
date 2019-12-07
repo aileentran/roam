@@ -43,10 +43,30 @@
     color: #F2F2F2;
 }
 
-adp, .adp table {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
+.adp-substep, .adp-text, .adp-summary {
     color: #373C40;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.adp-summary{
+  color:#628C61;
+}
+
+
+/*formatting directions text*/
+.warnbox-content{
+  display:none;
+}
+
+.warnbox-c2{
+  display:none;
+}
+
+.adp-warnbox{
+  display:none;
+}
+.adp-legal{
+  display:none;
 }
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 /*div.content {
