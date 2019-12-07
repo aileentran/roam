@@ -286,6 +286,14 @@ def route_info(route_id):
 		# print('this is now')
 		# print(datetime.now())
 
+		# print('seconds')
+		# print(seconds)
+
+		# print('minutes')
+		# print(seconds / 60)
+
+		# print(datetime.now() + timedelta(seconds=seconds))
+
 		# PST = datetime.now() - timedelta(hours = 8)
 		# print('this is now in PST')
 		# print(PST)

@@ -7,13 +7,14 @@
   position: left;
   height: 100%;
   overflow: auto;
+
 }
 
 /* Sidebar links */
 .sidebar a {
   /*display: block;*/
   color: black;
-  padding: 16px;
+  padding: 10px;
   text-decoration: none;
 }
 
@@ -23,6 +24,30 @@
   color: white;
 }
 
+.btn-secondary {
+  background-color:#F2F2F2;
+}
+
+#users-routes {
+  line-height: 2.5;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+#compare{
+  margin-left:10px;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #628C61;
+    color: #F2F2F2;
+}
+
+adp, .adp table {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #373C40;
+}
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 /*div.content {
   margin-left: 200px;
