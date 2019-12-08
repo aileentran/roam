@@ -55,13 +55,13 @@ function dynamicForm() {
 			} else {
 				window.location.href = '/map';
 
-				$('.alert').append(`
-					<div class="alert alert-success alert-dismissible fade show" role="alert">
-					  You have successfully registered. Welcome!
-					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					  </button>
-					</div>`);
+				// $('.alert').append(`
+				// 	<div class="alert alert-success alert-dismissible fade show" role="alert">
+				// 	  You have successfully registered. Welcome!
+				// 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				// 	    <span aria-hidden="true">&times;</span>
+				// 	  </button>
+				// 	</div>`);
 			}
 
 		});
