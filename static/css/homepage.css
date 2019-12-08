@@ -22,7 +22,7 @@ body {
 }
 
 .demo-2-bg {
-  background-color: #facfe4; /* fallback if background image fails */
+  background-color: #373C40; /* fallback if background image fails */
   background-repeat: no-repeat;
   background-image: url('../images/bart.jpg');
   background-position: center;
@@ -34,7 +34,7 @@ body {
    */
 
   /* background: #facfe4 no-repeat center/cover url('../images/pink-smoke.png'); /**/
-  filter: blur(3px);
+  filter: blur(10px);
   width: 100%;
   height: 100%;
   position: absolute;
@@ -65,7 +65,15 @@ a {
 }
 
 .form-control{
-	width: 50%;
+	width: 100%;
 	color: #373C40;
     background-color: #F2F2F2;
+}
+
+.col-8{
+	height: 765px;
+}
+
+.display-3, .display-4{
+	font-weight:600;
 }
