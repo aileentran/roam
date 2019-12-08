@@ -13,9 +13,11 @@
 {% endblock %}
 
 {% block homepage %}
-  <section
-    class="demo-2 container d-flex justify-content-center align-items-center"
-  >
+	<div class="alert"></div>
+
+	<section
+	class="demo-2 container d-flex justify-content-center align-items-center"
+	>
     <div class="demo-2-bg"></div>
     	<div class="row">
 	      <div class="column">
@@ -23,7 +25,7 @@
 	      "All roads lead to Rome"
 	        </p>
 	        <p class="display-4 mx-5">
-	        	...but you can get there first ;)
+	        	...but you can get there first!
 	        </p>
      	</div>
     </div>
@@ -67,36 +69,6 @@
 	      	</div>
     	</div>
     </div>
-
-
- {# card version #}
-{# <div class="card text-center">
-				  <div class="card-header">
-				    <ul class="nav nav-tabs card-header-tabs">
-				      <li class="nav-item">
-				        <a class="nav-link active" href="/registration_page">Register</a>
-				      </li>
-				      <li class="nav-item">
-				        <a class="nav-link" href="/login_page">Login</a>
-				      </li>
-				    </ul>
-				  </div>
-				  <div class="card-body">
-				    <h5 class="card-title">Register Here</h5>
-				    <p class="card-text">
-					<form action="/register" method="POST">
-						Please add your information below!<br>
-						Email address:<input type="text" name="email"><br>
-						Password:<input type="password" name="password"><br>
-						Re-enter password:<input type="password" name='re-enter'><br><br>
-
-						<!-- TODO: in server, need to include + in front of all the numbers -->
-						Cellphone number:<input type="text" name="phone"><br><br>
-
-						Click here to register! <input class="btn btn-primary" type="submit">
-					</form>
-				  </div>
-				 #}
 
   </section>
 

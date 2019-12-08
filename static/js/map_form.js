@@ -15,8 +15,6 @@ function dynamicForm() {
 		const reenter = document.getElementById('reenter').value;
 		const phone = document.getElementById('phone').value;
 
-		console.log(reenter)
-
 		const data = {
 			email: email,
 			password: password,
@@ -24,15 +22,47 @@ function dynamicForm() {
 			phone: phone
 		}
 
-		console.log(data)
-		console.log(typeof data)
 
 		$.post('/register', data, (resp) => {
 			console.log('hitting ajax register route');
-			alert('You have successfully registered!');
+			// alert('You have successfully registered!');
+			if (resp === 'EMAIL USED'){
+				$('.alert').append(`
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					  An account is already associated with this email. Please try to register with a different email or login.
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>`)
 
-			window.location.href = '/map';
+			} else if (resp === 'IN SYSTEM'){
+				alert('You are already in our system. Please login instead.');
+				$('.alert').append(`
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					  You are already in our system. Please login instead.
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>`);
+			} else if (resp === 'MISMATCH PASSWORD'){
+				$('.alert').append(`
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					  The passwords did not match. Please try again.
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>`);
+			} else {
+				window.location.href = '/map';
 
+				$('.alert').append(`
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+					  You have successfully registered. Welcome!
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>`);
+			}
 
 		});
 	});

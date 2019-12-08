@@ -56,19 +56,19 @@ def register():
 	# if email already exists in db, redirect to home page  
 	if user != None: 
 	# and (user.email == email or user.check_password(password) == True):
-		flash('An account is already associated with this email. Please try to register with a different email or login.')
-		return redirect('/')
+		# flash('An account is already associated with this email. Please try to register with a different email or login.')
+		return 'EMAIL USED'
 
 	# if the user is already in the database based on email and password
 	elif user != None and user.email == email and user.check_password(password) == True:
 
-		flash('You are already in our system. Please login instead.')
-		return redirect('/login_page')
+		# flash('You are already in our system. Please login instead.')
+		return 'IN SYSTEM'
 
 	# if the password and re-entered password does not match
 	elif password != reenter:
-		flash('The passwords did not match. Please try again. ')
-		return redirect('/registration_page')
+		# flash('The passwords did not match. Please try again. ')
+		return 'MISMATCH PASSWORD'
 
 	# if a new user and everything is entered correclty 
 	else:
