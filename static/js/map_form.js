@@ -84,18 +84,26 @@ function dynamicForm() {
 		$.post('/verify', data, (resp)=>{
 			console.log('ajax for logging in');
 
-			console.log(resp)
-			console.log(typeof resp)
-
 			if (resp === 'SUCCESS'){
-				alert('You are logged in!')
 
 				window.location.href = '/map';
+
 			} else if (resp === 'ERROR'){
-				alert('Your email or password is incorrect. Please try again.')
-				// window.location.href = '/'
+				$('.alert').append(`
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					  Your password or email was not correct. Please try again.
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>`);
 			} else {
-				alert('You are not a registered user. Please register to continue.')
+				$('.alert').append(`
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					  You are not a registered user. Please register before continuing. 
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>`);
 			}	
 			
 		})
