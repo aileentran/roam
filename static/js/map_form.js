@@ -37,6 +37,42 @@ function dynamicForm() {
 		});
 	});
 
+	// logging in 
+	$('#login-btn').on('click', (evt)=>{
+		console.log('login button hit!')
+
+		event.preventDefault();
+
+		const email = document.getElementById('login-email').value;
+		const password = document.getElementById('login-password').value;
+
+		const data = {
+			email: email,
+			password: password
+		}
+
+		$.post('/verify', data, (resp)=>{
+			console.log('ajax for logging in');
+
+			console.log(resp)
+			console.log(typeof resp)
+
+			if (resp === 'SUCCESS'){
+				alert('You are logged in!')
+
+				window.location.href = '/map';
+			} else if (resp === 'ERROR'){
+				alert('Your email or password is incorrect. Please try again.')
+				// window.location.href = '/'
+			} else {
+				alert('You are not a registered user. Please register to continue.')
+			}
+			
+			
+		})
+	});
+
+
 	// autocomplete for start address
 	// console.log('autocomplete for start address')
 

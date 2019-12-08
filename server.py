@@ -106,17 +106,16 @@ def login():
 	if user != None and user.check_password(password) == True:
 		# adding user to session 
 		session['user_id'] = user.user_id
-		flash('You are logged in. Welcome!')
 		#TODO: decide where to redirect it to: dashboard or.. 
 		#another version of home page but with access to dashboard
-		return redirect('/map')
+		return 'SUCCESS'
 	elif user != None:
-		flash('Your email or password is incorrect. Please try again.')
+		# user exists but wrong password/email
 		
-		return redirect('/login_page')
+		return 'ERROR'
 	else:
-		flash('You are not a registered user. If you want to register, please click the Register button to continue.')
-		return redirect('/')
+	
+		return 'NOT REGISTERED'
 
 @app.route('/map')
 def map_page():
