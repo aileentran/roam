@@ -372,7 +372,7 @@ def log_out():
 	"""Logs out user"""
 
 	session.pop('user_id')
-	flash('You are logged out. See you next time!')
+	# flash('You are logged out. See you next time!')
 
 	return redirect('/')
 
