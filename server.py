@@ -36,11 +36,11 @@ def index():
 
     return render_template('homepage.html', route=None)
 
-@app.route('/registration_page')
-def registration_page():
-	"""Presents registration page to get new user information."""
+# @app.route('/registration_page')
+# def registration_page():
+# 	"""Presents registration page to get new user information."""
 
-	return render_template('registration.html')
+# 	return render_template('registration.html')
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -87,11 +87,11 @@ def register():
 
 		return 'Successfully registered'
 
-@app.route('/login_page')
-def login_page():
-	"""Show login page"""
+# @app.route('/login_page')
+# def login_page():
+# 	"""Show login page"""
 
-	return render_template('login.html')
+# 	return render_template('login.html')
 
 @app.route('/verify', methods = ['POST'])
 def login():

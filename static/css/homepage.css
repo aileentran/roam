@@ -63,3 +63,9 @@ a {
 	color: #A2D4F2;
 	border-color: #A2D4F2;
 }
+
+.form-control{
+	width: 50%;
+	color: #373C40;
+    background-color: #F2F2F2;
+}

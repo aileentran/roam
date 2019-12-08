@@ -66,8 +66,7 @@ function dynamicForm() {
 				// window.location.href = '/'
 			} else {
 				alert('You are not a registered user. Please register to continue.')
-			}
-			
+			}	
 			
 		})
 	});
