@@ -83,10 +83,9 @@ def register():
 
 		# saving user to session
 		user = User.query.filter_by(email = email).first()
-
 		session['user_id'] = new_user.user_id
 
-		return redirect('/map')
+		return 'Successfully registered'
 
 @app.route('/login_page')
 def login_page():

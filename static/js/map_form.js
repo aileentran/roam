@@ -28,8 +28,12 @@ function dynamicForm() {
 		console.log(typeof data)
 
 		$.post('/register', data, (resp) => {
-			console.log('hitting ajax register route')
+			console.log('hitting ajax register route');
 			alert('You have successfully registered!');
+
+			window.location.href = '/map';
+
+
 		});
 	});
 
