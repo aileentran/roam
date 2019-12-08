@@ -47,6 +47,12 @@ ul {
 	width: 30em;
 }
 
+.form-group {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
 img.adp-marker2{
 	display:none;
 }
