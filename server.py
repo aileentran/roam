@@ -48,7 +48,7 @@ def register():
 
 	email = request.form.get('email')
 	password = request.form.get('password')
-	reenter = request.form.get('re-enter')
+	reenter = request.form.get('reenter')
 	phone = request.form.get('phone')
 
 	user = User.query.filter_by(email = email).first()
@@ -80,8 +80,13 @@ def register():
 
 		db.session.add(new_user)
 		db.session.commit()
-		flash('You have successfully registered!')
-		return redirect('/login_page')
+
+		# saving user to session
+		user = User.query.filter_by(email = email).first()
+
+		session['user_id'] = new_user.user_id
+
+		return redirect('/map')
 
 @app.route('/login_page')
 def login_page():

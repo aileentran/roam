@@ -1,17 +1,106 @@
 {% extends "base.html" %}
 
+{% block head%}
+	<link rel="stylesheet" href="/static/css/homepage.css"/>
+{% endblock %}
+
 {# navbar! Includes registration and login button #}
 {% block nav %}
 	<nav>
 		{# Title  #}
 		<h1>Roam</h1>
-		
-		<a href="/registration_page">
-			<button>Register</button>
-		</a>
-
-		<a href="/login_page">
-			<button>Login</button>
-		</a>
 	</nav>
 {% endblock %}
+
+{% block homepage %}
+  <section
+    class="demo-2 container d-flex justify-content-center align-items-center"
+  >
+    <div class="demo-2-bg"></div>
+    	<div class="row">
+	      <div class="column">
+	        <p class="display-4 mx-5">
+	      "All roads lead to Rome"
+	        </p>
+	        <p class="display-4 mx-5">
+	        	...but you can get there first ;)
+	        </p>
+     	</div>
+    </div>
+
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="col">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+				  <li class="nav-item">
+				    <a class="nav-link active" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="true">Register</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false">Login</a>
+				  </li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+				  <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="register-tab">
+					<form action="/register" method="POST">
+						<h3>Register here </h3>
+						Please add your information below!<br>
+						Email address:  <input id="email" type="text" name="email"><br>
+						Password:  <input id="password" type="password" name="password"><br>
+						Re-enter password:  <input id="reenter" type="password" name='reenter'><br><br>
+
+						<!-- TODO: in server, need to include + in front of all the numbers -->
+						Cellphone number:  <input id="phone" type="text" name="phone"><br><br>
+
+						Click here to register! <button id="register-btn" type="button" class="btn btn-outline-primary">Register</button>
+					</form>
+				  </div>
+				  <div class="tab-pane fade" id="login" role="tabpanel" aria-labelledby="login-tab">
+				  	<form action="/verify" method="POST">
+				  		<h3> Login </h3>
+
+						Email:  <input type="text" name="email"><br>
+						Password:  <input type="password" name="password"><br><br>
+						<button type="button" class="btn btn-outline-primary">Login</button>
+					</form>
+				  </div>
+				</div>
+	      	</div>
+    	</div>
+    </div>
+
+
+ {# card version #}
+{# <div class="card text-center">
+				  <div class="card-header">
+				    <ul class="nav nav-tabs card-header-tabs">
+				      <li class="nav-item">
+				        <a class="nav-link active" href="/registration_page">Register</a>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="/login_page">Login</a>
+				      </li>
+				    </ul>
+				  </div>
+				  <div class="card-body">
+				    <h5 class="card-title">Register Here</h5>
+				    <p class="card-text">
+					<form action="/register" method="POST">
+						Please add your information below!<br>
+						Email address:<input type="text" name="email"><br>
+						Password:<input type="password" name="password"><br>
+						Re-enter password:<input type="password" name='re-enter'><br><br>
+
+						<!-- TODO: in server, need to include + in front of all the numbers -->
+						Cellphone number:<input type="text" name="phone"><br><br>
+
+						Click here to register! <input class="btn btn-primary" type="submit">
+					</form>
+				  </div>
+				 #}
+
+  </section>
+
+    <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@corey_lyfe?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Corey Agopian"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Corey Agopian</span></a>
+{% endblock %}
+
+

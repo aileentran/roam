@@ -5,6 +5,34 @@ function dynamicForm() {
 
 	console.log('dynamic form function')
 
+	// sending registration info to server.py
+	$('#register-btn').on('click', (evt)=>{
+		console.log('register button')
+		event.preventDefault();
+
+		const email = document.getElementById('email').value;
+		const password = document.getElementById('password').value;
+		const reenter = document.getElementById('reenter').value;
+		const phone = document.getElementById('phone').value;
+
+		console.log(reenter)
+
+		const data = {
+			email: email,
+			password: password,
+			reenter: reenter,
+			phone: phone
+		}
+
+		console.log(data)
+		console.log(typeof data)
+
+		$.post('/register', data, (resp) => {
+			console.log('hitting ajax register route')
+			alert('You have successfully registered!');
+		});
+	});
+
 	// autocomplete for start address
 	// console.log('autocomplete for start address')
 
