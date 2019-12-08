@@ -218,9 +218,21 @@ function dynamicForm() {
 
 		// maybe use this later to populate 
 		$.post('/save_route', data, (resp) => {
-			alert(resp);
 
-		});
+			console.log('in AJAX save route')
+
+			if (resp === 'SUCCESS'){
+				console.log('success route??')
+				$('.alert').append(`
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+					  Your new route has been successfully added! If you do not see your new route in the list, please refresh the page. 😅
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>`);
+
+				};
+			});
 
 		// TODO: reload page to add new route to list??? 
 	});	

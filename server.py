@@ -244,7 +244,7 @@ def save_route():
 		db.session.add(segment)
 		db.session.commit()
 
-	return 'Your new route has been successfully added! If you do not see your new route in the list, please refresh the page. :)'
+	return 'SUCCESS'
 
 @app.route('/map/<int:route_id>')
 def route_info(route_id):
