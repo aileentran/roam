@@ -34,7 +34,7 @@ body {
    */
 
   /* background: #facfe4 no-repeat center/cover url('../images/pink-smoke.png'); /**/
-  filter: blur(10px);
+  filter: blur(8px);
   width: 100%;
   height: 100%;
   position: absolute;
