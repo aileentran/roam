@@ -6,6 +6,11 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+nav {
+	margin-left: 32px;
+    margin-top: 20px;
+}
+
 .h1, h1 {
     font-size: 3.5rem;
     margin-left: 10px;
@@ -71,7 +76,7 @@ a {
 }
 
 .col-8{
-	height: 765px;
+	height: 745px;
 }
 
 .display-3, .display-4{
