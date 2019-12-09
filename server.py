@@ -265,6 +265,7 @@ def route_info(route_id):
 
 	for idx, segment in enumerate(route_obj.segments):
 		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode, departure_time=datetime.now())
+		print(route_info)
 
 		# return example: 
 		# {'destination_addresses': ['1825 4th St, San Francisco, CA 94158, USA'], 'origin_addresses': ['1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA'], 'rows': [{'elements': [{'distance': {'text': '54.8 km', 'value': 54814}, 'duration': {'text': '38 mins', 'value': 2307}, 'status': 'OK'}]}], 'status': 'OK'}
@@ -277,6 +278,8 @@ def route_info(route_id):
 		duration_text = route_info['rows'][0]['elements'][0]['duration']['text']
 		# duration_int = int(duration_text.split(' ')[0])
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
+
+
 
 
 		# total_seconds += seconds
@@ -311,8 +314,33 @@ def route_info(route_id):
 
 		# print('\n\n\n\n')
 
+
+		# live traffic times ONLY FOR DRIVING 
+		# duration_in_traffic 
+		# {'destination_addresses': ['1428 5th St, Oakland, CA 94607, USA'], 'origin_addresses': ['647 El Cerro Dr, El Sobrante, CA 94803, USA'], 'rows': [{'elements': [{'distance': {'text': '24.4 km', 'value': 24411}, 'duration': {'text': '20 mins', 'value': 1211}, 'duration_in_traffic': {'text': '25 mins', 'value': 1486}, 'status': 'OK'}]}], 'status': 'OK'}
+		if segment.mode.mode == 'driving':
+
+			duration_in_traffic_text = route_info['rows'][0]['elements'][0]['duration_in_traffic']['text']
+			duration_in_traffic_seconds = route_info['rows'][0]['elements'][0]['duration_in_traffic']['value']
+
+			print(duration_in_traffic_text)
+			print(duration_in_traffic_seconds)
+			print('\n\n\n\n')
+
+			seg_info[f'segment_{idx + 1}']={
+				'start': start,
+				'stop': stop, 
+				'mode': segment.mode.mode.title(),
+				'distance': distance_km,
+				'duration': duration_in_traffic_text,
+				# 'durationInt': duration_int,
+				'seconds': duration_in_traffic_seconds,
+				# 'eta': eta_str,
+				'order': segment.order_num
+			}
+
 		# include fare cost if segment mode is transit
-		if segment.mode.mode == 'transit':
+		elif segment.mode.mode == 'transit':
 			seg_info[f'segment_{idx + 1}']={
 			'start': start,
 			'stop': stop, 
@@ -378,10 +406,10 @@ def log_out():
 
 
 if __name__ == "__main__":
-    app.debug = True
+    app.debug = False
     app.jinja_env.auto_reload = app.debug
     connect_to_db(app)
     print("Connected to DB.")
 
     DebugToolbarExtension(app)
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=False)
