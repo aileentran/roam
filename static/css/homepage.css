@@ -24,7 +24,7 @@ body {
 .demo-2-bg {
   background-color: #373C40; /* fallback if background image fails */
   background-repeat: no-repeat;
-  background-image: url('../images/bart.jpg');
+  background-image: url('../images/egypt-bus.jpg');
   background-position: center;
   background-size: cover;
 
