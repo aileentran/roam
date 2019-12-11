@@ -3,8 +3,11 @@
 
 # Tech Stack
 Front end: HTML, CSS, Javascript, jQuery
+
 Go Between: AJAX
+
 Back end:Postgres relational database, Python, Jinja
+
 Google Maps APIs: Places API, Maps Javascript API, Distance Matrix API
 
 # Future features
