@@ -2,9 +2,7 @@
 "All roads lead to Rome." A full-stack Flask application for commuters with multiple modes of transportation. Users can create routes with many stops, choose the mode of transportation, and save it. The application will return accurate travel times based on live traffic information and render both visual and text directions. 
 
 # Tech Stack
-Front end: HTML, CSS, Javascript, jQuery
-
-Go Between: AJAX
+Front end: HTML, CSS, Javascript, jQuery, AJAX
 
 Back end:Postgres relational database, Python, Jinja
 
