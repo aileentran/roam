@@ -8,15 +8,18 @@ from model import db, connect_to_db, User, Route, Segment, Mode
 
 import googlemaps
 
+import os
+
 from datetime import datetime, timedelta, timezone
 
+# TODO: change IP address to server's ip address!
 gmaps = googlemaps.Client(key='AIzaSyB8cOt4MhRxcvoSKJC7M0XaXCvYFPyhCMQ')
 
 
 app = Flask(__name__)
-# required to have secret key to use Flask sessions and debug toolbar
-# TODO: CHANGE SECRET KEY!! 
-app.secret_key='SUPER SECRET'
+# required to have secret key to use Flask sessions and debug toolbar 
+# generate random 32 bit secret key!  
+app.secret_key= os.urandom(32)
 
 # Throws up error if have undefined error in Jinja2
 app.jinja_env.undefined = StrictUndefined
