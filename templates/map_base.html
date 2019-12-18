@@ -5,6 +5,9 @@
 {% block maphead %}
 	{# connecting to map_base.css #}
 	<link rel="stylesheet" href="/static/css/map_base.css"/>
+{% endblock %}
+
+{% block scripts %}
 	{# connecting to init_map.js #}
 	<script src="/static/js/init_map.js"></script>
 	{# initializing map and added places library#}
@@ -14,8 +17,9 @@
 	</script>
 	{# connecting to map_visuals.js #}
 	<script src="/static/js/map_visuals.js"></script>
-
 {% endblock %}
+
+
 
 {% block content %}
 	

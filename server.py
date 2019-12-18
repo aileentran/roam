@@ -10,14 +10,6 @@ import googlemaps
 
 from datetime import datetime, timedelta, timezone
 
-import time
-
-import pytz
-
-import tzlocal 
-
-from dateutil import tz
-
 gmaps = googlemaps.Client(key='AIzaSyB8cOt4MhRxcvoSKJC7M0XaXCvYFPyhCMQ')
 
 
