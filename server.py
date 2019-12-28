@@ -407,4 +407,4 @@ if __name__ == "__main__":
     print("Connected to DB.")
 
     DebugToolbarExtension(app)
-    app.run(host="0.0.0.0", debug=False)
+    app.run(host="0.0.0.0", port=80,debug=False)
