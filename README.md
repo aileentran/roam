@@ -19,4 +19,4 @@ Google Maps APIs: Places API, Maps Javascript API, Distance Matrix API
 I am an engineer in the Bay Area. You can find more information about me at: https://www.linkedin.com/in/aileentran27/
 
 # Note
-This is currently in Beta Version. Please do not include sensitive information such as important passwords or addresses. 
+This application is currently in Beta Version. Even though the passwords are hashed, please do not include sensitive information such as important passwords or addresses. 
