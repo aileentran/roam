@@ -31,12 +31,6 @@ def index():
 
     return render_template('homepage.html', route=None)
 
-# @app.route('/registration_page')
-# def registration_page():
-# 	"""Presents registration page to get new user information."""
-
-# 	return render_template('registration.html')
-
 @app.route('/register', methods=['POST'])
 def register():
 	"""Saves user information in fb and redirects to login page"""
@@ -82,12 +76,6 @@ def register():
 
 		return 'Successfully registered'
 
-# @app.route('/login_page')
-# def login_page():
-# 	"""Show login page"""
-
-# 	return render_template('login.html')
-
 @app.route('/verify', methods = ['POST'])
 def login():
 	"""Check and verify login information"""
@@ -101,12 +89,9 @@ def login():
 	if user != None and user.check_password(password) == True:
 		# adding user to session 
 		session['user_id'] = user.user_id
-		#TODO: decide where to redirect it to: dashboard or.. 
-		#another version of home page but with access to dashboard
 		return 'SUCCESS'
 	elif user != None:
 		# user exists but wrong password/email
-		
 		return 'ERROR'
 	else:
 	
@@ -177,8 +162,6 @@ def save_route():
 		curr_address = stop_address[stop]
 		curr_info = gmaps.places(curr_address)
 		curr_coord = curr_info['results'][0]['geometry']['location']
-		# curr_lat = curr_coord['lat']
-		# curr_lng = curr_coord['lng']
 
 		# save into dictionary
 		stop_coord[stop] = curr_coord
@@ -234,7 +217,6 @@ def save_route():
 		route_id = new_route.route_id
 
 		# adding each segment into segments table!
-
 		segment = Segment(order_num=order_num, start_address=seg_start, start_lat=seg_start_lat, start_lng=seg_start_lng, stop_address=seg_stop, stop_lat=seg_stop_lat, stop_lng=seg_stop_lng, route_id=route_id, mode_id=mode_id)
 		db.session.add(segment)
 		db.session.commit()
@@ -273,42 +255,6 @@ def route_info(route_id):
 		duration_text = route_info['rows'][0]['elements'][0]['duration']['text']
 		# duration_int = int(duration_text.split(' ')[0])
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
-
-
-
-
-		# total_seconds += seconds
-
-		# TODO: CONVERT TIME INTO CURRENT TIMEZONE!!!!!
-		# calculate ETA - hardcoded to PST 
-		# convert from utc to local time 
-
-
-		# print('this is now')
-		# print(datetime.now())
-
-		# print('seconds')
-		# print(seconds)
-
-		# print('minutes')
-		# print(seconds / 60)
-
-		# print(datetime.now() + timedelta(seconds=seconds))
-
-		# PST = datetime.now() - timedelta(hours = 8)
-		# print('this is now in PST')
-		# print(PST)
-
-		# eta = PST + timedelta(seconds=seconds)
-		# print('eta!')
-		# print(eta)
-
-		# eta_str = eta.strftime('%a %b %d, %Y at %I:%M %p')
-		# print('prettier eta')
-		# print(eta_str)
-
-		# print('\n\n\n\n')
-
 
 		# live traffic times ONLY FOR DRIVING 
 		# duration_in_traffic 
@@ -394,8 +340,8 @@ def directions(route_id):
 def log_out():
 	"""Logs out user"""
 
+	# removes user from session
 	session.pop('user_id')
-	# flash('You are logged out. See you next time!')
 
 	return redirect('/')
 
