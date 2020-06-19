@@ -1,4 +1,4 @@
-env/
+env
 *.pyc
 .DS_Store
 testing_model_relationship.txt
@@ -19,3 +19,4 @@ map_visuals_old.js
 users-routes.html
 login.html
 registration.html
+__pycache__
