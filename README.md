@@ -14,9 +14,9 @@ Back end:Postgres relational database, Python, Jinja
 Google Maps APIs: Places API, Maps Javascript API, Distance Matrix API
 
 ## Features
-![alt text](https://drive.google.com/file/d/1UGRgyOuJNyhJCkLjYkJZKTQPKpSQ8KPp/view?usp=sharing)
 
-### Future features
+
+## Future features
 
 - Get parking information
 - Alert system customized by the user with accurate departure times - Twilio and Celery APIs
