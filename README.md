@@ -4,7 +4,7 @@
 Website: http://alwaysroamin.com/
 
 ## About Creator
-Roam was created by Aileen Tran. Learn more about her at [LinkedIn] (https://www.linkedin.com/in/aileentran27/).
+Roam was created by Aileen Tran. Learn more about her at [LinkedIn](https://www.linkedin.com/in/aileentran27/).
 
 # Tech Stack
 Front end: HTML, CSS, Javascript, jQuery, Bootstrap
