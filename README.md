@@ -4,14 +4,17 @@
 Website: http://alwaysroamin.com/
 
 ## About Creator
-Roam was created by Aileen Tran. Learn more about her at [LinkedIn](https://www.linkedin.com/in/aileentran27/).
+Roam was created by Aileen Tran, a developer in the Bay Area. Learn more about her on [LinkedIn](https://www.linkedin.com/in/aileentran27/).
 
-# Tech Stack
+## Tech Stack
 Front end: HTML, CSS, Javascript, jQuery, Bootstrap
 
 Back end:Postgres relational database, Python, Jinja
 
 Google Maps APIs: Places API, Maps Javascript API, Distance Matrix API
+
+## Features
+![alt text](https://drive.google.com/file/d/1UGRgyOuJNyhJCkLjYkJZKTQPKpSQ8KPp/view?usp=sharing)
 
 ### Future features
 
