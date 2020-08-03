@@ -51,7 +51,7 @@ After clicking Compare Travel Times, users can see the time estimates for ALL of
 
 ![Choosing route](/static/images/readme/choosingroute.png)
 Users can select any saved route.
->Ah, taking West Oakland Bart might be the fastest way, but based on experience, there's probably no more parking (🔮future feature to know for sure?). <br><br>
+>Ah, taking West Oakland Bart might be the fastest way, but based on experience, there's probably no more parking(🔮?).
 >Let's go through Lake Merritt instead!
 
 <br>
