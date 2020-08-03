@@ -50,14 +50,14 @@ After clicking Compare Travel Times, users can see the time estimates for ALL of
 <br>
 
 ![Choosing route](/static/images/readme/choosingroute.png)
-User can select any saved route.
->Ah, taking West Oakland Bart might be the fastest way, but based on experience, there's probably no more parking (🔮future feature?). <br><br>
+Users can select any saved route.
+>Ah, taking West Oakland Bart might be the fastest way, but based on experience, there's probably no more parking (🔮future feature to know for sure?). <br><br>
 >Let's go through Lake Merritt instead!
 
 <br>
 
 ![Selected route](/static/images/readme/hittingdirections.png)
-After selecting a route, the user can see all the stops and modes of transportation. 
+After selecting a route, the user can see all the stops and modes of transportation for that route. 
 >Yup, that's the route! And you get there by driving to Lake Merritt and taking public transportation to Hackbright.
 
 <br>
