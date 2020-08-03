@@ -11,18 +11,20 @@ Front end: HTML, CSS, Javascript, jQuery, Bootstrap
 
 Back end:Postgres relational database, Python, Jinja
 
+Framework: Flask
+
 Google Maps APIs: Places API, Maps Javascript API, Distance Matrix API
 
 ## Features✨
 ![User registration/login](/static/images/readme/registerandlogin.png)
-Users can register and login safely thanks to password hashing using werkzeug.security!
+Users can register, login, and logout safely thanks to password hashing using werkzeug.security!
 
 <br>
 
 ![Creating route and choosing mode of transportation and stop order](/static/images/readme/stoporder.png)
-Users can create customized routes by adding as many stops as they want and customizing the mode of transportation for each stop. 
+Users can create customized routes by adding as many stops as they want and customizing the mode of transportation for each stop. <br>
 For example:
->You're living your best life (because your home is at Fenton's Creamery🍨) and you need to go to Hackbright Academy. <br>
+>You're living your best life (because home is Fenton's Creamery🍨) and you need to go to Hackbright Academy. <br>
 >One of your favorite routes is to: <br>
 >(1) Drive to the San Leandro Bart station (first stop) <br>
 >(2) Take the Bart in to San Francisco, ultimately getting to Hackbright (second stop)
@@ -49,7 +51,7 @@ After clicking Compare Travel Times, users can see the time estimates for ALL of
 
 ![Choosing route](/static/images/readme/choosingroute.png)
 User can select any saved route.
->Ah, taking West Oakland Bart might be the fastest way, but based on experience, there's probably no more parking (future feature🔮 to know for sure??). <br>
+>Ah, taking West Oakland Bart might be the fastest way, but based on experience, there's probably no more parking (🔮future feature?). <br><br>
 >Let's go through Lake Merritt instead!
 
 <br>
