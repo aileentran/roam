@@ -14,7 +14,8 @@ Back end:Postgres relational database, Python, Jinja
 Google Maps APIs: Places API, Maps Javascript API, Distance Matrix API
 
 ### Features✨
-
+![User registration/login](/Roam/static/images/readme/registerandlogin.png)
+Users can register and login thanks to password hashing using werkzeug.security!
 
 ### Future Features✨
 
