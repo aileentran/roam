@@ -64,7 +64,7 @@ After selecting a route, the user can see all the stops and modes of transportat
 
 ![Map directions and text for selected route](/static/images/readme/viewingdirections.png)
 After clicking Directions, users can visually see the directions and ordered stops on the map with directions text and travel times.
->Okay! You know how to get there and know exactly how long it will take. No more looking up the routes for every mode of transportation. No remembering each individual travel time. No more guessing. Yay!🤩
+>Okay! You know how to get there and know exactly how long it will take. No more looking up the routes for every mode of transportation. No remembering each individual travel time. No more guesstimating and running late. Yay!🤩
 
 <br>
 
