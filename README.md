@@ -3,23 +3,24 @@
 
 Website: http://alwaysroamin.com/
 
-## About Creator
+## About Creator🍵🌸
 Roam was created by Aileen Tran, a developer in the Bay Area. Learn more about her on [LinkedIn](https://www.linkedin.com/in/aileentran27/).
 
-## Tech Stack
+## Tech Stack📚
 Front end: HTML, CSS, Javascript, jQuery, Bootstrap
 
 Back end:Postgres relational database, Python, Jinja
 
 Google Maps APIs: Places API, Maps Javascript API, Distance Matrix API
 
-## Features
+## Features✨
+![User registration/login](/Roam/static/images/readme/registerandlogin.png)
+Users can register and login thanks to password hashing using werkzeug.security!
 
-
-## Future features
+## Future Features✨
 
 - Get parking information
 - Alert system customized by the user with accurate departure times - Twilio and Celery APIs
 
-### Note
+### Note⚠️
 This application is currently in Beta Version. Even though the passwords are hashed, please do not include sensitive information such as important passwords or addresses. 
