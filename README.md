@@ -31,12 +31,6 @@ For example:
 
 <br>
 
-![Saving route](/static/images/readme/savedroutes.png)
-There is a side panel with all of the saved routes.
->Look at all the ways you try to get to Hackbright! Ah, Bay Area commuting life.
-
-<br>
-
 ![New route added to saved routes](/static/images/readme/newroutesaved.png)
 Under Saved Routes, there is the new route that was created!
 >Phew! There's the new route you just made.
@@ -51,7 +45,7 @@ After clicking Compare Travel Times, users can see the time estimates for ALL of
 
 ![Choosing route](/static/images/readme/choosingroute.png)
 Users can select any saved route.
->Ah, taking West Oakland Bart might be the fastest way, but based on experience, there's probably no more parking(🔮?).
+>Ah, taking West Oakland Bart might be the fastest way, but based on experience, there's probably no more parking(potential future feature🔮).
 >Let's go through Lake Merritt instead!
 
 <br>
