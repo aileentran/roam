@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  /*display: flex;*/
   color:#F2F2F2;
-  /*font-family: Roboto,Arial,sans-serif;*/
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -32,13 +30,6 @@ nav {
   background-image: url('../images/egypt-bus.jpg');
   background-position: center;
   background-size: cover;
-
-  /* One-line shortcut for the above
-   * btw, in the line below, you can easily uncomment it by deleting the '/*'
-   * (first 2 chars) at the beginning of the line!
-   */
-
-  /* background: #facfe4 no-repeat center/cover url('../images/pink-smoke.png'); /**/
   filter: blur(8px);
   width: 100%;
   height: 100%;
@@ -47,10 +38,6 @@ nav {
   left: 0;
   z-index: -1;
 }
-
-/*.card-body{
-	color:#373C40;
-}*/
 
 .nav-tabs .nav-link.active {
     color: #373C40;
