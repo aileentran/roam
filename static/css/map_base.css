@@ -1,74 +1,71 @@
 body {
   margin: 0;
-  /*display: flex;*/
   color:#373C40;
-  /*font-family: Roboto,Arial,sans-serif;*/
   font-family: 'Montserrat', sans-serif;
 }
 
 #map {
-	width: 100%;
-	height: 85%;
+  width: 100%;
+  height: 85%;
 }
 
 #stop_list{
-	padding-inline-start: 0px;
-	margin-block-start: 0px;
+  padding-inline-start: 0px;
+  margin-block-start: 0px;
 }
 
 .sidebar{
-	width: 100%;
-	height: 100%;
-	min-height: 950px;
-	/*font-family: Roboto,Arial,sans-serif;*/
-	font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  height: 100%;
+  min-height: 950px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 0px; 
-    padding-left: 0px; 
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 0px; 
+  padding-left: 0px; 
 }
 
 ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 0px;
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
 }
 
 .form-control{
-	display: inline-block;
-	width: 30em;
+  display: inline-block;
+  width: 30em;
 }
 
 .form-group {
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 img.adp-marker2{
-	display:none;
+  display:none;
 }
 
 .sidebar .travel-time, #total-time{
-	color:#628C61;
+  color:#628C61;
 }
 
 .form-map-div{
-	width:750px;
+  width:750px;
 }
 
 .h1, h1 {
-    font-size: 3.5rem;
-    margin-left: 10px;
-    margin-bottom: .3em;
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
+  font-size: 3.5rem;
+  margin-left: 10px;
+  margin-bottom: .3em;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
 }
