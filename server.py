@@ -44,19 +44,14 @@ def register():
 	
 	# if email already exists in db, redirect to home page  
 	if user != None: 
-	# and (user.email == email or user.check_password(password) == True):
-		# flash('An account is already associated with this email. Please try to register with a different email or login.')
 		return 'EMAIL USED'
 
 	# if the user is already in the database based on email and password
 	elif user != None and user.email == email and user.check_password(password) == True:
-
-		# flash('You are already in our system. Please login instead.')
 		return 'IN SYSTEM'
 
 	# if the password and re-entered password does not match
 	elif password != reenter:
-		# flash('The passwords did not match. Please try again. ')
 		return 'MISMATCH PASSWORD'
 
 	# if a new user and everything is entered correclty 
@@ -156,7 +151,6 @@ def save_route():
 
 	########## ALL STOPS (no start address) #############
 	# get all stops INCLUDING final/endstop! 
-	# save the lat and lng of each stop with.. a dictionary?
 	stop_coord = {}
 	for stop in stop_address.keys():
 		curr_address = stop_address[stop]
@@ -172,8 +166,6 @@ def save_route():
 	db.session.commit()
 
 	# go through stop info and save to segments table
-	# need to extract lat and lng for each stop from stop_coord dictionary
-	# using stop key to access all other dictionaries: stop_address, stop_coord, mode, stop_order
 	for stop in stop_address.keys():
 
 		stop = int(stop)
@@ -244,8 +236,6 @@ def route_info(route_id):
 		route_info = gmaps.distance_matrix(segment.start_address, segment.stop_address, segment.mode.mode, departure_time=datetime.now())
 		print(route_info)
 
-		# return example: 
-		# {'destination_addresses': ['1825 4th St, San Francisco, CA 94158, USA'], 'origin_addresses': ['1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA'], 'rows': [{'elements': [{'distance': {'text': '54.8 km', 'value': 54814}, 'duration': {'text': '38 mins', 'value': 2307}, 'status': 'OK'}]}], 'status': 'OK'}
 		# NOTE: duration value = time expressed in seconds 
 
 		# getting idx to match order num of segment
@@ -253,12 +243,9 @@ def route_info(route_id):
 		stop = route_info['destination_addresses'][0]
 		distance_km = route_info['rows'][0]['elements'][0]['distance']['text']
 		duration_text = route_info['rows'][0]['elements'][0]['duration']['text']
-		# duration_int = int(duration_text.split(' ')[0])
 		seconds = route_info['rows'][0]['elements'][0]['duration']['value']
 
 		# live traffic times ONLY FOR DRIVING 
-		# duration_in_traffic 
-		# {'destination_addresses': ['1428 5th St, Oakland, CA 94607, USA'], 'origin_addresses': ['647 El Cerro Dr, El Sobrante, CA 94803, USA'], 'rows': [{'elements': [{'distance': {'text': '24.4 km', 'value': 24411}, 'duration': {'text': '20 mins', 'value': 1211}, 'duration_in_traffic': {'text': '25 mins', 'value': 1486}, 'status': 'OK'}]}], 'status': 'OK'}
 		if segment.mode.mode == 'driving':
 
 			duration_in_traffic_text = route_info['rows'][0]['elements'][0]['duration_in_traffic']['text']
@@ -274,9 +261,7 @@ def route_info(route_id):
 				'mode': segment.mode.mode.title(),
 				'distance': distance_km,
 				'duration': duration_in_traffic_text,
-				# 'durationInt': duration_int,
 				'seconds': duration_in_traffic_seconds,
-				# 'eta': eta_str,
 				'order': segment.order_num
 			}
 
@@ -288,9 +273,7 @@ def route_info(route_id):
 			'mode': segment.mode.mode.title(),
 			'distance': distance_km,
 			'duration': duration_text,
-			# 'durationInt': duration_int,
 			'seconds': seconds,
-			# 'eta': eta_str,
 			'currency': route_info['rows'][0]['elements'][0]['fare']['currency'],
 			'fare': route_info['rows'][0]['elements'][0]['fare']['text'],
 			'order': segment.order_num
@@ -303,9 +286,7 @@ def route_info(route_id):
 				'mode': segment.mode.mode.title(),
 				'distance': distance_km,
 				'duration': duration_text,
-				# 'durationInt': duration_int,
 				'seconds': seconds,
-				# 'eta': eta_str,
 				'order': segment.order_num
 			}
 
