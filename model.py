@@ -1,6 +1,5 @@
 #Setting up tables in database!
 
-
 from flask_sqlalchemy import SQLAlchemy 
 
 # allows us to hash/encrypt passwords
@@ -50,21 +49,15 @@ class Route(db.Model):
     #name of route that user made. set default value to route id
     name = db.Column(db.String(100), nullable=False)
 
-    #starting location
-    #start address - will eventually enforce with searchBox 
+    #starting location 
     start_address = db.Column(db.String(150), nullable=False)
-    #name that user inputs to look for location - laymen term's like "Powell Bart"
-    #start_name = db.Column(db.String(100))
     #starting seg's latitude - will have to grab from Google Maps API
     start_lat = db.Column(db.Float)
     #starting seg's longitude - will have to grab from Google Maps API
     start_lng = db.Column(db.Float)
 
     #end location
-    #end address - will eventually enforce with searchBox
     end_address = db.Column(db.String(150), nullable=False)
-    #laymen's name to look up for a specific location 
-    #end_name = db.Column(db.String(100))
     #end's latitude - pull from Google Maps API
     end_lat = db.Column(db.Float)
     #end's longitude - pull from Google Maps API
@@ -73,11 +66,6 @@ class Route(db.Model):
     # user_id of person who made this route
     user_id = db.Column(db.Integer,
                         db.ForeignKey("users.user_id"))
-    
-
-    #building relationship btwn routes and users tables! 
-    # user = db.relationship("User",
-    #                      backref="routes")
 
     def __repr__(self):
         """Readable information about route objects."""
@@ -96,20 +84,14 @@ class Segment(db.Model):
     order_num = db.Column(db.Integer, nullable=False, default=1)
 
     #starting location
-    #start address - will eventually enforce with searchBox 
     start_address = db.Column(db.String(150), nullable=False)
-    #name that user inputs to look for location - laymen term's like "Powell Bart"
-    # start_name = db.Column(db.String(100))
     #starting seg's latitude - will have to grab from Google Maps API
     start_lat = db.Column(db.Float)
     #starting seg's longitude - will have to grab from Google Maps API
     start_lng = db.Column(db.Float)
 
     #end location
-    #end address - will eventually enforce with searchBox
     stop_address = db.Column(db.String(150), nullable=False)
-    #laymen's name to look up for a specific location 
-    # stop_name = db.Column(db.String(100))
     #end's latitude - pull from Google Maps API
     stop_lat = db.Column(db.Float)
     #end's longitude - pull from Google Maps API
@@ -151,8 +133,6 @@ class Mode(db.Model):
 
         return f"<Mode id ={self.mode_id} mode of transportation={self.mode}>"
 
-
-#################################################################################################
 # Creating environment to make tables
 def connect_to_db(app):
     """Connect the database to our Flask app."""
@@ -165,8 +145,6 @@ def connect_to_db(app):
 
 
 if __name__ == "__main__":
-    # As a convenience, if we run this module interactively, it will leave
-    # you in a state of being able to work with the database directly.
     from server import app
 
     connect_to_db(app)
